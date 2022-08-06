@@ -64,6 +64,140 @@ export class StaticAssetUpdater {
   }
 
   public async tryUpdateAssets(): Promise<UpdateResult> {
+    const fileAssets = this.findAssets();
+
+    const { assetUpdates, latestVersions } = await this.findAssetsToUpdate(
+      fileAssets
+    );
+
+    core.info(`Found ${assetUpdates.length} assets to update.`);
+    core.debug(`Found ${assetUpdates.length} that need updating.`);
+    for (const asset of assetUpdates) {
+      core.debug(`  - ${asset.name}`);
+    }
+
+    const result: UpdateResult = {
+      updates: [],
+    };
+
+    // If we found any assets that need updating, loop through each unique asset and update any
+    // versions that are not the latest version and create a pull request for asset that is.
+    if (assetUpdates.length > 0) {
+      let baseBranch = '';
+      for (const asset of assetUpdates) {
+        const client = StaticAssetUpdater.getClient(asset.cdn);
+
+        if (!client) {
+          continue;
+        }
+
+        const key = StaticAssetUpdater.getKey(asset);
+        const version = latestVersions[key];
+
+        const latestFiles = await client.getFiles(asset.name, version);
+
+        core.debug(
+          `Found ${latestFiles.length} files for ${asset.name}@${version} from ${asset.cdn}.`
+        );
+
+        if (latestFiles.length < 1) {
+          continue;
+        }
+
+        const updatedAsset = {
+          cdn: asset.cdn,
+          name: asset.name,
+          version,
+        };
+
+        if (baseBranch) {
+          // Reset to base branch before next loop
+          await this.execGit(['checkout', baseBranch], true);
+        } else {
+          // Get the base branch to use when creating the pull request
+          baseBranch = await this.getCurrentBranch();
+        }
+
+        const headBranch = await this.applyAssetUpdate(
+          baseBranch,
+          fileAssets,
+          updatedAsset,
+          latestFiles
+        );
+
+        if (!headBranch) {
+          continue;
+        }
+
+        const pullRequest = await this.createPullRequest(
+          baseBranch,
+          headBranch,
+          updatedAsset
+        );
+
+        core.debug(
+          `Created pull request for update to ${updatedAsset.name}@${updatedAsset.version}.`
+        );
+        core.debug(`  - ${pullRequest.number}`);
+        core.debug(`  - ${pullRequest.url}`);
+
+        const update: AssetUpdate = {
+          cdn: asset.cdn,
+          name: asset.name,
+          pullRequestNumber: pullRequest.number,
+          pullRequestUrl: pullRequest.url,
+          version,
+        };
+
+        result.updates.push(update);
+      }
+    }
+
+    return result;
+  }
+
+  private static getClient(provider: CdnProvider): CdnClient | null {
+    switch (provider) {
+      case CdnProvider.cdnjs:
+        return new CdnjsClient();
+      case CdnProvider.jsdelivr:
+        return new JSDelivrClient();
+      default:
+        return null;
+    }
+  }
+
+  private static getKey(asset: Asset): string {
+    return `${asset.cdn}-${asset.name}`;
+  }
+
+  private findFiles(): string[] {
+    const patterns: string[] = [];
+
+    for (const extension of this.options.fileExtensions) {
+      patterns.push(`**/*.${extension}`);
+    }
+
+    const options = {
+      cwd: this.options.repoPath,
+      nodir: true,
+      realpath: true,
+      silent: true,
+    };
+
+    const fileNames: string[] = [];
+
+    for (const pattern of patterns) {
+      const paths = glob.sync(pattern, options);
+      for (const fileName of paths) {
+        fileNames.push(fileName);
+      }
+    }
+
+    return fileNames;
+  }
+
+  findAssets(): Record<string, AssetVersionItem[]> {
     const fileAssetMap: Record<string, AssetVersionItem[]> = {};
     const paths = this.findFiles();
 
@@ -73,7 +207,7 @@ export class StaticAssetUpdater {
     }
 
     for (const fileName of paths) {
-      const assets = this.findAssets(fileName);
+      const assets = this.findAssetsInFile(fileName);
       if (assets.length > 0) {
         fileAssetMap[fileName] = assets;
       }
@@ -89,6 +223,44 @@ export class StaticAssetUpdater {
       }
     }
 
+    return fileAssetMap;
+  }
+
+  private findAssetsInFile(fileName: string): AssetVersionItem[] {
+    const assets: AssetVersionItem[] = [];
+
+    try {
+      const html = fs.readFileSync(fileName, { encoding: 'utf8' });
+      const dom = new JSDOM(html);
+      const scripts = this.findScripts(dom);
+      const styles = this.findStyles(dom);
+
+      for (const script of scripts) {
+        const asset = this.tryGetScriptAsset(script);
+        if (asset) {
+          assets.push(asset);
+        }
+      }
+
+      for (const style of styles) {
+        const asset = this.tryGetStyleAsset(style);
+        if (asset) {
+          assets.push(asset);
+        }
+      }
+    } catch (error) {
+      core.debug(`Failed to find assets in '${fileName}': ${error}`);
+    }
+
+    return assets;
+  }
+
+  private async findAssetsToUpdate(
+    fileAssetMap: Record<string, AssetVersionItem[]>
+  ): Promise<{
+    assetUpdates: Asset[];
+    latestVersions: Record<string, string>;
+  }> {
     // Find the unique assets present in the files.
     const assets: Asset[] = [];
 
@@ -186,161 +358,10 @@ export class StaticAssetUpdater {
       }
     }
 
-    core.debug(`Found ${assetsToUpdate.length} that need updating.`);
-    for (const asset of assetsToUpdate) {
-      core.debug(`  - ${asset.name}`);
-    }
-
-    core.info(`Found ${assetsToUpdate.length} assets to update.`);
-
-    const result: UpdateResult = {
-      updates: [],
+    return {
+      assetUpdates: assetsToUpdate,
+      latestVersions: assetLatestVersions,
     };
-
-    // If we found any assets that need updating, loop through each unique asset and update any
-    // versions that are not the latest version and create a pull request for asset that is.
-    if (assetsToUpdate.length > 0) {
-      let baseBranch = '';
-      for (const asset of assetsToUpdate) {
-        const client = StaticAssetUpdater.getClient(asset.cdn);
-
-        if (!client) {
-          continue;
-        }
-
-        const key = StaticAssetUpdater.getKey(asset);
-        const version = assetLatestVersions[key];
-
-        const latestFiles = await client.getFiles(asset.name, version);
-
-        core.debug(
-          `Found ${latestFiles.length} files for ${asset.name}@${version} from ${asset.cdn}.`
-        );
-
-        if (latestFiles.length < 1) {
-          continue;
-        }
-
-        const updatedAsset = {
-          cdn: asset.cdn,
-          name: asset.name,
-          version,
-        };
-
-        if (baseBranch) {
-          // Reset to base branch before next loop
-          await this.execGit(['checkout', baseBranch], true);
-        } else {
-          // Get the base branch to use when creating the pull request
-          baseBranch = await this.getCurrentBranch();
-        }
-
-        const headBranch = await this.applyAssetUpdate(
-          baseBranch,
-          fileAssetMap,
-          updatedAsset,
-          latestFiles
-        );
-
-        if (!headBranch) {
-          continue;
-        }
-
-        const pullRequest = await this.createPullRequest(
-          baseBranch,
-          headBranch,
-          updatedAsset
-        );
-
-        core.debug(
-          `Created pull request for update to ${updatedAsset.name}@${updatedAsset.version}.`
-        );
-        core.debug(`  - ${pullRequest.number}`);
-        core.debug(`  - ${pullRequest.url}`);
-
-        const update: AssetUpdate = {
-          cdn: asset.cdn,
-          name: asset.name,
-          pullRequestNumber: pullRequest.number,
-          pullRequestUrl: pullRequest.url,
-          version,
-        };
-
-        result.updates.push(update);
-      }
-    }
-
-    return result;
-  }
-
-  private static getClient(provider: CdnProvider): CdnClient | null {
-    switch (provider) {
-      case CdnProvider.cdnjs:
-        return new CdnjsClient();
-      case CdnProvider.jsdelivr:
-        return new JSDelivrClient();
-      default:
-        return null;
-    }
-  }
-
-  private static getKey(asset: Asset): string {
-    return `${asset.cdn}-${asset.name}`;
-  }
-
-  private findFiles(): string[] {
-    const patterns: string[] = [];
-
-    for (const extension of this.options.fileExtensions) {
-      patterns.push(`**/*.${extension}`);
-    }
-
-    const options = {
-      cwd: this.options.repoPath,
-      nodir: true,
-      realpath: true,
-      silent: true,
-    };
-
-    const fileNames: string[] = [];
-
-    for (const pattern of patterns) {
-      const paths = glob.sync(pattern, options);
-      for (const fileName of paths) {
-        fileNames.push(fileName);
-      }
-    }
-
-    return fileNames;
-  }
-
-  private findAssets(fileName: string): AssetVersionItem[] {
-    const assets: AssetVersionItem[] = [];
-
-    try {
-      const html = fs.readFileSync(fileName, { encoding: 'utf8' });
-      const dom = new JSDOM(html);
-      const scripts = this.findScripts(dom);
-      const styles = this.findStyles(dom);
-
-      for (const script of scripts) {
-        const asset = this.tryGetScriptAsset(script);
-        if (asset) {
-          assets.push(asset);
-        }
-      }
-
-      for (const style of styles) {
-        const asset = this.tryGetStyleAsset(style);
-        if (asset) {
-          assets.push(asset);
-        }
-      }
-    } catch (error) {
-      core.debug(`Failed to find assets in '${fileName}': ${error}`);
-    }
-
-    return assets;
   }
 
   private findScripts(dom: JSDOM): HTMLScriptElement[] {
