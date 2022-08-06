@@ -4,9 +4,7 @@
 
 This action updates static assets for HTML-related files stored in a GitHub repository.
 
-<!--
-An example Pull Request created by the action can be found [here](https://github.com/martincostello/update-static-assets/pull/TODO).
--->
+An example pull request created by the action can be found [here](https://github.com/martincostello/costellobot/pull/167).
 
 The following CDNs are supported:
 
