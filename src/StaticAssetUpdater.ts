@@ -67,10 +67,25 @@ export class StaticAssetUpdater {
     const fileAssetMap: Record<string, AssetVersionItem[]> = {};
     const paths = this.findFiles();
 
+    core.debug(`Found ${paths.length} files to search for assets.`);
+    for (const file of paths) {
+      core.debug(`  - ${file}`);
+    }
+
     for (const fileName of paths) {
       const assets = this.findAssets(fileName);
       if (assets.length > 0) {
         fileAssetMap[fileName] = assets;
+      }
+    }
+
+    core.debug(
+      `Found ${fileAssetMap.length} files with assets that may need updating.`
+    );
+    for (const file in fileAssetMap) {
+      core.debug(`  - '${file}':`);
+      for (const asset of fileAssetMap[file]) {
+        core.debug(`  - ${asset.name}@${asset.version} from ${asset.cdn}`);
       }
     }
 
@@ -87,6 +102,11 @@ export class StaticAssetUpdater {
           });
         }
       }
+    }
+
+    core.debug(`Found ${assets.length} unique assets that may need updating.`);
+    for (const asset of assets) {
+      core.debug(`  - ${asset.name} from ${asset.cdn}`);
     }
 
     // Find the versions of each asset.
@@ -111,6 +131,17 @@ export class StaticAssetUpdater {
       }
     }
 
+    core.debug(
+      `Found ${assetVersions.length} assets with versions that may need updating.`
+    );
+    for (const asset in assetVersions) {
+      for (const version of assetVersions[asset]) {
+        core.debug(
+          `  - ${version.name}@${version.version} from ${version.cdn}`
+        );
+      }
+    }
+
     // Find the latest version of each asset.
     const assetLatestVersions: Record<string, string> = {};
     for (const asset of assets) {
@@ -122,6 +153,13 @@ export class StaticAssetUpdater {
           assetLatestVersions[key] = version;
         }
       }
+    }
+
+    core.debug(
+      `Found ${assetLatestVersions.length} latest versions for assets.`
+    );
+    for (const asset in assetLatestVersions) {
+      core.debug(`  - ${asset}@${assetLatestVersions[asset]}`);
     }
 
     // Are there any assets using a version that isn't the latest one?
@@ -148,6 +186,13 @@ export class StaticAssetUpdater {
       }
     }
 
+    core.debug(`Found ${assetsToUpdate.length} that need updating.`);
+    for (const asset of assetsToUpdate) {
+      core.debug(`  - ${asset.name}`);
+    }
+
+    core.info(`Found ${assetsToUpdate.length} assets to update.`);
+
     const result: UpdateResult = {
       updates: [],
     };
@@ -155,54 +200,73 @@ export class StaticAssetUpdater {
     // If we found any assets that need updating, loop through each unique asset and update any
     // versions that are not the latest version and create a pull request for asset that is.
     if (assetsToUpdate.length > 0) {
-      core.info(`Found ${assetsToUpdate.length} assets to update.`);
       let baseBranch = '';
       for (const asset of assetsToUpdate) {
         const client = StaticAssetUpdater.getClient(asset.cdn);
-        if (client) {
-          const key = StaticAssetUpdater.getKey(asset);
-          const version = assetLatestVersions[key];
-          const latestFiles = await client.getFiles(asset.name, version);
-          if (latestFiles.length > 0) {
-            const updatedAsset = {
-              cdn: asset.cdn,
-              name: asset.name,
-              version,
-            };
 
-            if (baseBranch) {
-              // Reset to base branch before next loop
-              await this.execGit(['checkout', baseBranch], true);
-            } else {
-              baseBranch = await this.getCurrentBranch();
-            }
-
-            const headBranch = await this.applyAssetUpdate(
-              baseBranch,
-              fileAssetMap,
-              updatedAsset,
-              latestFiles
-            );
-
-            if (headBranch) {
-              const pullRequest = await this.createPullRequest(
-                baseBranch,
-                headBranch,
-                updatedAsset
-              );
-
-              const update: AssetUpdate = {
-                cdn: asset.cdn,
-                name: asset.name,
-                pullRequestNumber: pullRequest.number,
-                pullRequestUrl: pullRequest.url,
-                version,
-              };
-
-              result.updates.push(update);
-            }
-          }
+        if (!client) {
+          continue;
         }
+
+        const key = StaticAssetUpdater.getKey(asset);
+        const version = assetLatestVersions[key];
+
+        const latestFiles = await client.getFiles(asset.name, version);
+
+        core.debug(
+          `Found ${latestFiles.length} files for ${asset.name}@${version} from ${asset.cdn}.`
+        );
+
+        if (latestFiles.length < 1) {
+          continue;
+        }
+
+        const updatedAsset = {
+          cdn: asset.cdn,
+          name: asset.name,
+          version,
+        };
+
+        if (baseBranch) {
+          // Reset to base branch before next loop
+          await this.execGit(['checkout', baseBranch], true);
+        } else {
+          // Get the base branch to use when creating the pull request
+          baseBranch = await this.getCurrentBranch();
+        }
+
+        const headBranch = await this.applyAssetUpdate(
+          baseBranch,
+          fileAssetMap,
+          updatedAsset,
+          latestFiles
+        );
+
+        if (!headBranch) {
+          continue;
+        }
+
+        const pullRequest = await this.createPullRequest(
+          baseBranch,
+          headBranch,
+          updatedAsset
+        );
+
+        core.debug(
+          `Created pull request for update to ${updatedAsset.name}@${updatedAsset.version}.`
+        );
+        core.debug(`  - ${pullRequest.number}`);
+        core.debug(`  - ${pullRequest.url}`);
+
+        const update: AssetUpdate = {
+          cdn: asset.cdn,
+          name: asset.name,
+          pullRequestNumber: pullRequest.number,
+          pullRequestUrl: pullRequest.url,
+          version,
+        };
+
+        result.updates.push(update);
       }
     }
 
