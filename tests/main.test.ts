@@ -4,6 +4,7 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
+import { v4 as uuid } from 'uuid';
 
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
@@ -11,7 +12,6 @@ import * as io from '@actions/io';
 
 const github = require('@actions/github');
 
-import { v4 as uuid } from 'uuid';
 import { run } from '../src/main';
 
 import {

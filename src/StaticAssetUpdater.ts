@@ -4,20 +4,21 @@
 import * as fs from 'fs';
 import * as glob from 'glob';
 
+import { JSDOM, HTMLScriptElement, HTMLStyleElement } from 'jsdom';
+import { Writable } from 'stream';
+
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
 
-import { JSDOM, HTMLScriptElement, HTMLStyleElement } from 'jsdom';
+import { AssetUpdate } from './AssetUpdate';
 import { CdnProvider } from './CdnProvider';
+import { CdnFile } from './CdnFile';
 import { UpdateOptions } from './UpdateOptions';
 import { UpdateResult } from './UpdateResult';
-import { Writable } from 'stream';
 import { CdnClient } from './clients/CdnClient';
 import { CdnjsClient } from './clients/CdnjsClient';
 import { JSDelivrClient } from './clients/JSDelivrClient';
-import { AssetUpdate } from './AssetUpdate';
-import { CdnFile } from './CdnFile';
 
 export class StaticAssetUpdater {
   private static readonly cdnMap: Record<string, CdnProvider> = {
