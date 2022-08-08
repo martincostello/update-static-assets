@@ -2,6 +2,7 @@
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 import * as core from '@actions/core';
+import * as fs from 'fs';
 import * as path from 'path';
 
 import { StaticAssetUpdater } from './StaticAssetUpdater';
@@ -19,6 +20,7 @@ export async function run(): Promise<void> {
       commitMessage: core.getInput('commit-message', { required: false }),
       dryRun: core.getInput('dry-run', { required: false }) === 'true',
       fileExtensions: [],
+      ignore: [],
       labels: core.getInput('labels', { required: false }) ?? '',
       repo: process.env.GITHUB_REPOSITORY,
       repoPath,
@@ -33,6 +35,24 @@ export async function run(): Promise<void> {
       'cshtml,html,razor';
 
     options.fileExtensions = extensions.split(',');
+
+    let configFile = core.getInput('configuration-file', { required: false });
+
+    if (!configFile) {
+      configFile = path.join(options.repoPath, '.update-static-assets.json');
+    }
+
+    if (configFile) {
+      configFile = path.normalize(configFile);
+    }
+
+    if (fs.existsSync(configFile)) {
+      const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
+
+      if (config.ignore) {
+        options.ignore = config.ignore;
+      }
+    }
 
     const updater = new StaticAssetUpdater(options);
     const result = await updater.tryUpdateAssets();

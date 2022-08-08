@@ -268,7 +268,7 @@ export class StaticAssetUpdater {
       const client = StaticAssetUpdater.getClient(asset.cdn);
       if (client) {
         const version = await client.getLatestVersion(asset.name);
-        if (version) {
+        if (version && !this.ignoreAsset(asset, version)) {
           const key = StaticAssetUpdater.getKey(asset);
           latestVersions[key] = version;
         }
@@ -314,6 +314,21 @@ export class StaticAssetUpdater {
       assetUpdates,
       latestVersions,
     };
+  }
+
+  private ignoreAsset(asset: Asset, version: string): boolean {
+    const ignores = this.options.ignore.filter(
+      (i) => i.cdn === asset.cdn && i.name === asset.name
+    );
+
+    for (const ignore of ignores) {
+      const expression = new RegExp(ignore.version);
+      if (expression.test(version)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private findScripts(dom: JSDOM): HTMLScriptElement[] {
