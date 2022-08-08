@@ -236,6 +236,66 @@ describe('update-static-assets tests', () => {
   });
 });
 
+describe('Does not update static assets that are ignored', () => {
+  const repoPath = path.join(tempDir, uuid());
+  const indexHtml = path.join(repoPath, 'index.html');
+
+  const testFiles = [
+    {
+      path: indexHtml,
+      data: `
+      <html lang="en-gb">
+        <head>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        </head>
+      </html>`,
+    },
+    {
+      path: path.join(repoPath, '.update-static-assets.json'),
+      data: JSON.stringify({
+        ignore: [
+          {
+            cdn: 'cdnjs',
+            name: 'font-awesome',
+            version: '.*',
+          },
+        ],
+      }),
+    },
+  ];
+
+  beforeAll(async () => {
+    setupMocks();
+    await runAction(repoPath, testFiles);
+  }, 30000);
+
+  afterAll(async () => {
+    try {
+      await io.rmRF(repoPath);
+    } catch {
+      console.log('Failed to remove test repository');
+    }
+  }, 5000);
+
+  test('Does not log any errors', () => {
+    expect(core.error).toHaveBeenCalledTimes(0);
+  });
+
+  test('Does not fail', () => {
+    expect(core.setFailed).toHaveBeenCalledTimes(0);
+  });
+
+  test('Does not update the font-awesome tag', () => {
+    const html = fs.readFileSync(indexHtml, { encoding: 'utf8' });
+    expect(html).toContain(
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+    );
+    expect(html).toContain(
+      'sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
+    );
+  });
+});
+
 function setupMocks(): void {
   jest.spyOn(process.stdout, 'write').mockImplementation(() => true);
   jest.spyOn(core, 'error').mockImplementation(() => {});
