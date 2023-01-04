@@ -79,10 +79,10 @@ export class StaticAssetUpdater {
     if (assetUpdates.length > 0) {
       // Get the base branch to use when creating the pull request
       const baseBranch = await this.getCurrentBranch();
-      let assetsUpdated = 0;
+      let updatesAttempted = 0;
 
       for (const asset of assetUpdates) {
-        if (assetsUpdated > 0) {
+        if (updatesAttempted > 0) {
           // Reset to base branch before next loop
           await this.execGit(['checkout', baseBranch], true);
         }
@@ -96,8 +96,9 @@ export class StaticAssetUpdater {
 
         if (update) {
           result.updates.push(update);
-          assetsUpdated++;
         }
+
+        updatesAttempted++;
       }
     }
 
