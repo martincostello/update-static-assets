@@ -42,7 +42,7 @@
     "@actions/github": "^5.1.1",
     "@actions/http-client": "2.0.1",
     "@actions/io": "^1.1.2",
-    "glob": "^8.1.0",
+    "glob": "^9.0.2",
     "jsdom": "^21.1.0"
   },
   "devDependencies": {
