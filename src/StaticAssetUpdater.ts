@@ -766,7 +766,7 @@ export class StaticAssetUpdater {
     await this.execGit(['commit', '-m', commitMessage]);
 
     const sha1 = await this.execGit(['log', "--format='%H'", '-n', '1']);
-    const shortSha1 = sha1.replace("'", '').substring(0, 7);
+    const shortSha1 = sha1.replace(/'/g, '').substring(0, 7);
 
     core.info(`Committed ${assetUpdate.name} update to git (${shortSha1})`);
 
