@@ -163,7 +163,9 @@ export class StaticAssetUpdater {
     }
 
     core.debug(
-      `Found ${fileAssetMap.length} files with assets that may need updating.`
+      `Found ${
+        Object.keys(fileAssetMap).length
+      } files with assets that may need updating.`
     );
     for (const file in fileAssetMap) {
       core.debug(`  - '${file}':`);
@@ -253,7 +255,9 @@ export class StaticAssetUpdater {
     }
 
     core.debug(
-      `Found ${assetVersions.length} assets with versions that may need updating.`
+      `Found ${
+        Object.keys(assetVersions).length
+      } assets with versions that may need updating.`
     );
     for (const asset in assetVersions) {
       for (const version of assetVersions[asset]) {
@@ -276,7 +280,9 @@ export class StaticAssetUpdater {
       }
     }
 
-    core.debug(`Found ${latestVersions.length} latest versions for assets.`);
+    core.debug(
+      `Found ${Object.keys(latestVersions).length} latest versions for assets.`
+    );
     for (const asset in latestVersions) {
       core.debug(`  - ${asset}@${latestVersions[asset]}`);
     }
