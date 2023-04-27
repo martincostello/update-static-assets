@@ -39,9 +39,16 @@ on:
   # Manual trigger to update static assets on demand
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   update-static-assets:
     name: Update static assets
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
