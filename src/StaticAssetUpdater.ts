@@ -2,8 +2,8 @@
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 import * as fs from 'fs';
-import * as glob from 'glob';
 
+import { glob } from 'glob';
 import { JSDOM, HTMLScriptElement, HTMLStyleElement } from 'jsdom';
 import { Writable } from 'stream';
 
@@ -64,7 +64,7 @@ export class StaticAssetUpdater {
   }
 
   public async tryUpdateAssets(): Promise<UpdateResult> {
-    const fileAssets = this.findAssets();
+    const fileAssets = await this.findAssets();
 
     const { assetUpdates, latestVersions } = await this.findAssetsToUpdate(
       fileAssets
@@ -120,35 +120,21 @@ export class StaticAssetUpdater {
     return `${asset.cdn}-${asset.name}`;
   }
 
-  private findFiles(): string[] {
-    const patterns: string[] = [];
-
-    for (const extension of this.options.fileExtensions) {
-      patterns.push(`**/*.${extension}`);
-    }
-
-    const options = {
+  private async findFiles(): Promise<string[]> {
+    const patterns = this.options.fileExtensions.map(
+      (extension) => `**/*.${extension}`
+    );
+    return await glob(patterns, {
+      absolute: true,
       cwd: this.options.repoPath,
       nodir: true,
       realpath: true,
-      silent: true,
-    };
-
-    const fileNames: string[] = [];
-
-    for (const pattern of patterns) {
-      const paths = glob.sync(pattern, options);
-      for (const fileName of paths) {
-        fileNames.push(fileName);
-      }
-    }
-
-    return fileNames;
+    });
   }
 
-  findAssets(): Record<string, AssetVersionItem[]> {
+  async findAssets(): Promise<Record<string, AssetVersionItem[]>> {
     const fileAssetMap: Record<string, AssetVersionItem[]> = {};
-    const paths = this.findFiles();
+    const paths = await this.findFiles();
 
     core.debug(`Found ${paths.length} files to search for assets.`);
     for (const file of paths) {
