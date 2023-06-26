@@ -2,7 +2,7 @@
 
 [![Build status](https://github.com/martincostello/update-static-assets/workflows/build/badge.svg?branch=main&event=push)](https://github.com/martincostello/update-static-assets/actions?query=workflow%3Abuild+branch%3Amain+event%3Apush)
 [![codecov](https://codecov.io/gh/martincostello/update-static-assets/branch/main/graph/badge.svg)](https://codecov.io/gh/martincostello/update-static-assets)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/martincostello/update-static-assets/badge)](https://api.securityscorecards.dev/projects/github.com/martincostello/update-static-assets)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/martincostello/update-static-assets/badge)](https://securityscorecards.dev/viewer/?uri=github.com/martincostello/update-static-assets)
 
 This action updates static assets for HTML-related files stored in a GitHub repository.
 
