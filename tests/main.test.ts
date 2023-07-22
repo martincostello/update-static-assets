@@ -77,8 +77,8 @@ describe('update-static-assets tests', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('Updates the font-awesome tag', () => {
-      const html = fs.readFileSync(indexHtml, { encoding: 'utf8' });
+    test('Updates the font-awesome tag', async () => {
+      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
       expect(html).not.toContain(
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
       );
@@ -128,8 +128,8 @@ describe('update-static-assets tests', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('Updates the bootstrap tags', () => {
-      const html = fs.readFileSync(indexHtml, { encoding: 'utf8' });
+    test('Updates the bootstrap tags', async () => {
+      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
       expect(html).not.toContain(
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
       );
@@ -197,7 +197,7 @@ describe('update-static-assets tests', () => {
 
       await git(repoPath, 'checkout', matches![0]);
 
-      const html = fs.readFileSync(indexHtml, { encoding: 'utf8' });
+      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
 
       expect(html).not.toContain(
         'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
@@ -224,7 +224,7 @@ describe('update-static-assets tests', () => {
 
       await git(repoPath, 'checkout', matches![0]);
 
-      const html = fs.readFileSync(indexHtml, { encoding: 'utf8' });
+      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
 
       expect(html).not.toContain(
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
@@ -285,8 +285,8 @@ describe('Does not update static assets that are ignored', () => {
     expect(core.setFailed).toHaveBeenCalledTimes(0);
   });
 
-  test('Does not update the font-awesome tag', () => {
-    const html = fs.readFileSync(indexHtml, { encoding: 'utf8' });
+  test('Does not update the font-awesome tag', async () => {
+    const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
     expect(html).toContain(
       'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
     );
@@ -320,7 +320,7 @@ async function createTestGitRepo(
   }
 
   for (const { path, data } of testFiles) {
-    fs.writeFileSync(path, data);
+    await fs.promises.writeFile(path, data);
   }
 
   await git(repoPath, 'init');

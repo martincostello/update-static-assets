@@ -142,7 +142,7 @@ export class StaticAssetUpdater {
     }
 
     for (const fileName of paths) {
-      const assets = this.findAssetsInFile(fileName);
+      const assets = await this.findAssetsInFile(fileName);
       if (assets.length > 0) {
         fileAssetMap[fileName] = assets;
       }
@@ -163,11 +163,13 @@ export class StaticAssetUpdater {
     return fileAssetMap;
   }
 
-  private findAssetsInFile(fileName: string): AssetVersionItem[] {
+  private async findAssetsInFile(
+    fileName: string
+  ): Promise<AssetVersionItem[]> {
     const assets: AssetVersionItem[] = [];
 
     try {
-      const html = fs.readFileSync(fileName, { encoding: 'utf8' });
+      const html = await fs.promises.readFile(fileName, { encoding: 'utf8' });
       const dom = new JSDOM(html);
       const scripts = this.findScripts(dom);
       const styles = this.findStyles(dom);
@@ -652,7 +654,7 @@ export class StaticAssetUpdater {
 
     // Apply the updates to the file system
     for (const file in fileAssetMap) {
-      let content = fs.readFileSync(file, 'utf8');
+      let content = await fs.promises.readFile(file, 'utf8');
       let dirty = false;
 
       const assetsToUpdate = fileAssetMap[file].filter(
@@ -682,7 +684,7 @@ export class StaticAssetUpdater {
       }
 
       if (dirty) {
-        fs.writeFileSync(file, content, { encoding: 'utf8' });
+        await fs.promises.writeFile(file, content, { encoding: 'utf8' });
         filesUpdated++;
       }
     }
