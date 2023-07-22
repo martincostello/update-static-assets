@@ -47,7 +47,7 @@ export async function run(): Promise<void> {
     }
 
     if (fs.existsSync(configFile)) {
-      const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));
+      const config = JSON.parse(await fs.promises.readFile(configFile, 'utf8'));
 
       if (config.ignore) {
         options.ignore = config.ignore;
