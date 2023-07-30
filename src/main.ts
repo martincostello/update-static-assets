@@ -5,6 +5,7 @@ import * as core from '@actions/core';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { Context } from '@actions/github/lib/context';
 import { StaticAssetUpdater } from './StaticAssetUpdater';
 import { UpdateOptions } from './UpdateOptions';
 
@@ -13,9 +14,11 @@ export async function run(): Promise<void> {
     let repoPath = core.getInput('repo-path', { required: false }) ?? '.';
     repoPath = path.normalize(repoPath);
 
+    const context = new Context();
+
     const options: UpdateOptions = {
       accessToken: core.getInput('repo-token', { required: true }),
-      apiUrl: process.env.GITHUB_API_URL ?? 'https://api.github.com',
+      apiUrl: context.apiUrl,
       branchPrefix: core.getInput('branch-name-prefix', { required: false }),
       commitMessage: core.getInput('commit-message', { required: false }),
       dryRun: core.getInput('dry-run', { required: false }) === 'true',
@@ -24,8 +27,8 @@ export async function run(): Promise<void> {
       labels: core.getInput('labels', { required: false }) ?? '',
       repo: process.env.GITHUB_REPOSITORY,
       repoPath,
-      runId: process.env.GITHUB_RUN_ID,
-      serverUrl: process.env.GITHUB_SERVER_URL ?? 'https://github.com',
+      runId: context.runId.toString(10),
+      serverUrl: context.serverUrl,
       userEmail: core.getInput('user-email', { required: false }),
       userName: core.getInput('user-name', { required: false }),
     };
