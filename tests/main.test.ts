@@ -297,9 +297,51 @@ describe('Does not update static assets that are ignored', () => {
 });
 
 function setupMocks(): void {
-  jest.spyOn(process.stdout, 'write').mockImplementation(() => true);
-  jest.spyOn(core, 'error').mockImplementation(() => {});
   jest.spyOn(core, 'setFailed').mockImplementation(() => {});
+  setupLogging();
+  setupPullRequest();
+}
+
+function setupLogging(): void {
+  const logger = (level: string, arg: string | Error) => {
+    console.debug(`[${level}] ${arg}`);
+  };
+
+  jest.spyOn(core, 'debug').mockImplementation((arg) => {
+    logger('debug', arg);
+  });
+  jest.spyOn(core, 'info').mockImplementation((arg) => {
+    logger('info', arg);
+  });
+  jest.spyOn(core, 'notice').mockImplementation((arg) => {
+    logger('notice', arg);
+  });
+  jest.spyOn(core, 'warning').mockImplementation((arg) => {
+    logger('warning', arg);
+  });
+  jest.spyOn(core, 'error').mockImplementation((arg) => {
+    logger('error', arg);
+  });
+}
+
+function setupPullRequest(): void {
+  github.getOctokit = jest.fn().mockReturnValue({
+    rest: {
+      issues: {
+        addLabels: () => Promise.resolve({}),
+      },
+      pulls: {
+        create: () =>
+          Promise.resolve({
+            data: {
+              number: '42',
+              html_url:
+                'https://github.local/martincostello/update-static-assets/pull/42',
+            },
+          }),
+      },
+    },
+  });
 }
 
 async function git(repoPath: string, ...args: string[]): Promise<string> {
@@ -353,23 +395,7 @@ async function runAction(
 
   await createTestGitRepo(repoPath, testFiles);
 
-  github.getOctokit = jest.fn().mockReturnValue({
-    rest: {
-      issues: {
-        addLabels: () => Promise.resolve({}),
-      },
-      pulls: {
-        create: () =>
-          Promise.resolve({
-            data: {
-              number: '42',
-              html_url:
-                'https://github.local/martincostello/update-static-assets/pull/42',
-            },
-          }),
-      },
-    },
-  });
+  setupMocks();
 
   await run();
 }
