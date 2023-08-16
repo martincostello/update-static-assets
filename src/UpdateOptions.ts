@@ -15,6 +15,7 @@ export interface UpdateOptions {
   repo?: string;
   repoPath: string;
   runId?: string;
+  runRepo?: string;
   serverUrl?: string;
   userEmail: string;
   userName: string;

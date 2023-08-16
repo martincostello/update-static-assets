@@ -25,9 +25,12 @@ export async function run(): Promise<void> {
       fileExtensions: [],
       ignore: [],
       labels: core.getInput('labels', { required: false }) ?? '',
-      repo: process.env.GITHUB_REPOSITORY,
+      repo:
+        core.getInput('repo', { required: false }) ??
+        process.env.GITHUB_REPOSITORY,
       repoPath,
       runId: context.runId.toString(10),
+      runRepo: process.env.GITHUB_REPOSITORY,
       serverUrl: context.serverUrl,
       userEmail: core.getInput('user-email', { required: false }),
       userName: core.getInput('user-name', { required: false }),
