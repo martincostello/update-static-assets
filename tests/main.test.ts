@@ -44,13 +44,12 @@ describe('update-static-assets', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('assets-updated is correct', () => {
-      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
-    });
-
-    test('pulls', () => {
-      expect(fixture.getOutput('pulls')).toMatchSnapshot();
-    });
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
 
     test('updates font-awesome', async () => {
       expect(await fixture.getContent('index.html')).toMatchSnapshot();
@@ -102,13 +101,12 @@ describe('update-static-assets', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('assets-updated is correct', () => {
-      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
-    });
-
-    test('pulls', () => {
-      expect(fixture.getOutput('pulls')).toMatchSnapshot();
-    });
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
 
     test('updates bootstrap', async () => {
       expect(await fixture.getContent('index.html')).toMatchSnapshot();
@@ -161,13 +159,12 @@ describe('update-static-assets', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('assets-updated is correct', () => {
-      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
-    });
-
-    test('pulls', () => {
-      expect(fixture.getOutput('pulls')).toMatchSnapshot();
-    });
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
 
     describe.each([
       ['bootstrap', '5.3.1'],
@@ -238,13 +235,12 @@ describe('update-static-assets', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('assets-updated is correct', () => {
-      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
-    });
-
-    test('pulls', () => {
-      expect(fixture.getOutput('pulls')).toMatchSnapshot();
-    });
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
 
     test('does not update excluded assets', async () => {
       expect(await fixture.getContent('index.html')).toMatchSnapshot();

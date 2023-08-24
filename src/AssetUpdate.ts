@@ -8,5 +8,6 @@ export interface AssetUpdate {
   name: string;
   pullRequestNumber: number;
   pullRequestUrl: string;
+  superceded: string[];
   version: string;
 }

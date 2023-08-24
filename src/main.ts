@@ -65,7 +65,11 @@ export async function run(): Promise<void> {
 
     core.setOutput('assets-updated', result.updates.length > 0);
     core.setOutput(
-      'pulls',
+      'pulls-closed',
+      JSON.stringify(result.updates.map((p) => p.superceded).flat())
+    );
+    core.setOutput(
+      'pulls-opened',
       JSON.stringify(result.updates.map((p) => p.pullRequestNumber))
     );
   } catch (error: any) {

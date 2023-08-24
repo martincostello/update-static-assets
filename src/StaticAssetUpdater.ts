@@ -515,6 +515,7 @@ export class StaticAssetUpdater {
       name: asset.name,
       pullRequestNumber: pullRequest.number,
       pullRequestUrl: pullRequest.url,
+      superceded: [],
       version,
     };
   }

@@ -17,7 +17,9 @@ exports[`update-static-assets for assets that are ignored generates the correct 
 ]
 `;
 
-exports[`update-static-assets for assets that are ignored pulls 1`] = `"[]"`;
+exports[`update-static-assets for assets that are ignored pulls-closed is correct 1`] = `"[]"`;
+
+exports[`update-static-assets for assets that are ignored pulls-opened is correct 1`] = `"[]"`;
 
 exports[`update-static-assets for cdnjs assets-updated is correct 1`] = `"true"`;
 
@@ -51,7 +53,9 @@ index c435ad4..d7429e2 100644
 \\ No newline at end of file"
 `;
 
-exports[`update-static-assets for cdnjs pulls 1`] = `"[43]"`;
+exports[`update-static-assets for cdnjs pulls-closed is correct 1`] = `"[]"`;
+
+exports[`update-static-assets for cdnjs pulls-opened is correct 1`] = `"[43]"`;
 
 exports[`update-static-assets for cdnjs updates font-awesome 1`] = `
 "
@@ -98,7 +102,9 @@ index 498e7ea..1a51386 100644
 \\ No newline at end of file"
 `;
 
-exports[`update-static-assets for jsDelivr pulls 1`] = `"[42]"`;
+exports[`update-static-assets for jsDelivr pulls-closed is correct 1`] = `"[]"`;
+
+exports[`update-static-assets for jsDelivr pulls-opened is correct 1`] = `"[42]"`;
 
 exports[`update-static-assets for jsDelivr updates bootstrap 1`] = `
 "
@@ -114,7 +120,9 @@ exports[`update-static-assets for jsDelivr updates bootstrap 1`] = `
 
 exports[`update-static-assets for multiple assets assets-updated is correct 1`] = `"true"`;
 
-exports[`update-static-assets for multiple assets pulls 1`] = `"[42,43]"`;
+exports[`update-static-assets for multiple assets pulls-closed is correct 1`] = `"[]"`;
+
+exports[`update-static-assets for multiple assets pulls-opened is correct 1`] = `"[42,43]"`;
 
 exports[`update-static-assets for multiple assets updating bootstrap generates the correct commit message 1`] = `
 [
