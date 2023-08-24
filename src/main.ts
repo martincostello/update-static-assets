@@ -20,6 +20,7 @@ export async function run(): Promise<void> {
       accessToken: core.getInput('repo-token', { required: true }),
       apiUrl: context.apiUrl,
       branchPrefix: core.getInput('branch-name-prefix', { required: false }),
+      closeSuperseded: true,
       commitMessage: core.getInput('commit-message', { required: false }),
       dryRun: core.getInput('dry-run', { required: false }) === 'true',
       fileExtensions: [],
@@ -35,6 +36,13 @@ export async function run(): Promise<void> {
       userEmail: core.getInput('user-email', { required: false }),
       userName: core.getInput('user-name', { required: false }),
     };
+
+    const supersededOption = core.getInput('close-superseded', {
+      required: false,
+    });
+    if (supersededOption) {
+      options.closeSuperseded = supersededOption === 'true';
+    }
 
     const extensions =
       core.getInput('file-extensions', { required: false }) ??
@@ -64,6 +72,14 @@ export async function run(): Promise<void> {
     const result = await updater.tryUpdateAssets();
 
     core.setOutput('assets-updated', result.updates.length > 0);
+    core.setOutput(
+      'pulls-closed',
+      JSON.stringify(result.updates.map((p) => p.supersedes).flat())
+    );
+    core.setOutput(
+      'pulls-opened',
+      JSON.stringify(result.updates.map((p) => p.pullRequestNumber))
+    );
   } catch (error: any) {
     core.error('Failed to check for updates to static assets.');
     core.error(error);

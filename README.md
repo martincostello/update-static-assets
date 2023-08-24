@@ -70,6 +70,7 @@ jobs:
 | **Name** | **Description** | **Default** |
 |:--|:--|:--|
 | `branch-name-prefix` | The optional Git branch name prefix to use. | - |
+| `close-superseded` | If true, any existing pull requests superseded by any pull requests opened by the action are closed. | `true` |
 | `commit-message` | The optional Git commit message to use. | - |
 | `configuration-file` | The optional path to a configuration file to use (see [configuration](#configuration)). | `.update-static-assets.json` |
 | `file-extensions` | The optional comma-separated file extension(s) to search for static assets within. | `cshtml,html,razor` |
@@ -85,6 +86,8 @@ jobs:
 | **Name** | **Description** |
 |:--|:--|
 | `assets-updated` | Whether any static assets were updated by the action. |
+| `pulls-closed` | A JSON array of the numbers of any pull requests that were closed as superseded. |
+| `pulls-opened` | A JSON array of the numbers of any pull requests that were opened to update static assets. |
 
 ## Configuration
 

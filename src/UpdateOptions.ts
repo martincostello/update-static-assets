@@ -7,12 +7,13 @@ export interface UpdateOptions {
   accessToken: string;
   apiUrl?: string;
   branchPrefix: string;
+  closeSuperseded: boolean;
   commitMessage: string;
   dryRun: boolean;
   fileExtensions: string[];
   ignore: IgnoreAsset[];
   labels: string;
-  repo?: string;
+  repo: string;
   repoPath: string;
   runId?: string;
   runRepo?: string;

@@ -1,158 +1,137 @@
 // Copyright (c) Martin Costello, 2022. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-import * as fs from 'fs';
-import * as os from 'os';
-import * as path from 'path';
-import { v4 as uuid } from 'uuid';
-
 import * as core from '@actions/core';
-import * as exec from '@actions/exec';
-import * as io from '@actions/io';
+import { ActionFixture } from './ActionFixture';
+import { setup } from './fixtures';
 
-const github = require('@actions/github');
+import { afterAll, beforeAll, describe, expect, test } from '@jest/globals';
 
-import { run } from '../src/main';
+const timeout = 45000;
 
-import {
-  afterAll,
-  beforeAll,
-  describe,
-  expect,
-  jest,
-  test,
-} from '@jest/globals';
-
-const tempDir = path.join(os.tmpdir(), 'update-static-assets-temp');
-
-describe('update-static-assets tests', () => {
-  beforeAll(async () => {
-    if (!fs.existsSync(tempDir)) {
-      await io.mkdirP(tempDir);
-    }
-  });
-
-  afterAll(async () => {
-    try {
-      await io.rmRF(tempDir);
-    } catch {
-      console.log('Failed to remove test directories');
-    }
-  }, 5000);
-
-  describe('Updates static assets for cdnjs', () => {
-    const repoPath = path.join(tempDir, uuid());
-    const indexHtml = path.join(repoPath, 'index.html');
-
-    const testFiles = [
-      {
-        path: indexHtml,
-        data: `
-        <html lang="en-gb">
-          <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-          </head>
-        </html>`,
-      },
-    ];
+describe('update-static-assets', () => {
+  describe('for cdnjs', () => {
+    let fixture: ActionFixture;
 
     beforeAll(async () => {
-      setupMocks();
-      await runAction(repoPath, testFiles);
-    }, 30000);
+      await setup('scenarios');
+      fixture = new ActionFixture();
+
+      await fixture.initialize([
+        {
+          path: 'index.html',
+          data: `
+          <html lang="en-gb">
+            <head>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            </head>
+          </html>`,
+        },
+      ]);
+
+      await fixture.run();
+    }, timeout);
 
     afterAll(async () => {
-      try {
-        await io.rmRF(repoPath);
-      } catch {
-        console.log('Failed to remove test repository');
-      }
-    }, 5000);
+      await fixture?.destroy();
+    });
 
-    test('Does not log any errors', () => {
+    test('does not log any errors', () => {
       expect(core.error).toHaveBeenCalledTimes(0);
     });
 
-    test('Does not fail', () => {
+    test('does not fail', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('Updates the font-awesome tag', async () => {
-      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
-      expect(html).not.toContain(
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
-      );
-      expect(html).not.toContain(
-        'sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
-      );
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
+
+    test('updates font-awesome', async () => {
+      expect(await fixture.getContent('index.html')).toMatchSnapshot();
+    });
+
+    test('generates the correct commit message', async () => {
+      expect(await fixture.commitHistory(2)).toMatchSnapshot();
+    });
+
+    test('generates the correct diff', async () => {
+      expect(await fixture.diff()).toMatchSnapshot();
     });
   });
 
-  describe('Updates static assets for jsDelivr', () => {
-    const repoPath = path.join(tempDir, uuid());
-    const indexHtml = path.join(repoPath, 'index.html');
-
-    const testFiles = [
-      {
-        path: indexHtml,
-        data: `
-        <html lang="en-gb">
-          <head>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-          </head>
-          <body>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-          </body>
-        </html>`,
-      },
-    ];
+  describe('for jsDelivr', () => {
+    let fixture: ActionFixture;
 
     beforeAll(async () => {
-      setupMocks();
-      await runAction(repoPath, testFiles);
-    }, 30000);
+      await setup('scenarios');
+      fixture = new ActionFixture();
+
+      await fixture.initialize([
+        {
+          path: 'index.html',
+          data: `
+          <html lang="en-gb">
+            <head>
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            </head>
+            <body>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            </body>
+          </html>`,
+        },
+      ]);
+
+      await fixture.run();
+    }, timeout);
 
     afterAll(async () => {
-      try {
-        await io.rmRF(repoPath);
-      } catch {
-        console.log('Failed to remove test repository');
-      }
-    }, 5000);
+      await fixture?.destroy();
+    });
 
-    test('Does not log any errors', () => {
+    test('does not log any errors', () => {
       expect(core.error).toHaveBeenCalledTimes(0);
     });
 
-    test('Does not fail', () => {
+    test('does not fail', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('Updates the bootstrap tags', async () => {
-      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
-      expect(html).not.toContain(
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
-      );
-      expect(html).not.toContain(
-        'sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3'
-      );
-      expect(html).not.toContain(
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'
-      );
-      expect(html).not.toContain(
-        'sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p'
-      );
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
+
+    test('updates bootstrap', async () => {
+      expect(await fixture.getContent('index.html')).toMatchSnapshot();
+    });
+
+    test('generates the correct commit message', async () => {
+      expect(await fixture.commitHistory(2)).toMatchSnapshot();
+    });
+
+    test('generates the correct diff', async () => {
+      expect(await fixture.diff()).toMatchSnapshot();
     });
   });
 
-  describe('Updates the static assets for multiple assets', () => {
-    const repoPath = path.join(tempDir, uuid());
-    const indexHtml = path.join(repoPath, 'index.html');
+  describe('for multiple assets', () => {
+    let fixture: ActionFixture;
 
-    const testFiles = [
-      {
-        path: indexHtml,
-        data: `
+    beforeAll(async () => {
+      await setup('scenarios');
+      fixture = new ActionFixture();
+
+      await fixture.initialize([
+        {
+          path: 'index.html',
+          data: `
         <html lang="en-gb">
           <head>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -162,240 +141,113 @@ describe('update-static-assets tests', () => {
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
           </body>
         </html>`,
-      },
-    ];
+        },
+      ]);
 
-    beforeAll(async () => {
-      setupMocks();
-      await runAction(repoPath, testFiles);
-    }, 30000);
+      await fixture.run();
+    }, timeout);
 
     afterAll(async () => {
-      try {
-        await io.rmRF(repoPath);
-      } catch {
-        console.log('Failed to remove test repository');
-      }
-    }, 5000);
+      await fixture?.destroy();
+    });
 
-    test('Does not log any errors', () => {
+    test('does not log any errors', () => {
       expect(core.error).toHaveBeenCalledTimes(0);
     });
 
-    test('Does not fail', () => {
+    test('does not fail', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
-    test('Updates bootstrap', async () => {
-      const stdout = await git(repoPath, 'branch');
-      const matches = stdout.match(
-        /(update-static-assets\/bootstrap\/[0-9\.]+)/
-      );
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
 
-      expect(matches).not.toBeNull();
-      expect(matches!.length).toBeGreaterThanOrEqual(1);
+    describe.each([
+      ['bootstrap', '5.3.1'],
+      ['font-awesome', '6.4.2'],
+    ])('updating %s', (asset: string, version: string) => {
+      beforeAll(async () => {
+        await setup('scenarios');
+        await fixture.checkout(`update-static-assets/${asset}/${version}`);
+      });
 
-      await git(repoPath, 'checkout', matches![0]);
+      test('generates the correct commit message', async () => {
+        expect(await fixture.commitHistory(2)).toMatchSnapshot();
+      });
 
-      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
+      test('generates the correct diff', async () => {
+        expect(await fixture.diff()).toMatchSnapshot();
+      });
 
-      expect(html).not.toContain(
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css'
-      );
-      expect(html).not.toContain(
-        'sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3'
-      );
-      expect(html).not.toContain(
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'
-      );
-      expect(html).not.toContain(
-        'sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p'
-      );
-    });
-
-    test('Updates font-awesome', async () => {
-      const stdout = await git(repoPath, 'branch');
-      const matches = stdout.match(
-        /(update-static-assets\/font-awesome\/[0-9\.]+)/
-      );
-
-      expect(matches).not.toBeNull();
-      expect(matches!.length).toBeGreaterThanOrEqual(1);
-
-      await git(repoPath, 'checkout', matches![0]);
-
-      const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
-
-      expect(html).not.toContain(
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
-      );
-      expect(html).not.toContain(
-        'sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
-      );
+      test('updates the HTML', async () => {
+        expect(await fixture.getContent('index.html')).toMatchSnapshot();
+      });
     });
   });
-});
 
-describe('Does not update static assets that are ignored', () => {
-  const repoPath = path.join(tempDir, uuid());
-  const indexHtml = path.join(repoPath, 'index.html');
+  describe('for assets that are ignored', () => {
+    let fixture: ActionFixture;
 
-  const testFiles = [
-    {
-      path: indexHtml,
-      data: `
-      <html lang="en-gb">
-        <head>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        </head>
-      </html>`,
-    },
-    {
-      path: path.join(repoPath, '.update-static-assets.json'),
-      data: JSON.stringify({
-        ignore: [
-          {
-            cdn: 'cdnjs',
-            name: 'font-awesome',
-            version: '.*',
-          },
-        ],
-      }),
-    },
-  ];
+    beforeAll(async () => {
+      await setup('scenarios');
+      fixture = new ActionFixture();
 
-  beforeAll(async () => {
-    setupMocks();
-    await runAction(repoPath, testFiles);
-  }, 30000);
-
-  afterAll(async () => {
-    try {
-      await io.rmRF(repoPath);
-    } catch {
-      console.log('Failed to remove test repository');
-    }
-  }, 5000);
-
-  test('Does not log any errors', () => {
-    expect(core.error).toHaveBeenCalledTimes(0);
-  });
-
-  test('Does not fail', () => {
-    expect(core.setFailed).toHaveBeenCalledTimes(0);
-  });
-
-  test('Does not update the font-awesome tag', async () => {
-    const html = await fs.promises.readFile(indexHtml, { encoding: 'utf8' });
-    expect(html).toContain(
-      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
-    );
-    expect(html).toContain(
-      'sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
-    );
-  });
-});
-
-function setupMocks(): void {
-  jest.spyOn(core, 'setFailed').mockImplementation(() => {});
-  setupLogging();
-  setupPullRequest();
-}
-
-function setupLogging(): void {
-  const logger = (level: string, arg: string | Error) => {
-    console.debug(`[${level}] ${arg}`);
-  };
-
-  jest.spyOn(core, 'debug').mockImplementation((arg) => {
-    logger('debug', arg);
-  });
-  jest.spyOn(core, 'info').mockImplementation((arg) => {
-    logger('info', arg);
-  });
-  jest.spyOn(core, 'notice').mockImplementation((arg) => {
-    logger('notice', arg);
-  });
-  jest.spyOn(core, 'warning').mockImplementation((arg) => {
-    logger('warning', arg);
-  });
-  jest.spyOn(core, 'error').mockImplementation((arg) => {
-    logger('error', arg);
-  });
-}
-
-function setupPullRequest(): void {
-  github.getOctokit = jest.fn().mockReturnValue({
-    rest: {
-      issues: {
-        addLabels: () => Promise.resolve({}),
-      },
-      pulls: {
-        create: () =>
-          Promise.resolve({
-            data: {
-              number: '42',
-              html_url:
-                'https://github.local/martincostello/update-static-assets/pull/42',
-            },
+      await fixture.initialize([
+        {
+          path: 'index.html',
+          data: `
+          <html lang="en-gb">
+            <head>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            </head>
+          </html>`,
+        },
+        {
+          path: '.update-static-assets.json',
+          data: JSON.stringify({
+            ignore: [
+              {
+                cdn: 'cdnjs',
+                name: 'font-awesome',
+                version: '.*',
+              },
+            ],
           }),
-      },
-    },
+        },
+      ]);
+
+      await fixture.run();
+    }, timeout);
+
+    afterAll(async () => {
+      await fixture?.destroy();
+    });
+
+    test('does not log any errors', () => {
+      expect(core.error).toHaveBeenCalledTimes(0);
+    });
+
+    test('does not fail', () => {
+      expect(core.setFailed).toHaveBeenCalledTimes(0);
+    });
+
+    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+      '%s is correct',
+      (name: string) => {
+        expect(fixture.getOutput(name)).toMatchSnapshot();
+      }
+    );
+
+    test('does not update excluded assets', async () => {
+      expect(await fixture.getContent('index.html')).toMatchSnapshot();
+    });
+
+    test('generates the correct commit message', async () => {
+      expect(await fixture.commitHistory(2)).toMatchSnapshot();
+    });
   });
-}
-
-async function git(repoPath: string, ...args: string[]): Promise<string> {
-  const options = {
-    cwd: repoPath,
-    ignoreReturnCode: true,
-  };
-  const result = await exec.getExecOutput('git', args, options);
-  return result.stdout;
-}
-
-async function createTestGitRepo(
-  repoPath: string,
-  testFiles: { path: string; data: string }[]
-): Promise<void> {
-  if (!fs.existsSync(repoPath)) {
-    await io.mkdirP(repoPath);
-  }
-
-  for (const { path, data } of testFiles) {
-    await fs.promises.writeFile(path, data);
-  }
-
-  await git(repoPath, 'init');
-  await git(repoPath, 'config', 'core.safecrlf', 'false');
-  await git(repoPath, 'config', 'user.email', 'test@test.local');
-  await git(repoPath, 'config', 'user.name', 'test');
-  await git(repoPath, 'add', '.');
-  await git(repoPath, 'commit', '-m', 'Initial commit');
-}
-
-async function runAction(
-  repoPath: string,
-  testFiles: { path: string; data: string }[]
-): Promise<void> {
-  const inputs = {
-    'GITHUB_API_URL': 'https://github.local/api/v3',
-    'GITHUB_REPOSITORY': '',
-    'GITHUB_SERVER_URL': 'https://github.local',
-    'INPUT_FILE-EXTENSIONS': 'cshtml,html,razor',
-    'INPUT_LABELS': 'foo,bar',
-    'INPUT_REPO-PATH': repoPath,
-    'INPUT_REPO-TOKEN': 'my-token',
-    'INPUT_USER-EMAIL': 'github-actions[bot]@users.noreply.github.com',
-    'INPUT_USER-NAME': 'github-actions[bot]',
-  };
-
-  for (const key in inputs) {
-    process.env[key] = inputs[key as keyof typeof inputs];
-  }
-
-  await createTestGitRepo(repoPath, testFiles);
-
-  setupMocks();
-
-  await run();
-}
+});
