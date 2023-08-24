@@ -44,6 +44,9 @@ inputs:
     description: 'If true, the action will not push changes to GitHub.'
     required: false
     default: false
+outputs:
+  assets-updated:
+    description: 'Whether the any static assets were updated by the action.'
 runs:
   using: 'node16'
   main: 'dist/index.js'
