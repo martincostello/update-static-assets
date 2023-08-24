@@ -15,28 +15,6 @@ import {
 } from './helpers';
 import { run } from '../src/main';
 
-const github = require('@actions/github');
-
-function setupPullRequest(): void {
-  github.getOctokit = jest.fn().mockReturnValue({
-    rest: {
-      issues: {
-        addLabels: () => Promise.resolve({}),
-      },
-      pulls: {
-        create: () =>
-          Promise.resolve({
-            data: {
-              number: '42',
-              html_url:
-                'https://github.local/martincostello/update-static-assets/pull/42',
-            },
-          }),
-      },
-    },
-  });
-}
-
 export class ActionFixture {
   public pullNumber: string = '42';
   public repo: string = 'martincostello/update-static-assets';
@@ -66,7 +44,6 @@ export class ActionFixture {
 
     this.setupEnvironment();
     this.setupMocks();
-    setupPullRequest();
   }
 
   async run(): Promise<void> {
@@ -138,6 +115,7 @@ export class ActionFixture {
       'INPUT_COMMIT-MESSAGE-PREFIX': this.commitMessagePrefix,
       'INPUT_FILE-EXTENSIONS': this.fileExtensions,
       'INPUT_LABELS': 'foo,bar',
+      'INPUT_REPO': this.repo,
       'INPUT_REPO-PATH': this.tempDir,
       'INPUT_REPO-TOKEN': 'my-token',
       'INPUT_USER-EMAIL': 'github-actions[bot]@users.noreply.github.com',

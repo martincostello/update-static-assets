@@ -12,7 +12,7 @@ export interface UpdateOptions {
   fileExtensions: string[];
   ignore: IgnoreAsset[];
   labels: string;
-  repo?: string;
+  repo: string;
   repoPath: string;
   runId?: string;
   runRepo?: string;

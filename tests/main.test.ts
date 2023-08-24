@@ -3,16 +3,18 @@
 
 import * as core from '@actions/core';
 import { ActionFixture } from './ActionFixture';
+import { setup } from './fixtures';
 
 import { afterAll, beforeAll, describe, expect, test } from '@jest/globals';
 
-const timeout = 30000;
+const timeout = 45000;
 
 describe('update-static-assets', () => {
   describe('for cdnjs', () => {
     let fixture: ActionFixture;
 
     beforeAll(async () => {
+      await setup('scenarios');
       fixture = new ActionFixture();
 
       await fixture.initialize([
@@ -59,6 +61,7 @@ describe('update-static-assets', () => {
     let fixture: ActionFixture;
 
     beforeAll(async () => {
+      await setup('scenarios');
       fixture = new ActionFixture();
 
       await fixture.initialize([
@@ -108,6 +111,7 @@ describe('update-static-assets', () => {
     let fixture: ActionFixture;
 
     beforeAll(async () => {
+      await setup('scenarios');
       fixture = new ActionFixture();
 
       await fixture.initialize([
@@ -146,6 +150,7 @@ describe('update-static-assets', () => {
       ['font-awesome', '6.4.2'],
     ])('updating %s', (asset: string, version: string) => {
       beforeAll(async () => {
+        await setup('scenarios');
         await fixture.checkout(`update-static-assets/${asset}/${version}`);
       });
 
@@ -167,6 +172,7 @@ describe('update-static-assets', () => {
     let fixture: ActionFixture;
 
     beforeAll(async () => {
+      await setup('scenarios');
       fixture = new ActionFixture();
 
       await fixture.initialize([

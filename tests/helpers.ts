@@ -33,6 +33,12 @@ export async function createGitRepo(
   await git('config', 'core.safecrlf', 'false');
   await git('config', 'user.email', 'test@test.local');
   await git('config', 'user.name', 'test');
+  await git(
+    'remote',
+    'add',
+    'origin',
+    'https://github.local/martincostello/update-static-assets.git'
+  );
   await git('add', '.');
   await git('commit', '-m', 'Initial commit');
 }
