@@ -64,6 +64,10 @@ export async function run(): Promise<void> {
     const result = await updater.tryUpdateAssets();
 
     core.setOutput('assets-updated', result.updates.length > 0);
+    core.setOutput(
+      'pulls',
+      JSON.stringify(result.updates.map((p) => p.pullRequestNumber))
+    );
   } catch (error: any) {
     core.error('Failed to check for updates to static assets.');
     core.error(error);

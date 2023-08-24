@@ -44,6 +44,14 @@ describe('update-static-assets', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
     });
 
+    test('assets-updated is correct', () => {
+      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
+    });
+
+    test('pulls', () => {
+      expect(fixture.getOutput('pulls')).toMatchSnapshot();
+    });
+
     test('updates font-awesome', async () => {
       expect(await fixture.getContent('index.html')).toMatchSnapshot();
     });
@@ -92,6 +100,14 @@ describe('update-static-assets', () => {
 
     test('does not fail', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
+    });
+
+    test('assets-updated is correct', () => {
+      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
+    });
+
+    test('pulls', () => {
+      expect(fixture.getOutput('pulls')).toMatchSnapshot();
     });
 
     test('updates bootstrap', async () => {
@@ -143,6 +159,14 @@ describe('update-static-assets', () => {
 
     test('does not fail', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
+    });
+
+    test('assets-updated is correct', () => {
+      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
+    });
+
+    test('pulls', () => {
+      expect(fixture.getOutput('pulls')).toMatchSnapshot();
     });
 
     describe.each([
@@ -212,6 +236,14 @@ describe('update-static-assets', () => {
 
     test('does not fail', () => {
       expect(core.setFailed).toHaveBeenCalledTimes(0);
+    });
+
+    test('assets-updated is correct', () => {
+      expect(fixture.getOutput('assets-updated')).toMatchSnapshot();
+    });
+
+    test('pulls', () => {
+      expect(fixture.getOutput('pulls')).toMatchSnapshot();
     });
 
     test('does not update excluded assets', async () => {

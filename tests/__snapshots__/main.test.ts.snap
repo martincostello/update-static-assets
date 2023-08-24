@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`update-static-assets for assets that are ignored assets-updated is correct 1`] = `"false"`;
+
 exports[`update-static-assets for assets that are ignored does not update excluded assets 1`] = `
 "
           <html lang="en-gb">
@@ -14,6 +16,10 @@ exports[`update-static-assets for assets that are ignored generates the correct 
   "Initial commit",
 ]
 `;
+
+exports[`update-static-assets for assets that are ignored pulls 1`] = `"[]"`;
+
+exports[`update-static-assets for cdnjs assets-updated is correct 1`] = `"true"`;
 
 exports[`update-static-assets for cdnjs generates the correct commit message 1`] = `
 [
@@ -45,6 +51,8 @@ index c435ad4..d7429e2 100644
 \\ No newline at end of file"
 `;
 
+exports[`update-static-assets for cdnjs pulls 1`] = `"[43]"`;
+
 exports[`update-static-assets for cdnjs updates font-awesome 1`] = `
 "
           <html lang="en-gb">
@@ -53,6 +61,8 @@ exports[`update-static-assets for cdnjs updates font-awesome 1`] = `
             </head>
           </html>"
 `;
+
+exports[`update-static-assets for jsDelivr assets-updated is correct 1`] = `"true"`;
 
 exports[`update-static-assets for jsDelivr generates the correct commit message 1`] = `
 [
@@ -88,6 +98,8 @@ index 498e7ea..1a51386 100644
 \\ No newline at end of file"
 `;
 
+exports[`update-static-assets for jsDelivr pulls 1`] = `"[42]"`;
+
 exports[`update-static-assets for jsDelivr updates bootstrap 1`] = `
 "
           <html lang="en-gb">
@@ -99,6 +111,10 @@ exports[`update-static-assets for jsDelivr updates bootstrap 1`] = `
             </body>
           </html>"
 `;
+
+exports[`update-static-assets for multiple assets assets-updated is correct 1`] = `"true"`;
+
+exports[`update-static-assets for multiple assets pulls 1`] = `"[42,43]"`;
 
 exports[`update-static-assets for multiple assets updating bootstrap generates the correct commit message 1`] = `
 [
