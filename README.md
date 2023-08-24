@@ -86,6 +86,8 @@ jobs:
 | **Name** | **Description** |
 |:--|:--|
 | `assets-updated` | Whether any static assets were updated by the action. |
+| `pulls-closed` | A JSON array of the numbers of any pull requests that were closed as superseded. |
+| `pulls-opened` | A JSON array of the numbers of any pull requests that were opened to update static assets. |
 
 ## Configuration
 
