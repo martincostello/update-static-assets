@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`update-static-assets for assets that are ignored does not update excluded assets 1`] = `
+"
+          <html lang="en-gb">
+            <head>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            </head>
+          </html>"
+`;
+
+exports[`update-static-assets for assets that are ignored generates the correct commit message 1`] = `
+[
+  "Initial commit",
+]
+`;
+
+exports[`update-static-assets for cdnjs generates the correct commit message 1`] = `
+[
+  "Update font-awesome",
+  "Updates font-awesome to version 6.4.2.",
+  "---",
+  "updated-dependencies:",
+  "- dependency-name: font-awesome",
+  "  dependency-type: direct:production",
+  "  update-type: version-update:semver-minor",
+  "...",
+  "Initial commit",
+]
+`;
+
+exports[`update-static-assets for cdnjs generates the correct diff 1`] = `
+"diff --git a/index.html b/index.html
+index c435ad4..d7429e2 100644
+--- a/index.html
++++ b/index.html
+@@ -1,6 +1,6 @@
+ 
+           <html lang="en-gb">
+             <head>
+-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
++              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+             </head>
+           </html>
+\\ No newline at end of file"
+`;
+
+exports[`update-static-assets for cdnjs updates font-awesome 1`] = `
+"
+          <html lang="en-gb">
+            <head>
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            </head>
+          </html>"
+`;
+
+exports[`update-static-assets for jsDelivr generates the correct commit message 1`] = `
+[
+  "Update bootstrap",
+  "Updates bootstrap to version 5.3.1.",
+  "---",
+  "updated-dependencies:",
+  "- dependency-name: bootstrap",
+  "  dependency-type: direct:production",
+  "  update-type: version-update:semver-minor",
+  "...",
+  "Initial commit",
+]
+`;
+
+exports[`update-static-assets for jsDelivr generates the correct diff 1`] = `
+"diff --git a/index.html b/index.html
+index 498e7ea..1a51386 100644
+--- a/index.html
++++ b/index.html
+@@ -1,9 +1,9 @@
+ 
+           <html lang="en-gb">
+             <head>
+-              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
++              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha256-2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=" crossorigin="anonymous">
+             </head>
+             <body>
+-              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
++              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-0upsHgyryiDRjpJLJaHNAYfDi6fDP2CrBuGwQCubzbU=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+             </body>
+           </html>
+\\ No newline at end of file"
+`;
+
+exports[`update-static-assets for jsDelivr updates bootstrap 1`] = `
+"
+          <html lang="en-gb">
+            <head>
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha256-2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=" crossorigin="anonymous">
+            </head>
+            <body>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-0upsHgyryiDRjpJLJaHNAYfDi6fDP2CrBuGwQCubzbU=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            </body>
+          </html>"
+`;
+
+exports[`update-static-assets for multiple assets updating bootstrap generates the correct commit message 1`] = `
+[
+  "Update bootstrap",
+  "Updates bootstrap to version 5.3.1.",
+  "---",
+  "updated-dependencies:",
+  "- dependency-name: bootstrap",
+  "  dependency-type: direct:production",
+  "  update-type: version-update:semver-minor",
+  "...",
+  "Initial commit",
+]
+`;
+
+exports[`update-static-assets for multiple assets updating bootstrap generates the correct diff 1`] = `
+"diff --git a/index.html b/index.html
+index 9a61475..55520a1 100644
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,10 @@
+ 
+         <html lang="en-gb">
+           <head>
+-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
++            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha256-2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=" crossorigin="anonymous">
+             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+           </head>
+           <body>
+-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
++            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-0upsHgyryiDRjpJLJaHNAYfDi6fDP2CrBuGwQCubzbU=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+           </body>
+         </html>
+\\ No newline at end of file"
+`;
+
+exports[`update-static-assets for multiple assets updating bootstrap updates the HTML 1`] = `
+"
+        <html lang="en-gb">
+          <head>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha256-2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          </head>
+          <body>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-0upsHgyryiDRjpJLJaHNAYfDi6fDP2CrBuGwQCubzbU=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          </body>
+        </html>"
+`;
+
+exports[`update-static-assets for multiple assets updating font-awesome generates the correct commit message 1`] = `
+[
+  "Update font-awesome",
+  "Updates font-awesome to version 6.4.2.",
+  "---",
+  "updated-dependencies:",
+  "- dependency-name: font-awesome",
+  "  dependency-type: direct:production",
+  "  update-type: version-update:semver-minor",
+  "...",
+  "Initial commit",
+]
+`;
+
+exports[`update-static-assets for multiple assets updating font-awesome generates the correct diff 1`] = `
+"diff --git a/index.html b/index.html
+index 9a61475..ab47560 100644
+--- a/index.html
++++ b/index.html
+@@ -2,7 +2,7 @@
+         <html lang="en-gb">
+           <head>
+             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
++            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+           </head>
+           <body>
+             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" referrerpolicy="no-referrer"></script>"
+`;
+
+exports[`update-static-assets for multiple assets updating font-awesome updates the HTML 1`] = `
+"
+        <html lang="en-gb">
+          <head>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          </head>
+          <body>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          </body>
+        </html>"
+`;
