@@ -10,7 +10,6 @@ import { Writable } from 'stream';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
-import { paginateRest } from '@octokit/plugin-paginate-rest';
 // eslint-disable-next-line import/no-unresolved
 import { PaginateInterface } from '@octokit/plugin-paginate-rest/dist-types/types';
 // eslint-disable-next-line import/no-unresolved
