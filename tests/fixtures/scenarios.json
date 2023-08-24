@@ -1551,7 +1551,10 @@
       "response": {
         "number": 42,
         "title": "Update bootstrap to 5.3.1",
-        "html_url": "https://github.local/martincostello/update-static-assets/pull/42"
+        "html_url": "https://github.local/martincostello/update-static-assets/pull/42",
+        "user": {
+          "login": "github-actions[bot]"
+        }
       }
     },
     {
@@ -1572,6 +1575,61 @@
     },
     {
       "basePath": "https://github.local",
+      "path": "/api/v3/repos/martincostello/update-static-assets/pulls?base=main&direction=desc&state=open",
+      "persist": true,
+      "response": [
+        {
+          "url": "https://github.local/api/v3/repos/martincostello/update-static-assets/pulls/42",
+          "number": 42,
+          "state": "open",
+          "title": "Update bootstrap to 5.3.1",
+          "user": {
+            "login": "github-actions[bot]"
+          },
+          "head": {
+            "ref": "update-static-assets/bootstrap/5.3.1"
+          }
+        },
+        {
+          "url": "https://github.local/api/v3/repos/martincostello/update-static-assets/pulls/41",
+          "number": 41,
+          "state": "open",
+          "title": "Update bootstrap to 5.3.0",
+          "user": {
+            "login": "github-actions[bot]"
+          },
+          "head": {
+            "ref": "update-static-assets/bootstrap/5.3.0"
+          }
+        }
+      ]
+    },
+    {
+      "basePath": "https://github.local",
+      "path": "/api/v3/repos/martincostello/update-static-assets/issues/41/comments",
+      "method": "POST",
+      "body": {
+        "body": "Superseded by #42."
+      },
+      "response": {}
+    },
+    {
+      "basePath": "https://github.local",
+      "path": "/api/v3/repos/martincostello/update-static-assets/pulls/41",
+      "method": "PATCH",
+      "body": {
+        "state": "closed"
+      },
+      "response": {}
+    },
+    {
+      "basePath": "https://github.local",
+      "path": "/api/v3/repos/martincostello/update-static-assets/git/refs/heads%2Fupdate-static-assets%2Fbootstrap%2F5.3.0",
+      "method": "DELETE",
+      "response": {}
+    },
+    {
+      "basePath": "https://github.local",
       "path": "/api/v3/repos/martincostello/update-static-assets/pulls",
       "method": "POST",
       "headers": {
@@ -1582,7 +1640,10 @@
       "response": {
         "number": 43,
         "title": "Update font-awesome to 6.4.2",
-        "html_url": "https://github.local/martincostello/update-static-assets/pull/43"
+        "html_url": "https://github.local/martincostello/update-static-assets/pull/43",
+        "user": {
+          "login": "github-actions[bot]"
+        }
       }
     },
     {

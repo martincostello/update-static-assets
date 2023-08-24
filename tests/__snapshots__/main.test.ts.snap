@@ -102,7 +102,7 @@ index 498e7ea..1a51386 100644
 \\ No newline at end of file"
 `;
 
-exports[`update-static-assets for jsDelivr pulls-closed is correct 1`] = `"[]"`;
+exports[`update-static-assets for jsDelivr pulls-closed is correct 1`] = `"[41]"`;
 
 exports[`update-static-assets for jsDelivr pulls-opened is correct 1`] = `"[42]"`;
 
@@ -120,7 +120,7 @@ exports[`update-static-assets for jsDelivr updates bootstrap 1`] = `
 
 exports[`update-static-assets for multiple assets assets-updated is correct 1`] = `"true"`;
 
-exports[`update-static-assets for multiple assets pulls-closed is correct 1`] = `"[]"`;
+exports[`update-static-assets for multiple assets pulls-closed is correct 1`] = `"[41]"`;
 
 exports[`update-static-assets for multiple assets pulls-opened is correct 1`] = `"[42,43]"`;
 

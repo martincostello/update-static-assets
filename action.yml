@@ -12,6 +12,10 @@ inputs:
     description: 'The optional Git branch name prefix to use.'
     required: false
     default: ''
+  close-superseded:
+    description: 'If true, any existing pull requests superseded by any pull requests opened by the action are closed.'
+    required: false
+    default: true
   commit-message:
     description: 'The optional Git commit message to use.'
     required: false

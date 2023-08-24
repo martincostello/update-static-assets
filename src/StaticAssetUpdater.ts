@@ -515,7 +515,7 @@ export class StaticAssetUpdater {
       name: asset.name,
       pullRequestNumber: pullRequest.number,
       pullRequestUrl: pullRequest.url,
-      superceded: [],
+      supersedes: pullRequest.supersedes,
       version,
     };
   }
@@ -553,6 +553,7 @@ export class StaticAssetUpdater {
       );
       return {
         number: 0,
+        supersedes: [],
         url: '',
       };
     }
@@ -561,15 +562,10 @@ export class StaticAssetUpdater {
 
     core.debug(JSON.stringify(response, null, 2));
 
-    core.info(
-      `Created pull request #${response.data.number}: ${response.data.title}`
-    );
-    core.info(`View the pull request at ${response.data.html_url}`);
+    const created = response.data;
 
-    const result = {
-      number: response.data.number,
-      url: response.data.html_url,
-    };
+    core.info(`Created pull request #${created.number}: ${created.title}`);
+    core.info(`View the pull request at ${created.html_url}`);
 
     if (this.options.labels) {
       const labelsToApply = this.options.labels.split(',');
@@ -579,19 +575,74 @@ export class StaticAssetUpdater {
           await octokit.rest.issues.addLabels({
             owner,
             repo,
-            issue_number: result.number,
+            issue_number: created.number,
             labels: labelsToApply,
           });
         } catch (error: any) {
           core.error(
-            `Failed to apply label(s) to pull request #${result.number}`
+            `Failed to apply label(s) to pull request #${created.number}`
           );
           core.error(error);
         }
       }
     }
 
-    return result;
+    let supersedes: number[] = [];
+
+    if (this.options.closeSuperseded) {
+      let pulls = await octokit.paginate(octokit.rest.pulls.list, {
+        owner,
+        repo,
+        base,
+        direction: 'desc',
+        state: 'open',
+      });
+
+      const titlePrefix = `Update ${asset.name} to `;
+
+      pulls = pulls
+        .filter((pull) => pull.user?.login === created.user?.login)
+        .filter((pull) => pull.title.startsWith(titlePrefix));
+
+      if (pulls.length > 1) {
+        const superseded = pulls.filter(
+          (pull) => pull.number !== created.number
+        );
+        superseded.reverse();
+
+        const comment = `Superseded by #${created.number}.`;
+
+        for (const pull of superseded) {
+          core.debug(`Closing pull request ${pull.number}.`);
+
+          await octokit.rest.issues.createComment({
+            owner,
+            repo,
+            issue_number: pull.number,
+            body: comment,
+          });
+          await octokit.rest.pulls.update({
+            owner,
+            repo,
+            pull_number: pull.number,
+            state: 'closed',
+          });
+          await octokit.rest.git.deleteRef({
+            owner,
+            repo,
+            ref: `heads/${pull.head.ref}`,
+          });
+        }
+
+        supersedes = superseded.map((p) => p.number);
+      }
+    }
+
+    return {
+      number: created.number,
+      supersedes,
+      url: created.html_url,
+    };
   }
 
   private async execGit(
@@ -789,6 +840,7 @@ interface AssetVersionItem extends AssetVersion {
 
 interface PullRequest {
   number: number;
+  supersedes: number[];
   url: string;
 }
 

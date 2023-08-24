@@ -24,10 +24,7 @@ export class ActionFixture {
   private outputPath: string = '';
   private outputs: Record<string, string> = {};
 
-  constructor(
-    private readonly fileExtensions = 'cshtml,html,razor',
-    private readonly commitMessagePrefix = ''
-  ) {}
+  constructor(private readonly fileExtensions = 'cshtml,html,razor') {}
 
   get path(): string {
     return this.tempDir;
@@ -112,7 +109,6 @@ export class ActionFixture {
       'GITHUB_REPOSITORY': this.repo,
       'GITHUB_RUN_ID': '123',
       'GITHUB_SERVER_URL': 'https://github.local',
-      'INPUT_COMMIT-MESSAGE-PREFIX': this.commitMessagePrefix,
       'INPUT_FILE-EXTENSIONS': this.fileExtensions,
       'INPUT_LABELS': 'foo,bar',
       'INPUT_REPO': this.repo,

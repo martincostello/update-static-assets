@@ -70,6 +70,7 @@ jobs:
 | **Name** | **Description** | **Default** |
 |:--|:--|:--|
 | `branch-name-prefix` | The optional Git branch name prefix to use. | - |
+| `close-superseded` | If true, any existing pull requests superseded by any pull requests opened by the action are closed. | `true` |
 | `commit-message` | The optional Git commit message to use. | - |
 | `configuration-file` | The optional path to a configuration file to use (see [configuration](#configuration)). | `.update-static-assets.json` |
 | `file-extensions` | The optional comma-separated file extension(s) to search for static assets within. | `cshtml,html,razor` |

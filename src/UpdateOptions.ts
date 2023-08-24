@@ -7,6 +7,7 @@ export interface UpdateOptions {
   accessToken: string;
   apiUrl?: string;
   branchPrefix: string;
+  closeSuperseded: boolean;
   commitMessage: string;
   dryRun: boolean;
   fileExtensions: string[];

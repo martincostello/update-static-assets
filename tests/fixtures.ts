@@ -14,6 +14,7 @@ type Scenario = {
   method?: 'DELETE' | 'GET' | 'PATCH' | 'POST';
   headers?: Record<string, string>;
   path: string;
+  persist?: boolean;
   body?: any;
   status?: number;
   response: any;
@@ -36,6 +37,10 @@ export async function setup(name: string): Promise<void> {
     }
 
     let interceptor: nock.Interceptor;
+
+    if (scenario.persist) {
+      scope = scope.persist();
+    }
 
     if (scenario.method === 'DELETE') {
       interceptor = scope.delete(scenario.path, scenario.body);
