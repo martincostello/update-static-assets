@@ -10,6 +10,11 @@ import { Writable } from 'stream';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
+import { paginateRest } from '@octokit/plugin-paginate-rest';
+// eslint-disable-next-line import/no-unresolved
+import { PaginateInterface } from '@octokit/plugin-paginate-rest/dist-types/types';
+// eslint-disable-next-line import/no-unresolved
+import { Api } from '@octokit/plugin-rest-endpoint-methods/dist-types/types';
 
 import { AssetUpdate } from './AssetUpdate';
 import { CdnProvider } from './CdnProvider';
@@ -590,26 +595,18 @@ export class StaticAssetUpdater {
     let supersedes: number[] = [];
 
     if (this.options.closeSuperseded) {
-      let pulls = await octokit.paginate(octokit.rest.pulls.list, {
-        owner,
-        repo,
-        base,
-        direction: 'desc',
-        state: 'open',
-      });
+      const superseded = await this.getSupersededPullsForAsset(
+        octokit,
+        {
+          number: created.number,
+          owner,
+          repo,
+          ref: base,
+        },
+        asset.name
+      );
 
-      const titlePrefix = `Update ${asset.name} to `;
-
-      pulls = pulls
-        .filter((pull) => pull.user?.login === created.user?.login)
-        .filter((pull) => pull.title.startsWith(titlePrefix));
-
-      if (pulls.length > 1) {
-        const superseded = pulls.filter(
-          (pull) => pull.number !== created.number
-        );
-        superseded.reverse();
-
+      if (superseded.length > 0) {
         const comment = `Superseded by #${created.number}.`;
 
         for (const pull of superseded) {
@@ -630,7 +627,7 @@ export class StaticAssetUpdater {
           await octokit.rest.git.deleteRef({
             owner,
             repo,
-            ref: `heads/${pull.head.ref}`,
+            ref: `heads/${pull.ref}`,
           });
         }
 
@@ -643,6 +640,44 @@ export class StaticAssetUpdater {
       supersedes,
       url: created.html_url,
     };
+  }
+
+  private async getSupersededPullsForAsset(
+    octokit: PaginatedApi,
+    created: {
+      number: number;
+      owner: string;
+      repo: string;
+      ref: string;
+    },
+    asset: string
+  ): Promise<
+    {
+      number: number;
+      ref: string;
+    }[]
+  > {
+    const pulls = await octokit.paginate(octokit.rest.pulls.list, {
+      owner: created.owner,
+      repo: created.repo,
+      base: created.ref,
+      direction: 'desc',
+      state: 'open',
+    });
+
+    const titlePrefix = `Update ${asset} to `;
+
+    const superseded = pulls
+      .filter((pull) => pull.number !== created.number)
+      .filter((pull) => pull.user?.login === pull.user?.login)
+      .filter((pull) => pull.title.startsWith(titlePrefix))
+      .map((pull) => ({
+        number: pull.number,
+        ref: pull.head.ref,
+      }));
+
+    superseded.reverse();
+    return superseded;
   }
 
   private async execGit(
@@ -822,6 +857,10 @@ export class StaticAssetUpdater {
     return branch;
   }
 }
+
+type PaginatedApi = Api & {
+  paginate: PaginateInterface;
+};
 
 interface Asset {
   cdn: CdnProvider;
