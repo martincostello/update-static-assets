@@ -1561,7 +1561,12 @@
       "headers": {
         "authorization": "token my-token"
       },
-      "body": "{\"labels\":[\"foo\",\"bar\"]}",
+      "body": {
+        "labels": [
+          "foo",
+          "bar"
+        ]
+      },
       "status": 201,
       "response": []
     },
@@ -1587,7 +1592,12 @@
       "headers": {
         "authorization": "token my-token"
       },
-      "body": {"labels":["foo","bar"]},
+      "body": {
+        "labels": [
+          "foo",
+          "bar"
+        ]
+      },
       "status": 201,
       "response": []
     }
