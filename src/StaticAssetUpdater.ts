@@ -601,6 +601,7 @@ export class StaticAssetUpdater {
           owner,
           repo,
           ref: base,
+          user: created.user?.login,
         },
         asset.name
       );
@@ -648,6 +649,7 @@ export class StaticAssetUpdater {
       owner: string;
       repo: string;
       ref: string;
+      user?: string;
     },
     asset: string
   ): Promise<
@@ -668,7 +670,7 @@ export class StaticAssetUpdater {
 
     const superseded = pulls
       .filter((pull) => pull.number !== created.number)
-      .filter((pull) => pull.user?.login === pull.user?.login)
+      .filter((pull) => pull.user && pull.user.login === created.user)
       .filter((pull) => pull.title.startsWith(titlePrefix))
       .map((pull) => ({
         number: pull.number,

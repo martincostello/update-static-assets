@@ -1601,6 +1601,18 @@
           "head": {
             "ref": "update-static-assets/bootstrap/5.3.0"
           }
+        },
+        {
+          "url": "https://github.local/api/v3/repos/martincostello/update-static-assets/pulls/40",
+          "number": 40,
+          "state": "open",
+          "title": "Update bootstrap to 5.3",
+          "user": {
+            "login": "mona-octocat"
+          },
+          "head": {
+            "ref": "update-bootstrap"
+          }
         }
       ]
     },
