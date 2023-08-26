@@ -33,6 +33,7 @@ exports[`update-static-assets for cdnjs generates the correct commit message 1`]
   "  dependency-type: direct:production",
   "  update-type: version-update:semver-minor",
   "...",
+  "Signed-off-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
   "Initial commit",
 ]
 `;
@@ -78,6 +79,7 @@ exports[`update-static-assets for jsDelivr generates the correct commit message 
   "  dependency-type: direct:production",
   "  update-type: version-update:semver-minor",
   "...",
+  "Signed-off-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
   "Initial commit",
 ]
 `;
@@ -134,6 +136,7 @@ exports[`update-static-assets for multiple assets updating bootstrap generates t
   "  dependency-type: direct:production",
   "  update-type: version-update:semver-minor",
   "...",
+  "Signed-off-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
   "Initial commit",
 ]
 `;
@@ -182,6 +185,7 @@ exports[`update-static-assets for multiple assets updating font-awesome generate
   "  dependency-type: direct:production",
   "  update-type: version-update:semver-minor",
   "...",
+  "Signed-off-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
   "Initial commit",
 ]
 `;
