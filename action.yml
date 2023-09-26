@@ -56,5 +56,5 @@ outputs:
   pulls-opened:
     description: 'A JSON array of the numbers of any pull requests that were opened to update static assets.'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
