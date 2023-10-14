@@ -51,7 +51,7 @@ export async function setup(name: string): Promise<void> {
           : JSON.stringify(scenario.body);
     }
 
-    const responseOptions: MockInterceptor.MockResponseOptions = {
+    const responseOptions = {
       headers: {
         'Content-Type':
           typeof scenario.response === 'string'
