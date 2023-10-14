@@ -8,48 +8,62 @@ export class CdnjsClient extends CdnClient {
   async getLatestVersion(name: string): Promise<string | null> {
     // See https://cdnjs.com/api#library
     const encodedName = encodeURIComponent(name);
-    const response = await this.httpClient.getJson<any>(
+    const response = await this.httpGet(
       `https://api.cdnjs.com/libraries/${encodedName}?fields=name,version`
     );
 
-    if (response.statusCode === 404) {
+    if (response.status === 404) {
       return null;
-    } else if (response.statusCode >= 400) {
+    } else if (response.status >= 400) {
       throw new Error(
-        `Failed to get latest version of ${name} from cdnjs - HTTP status ${response.statusCode}`
+        `Failed to get latest version of ${name} from cdnjs - HTTP status ${response.status}`
       );
     }
 
-    return response.result.version;
+    const result: any = await response.json();
+    const library = result as Library;
+    return library?.version ?? null;
   }
 
   async getFiles(name: string, version: string): Promise<CdnFile[]> {
     // See https://cdnjs.com/api#version
     const encodedName = encodeURIComponent(name);
     const encodedVersion = encodeURIComponent(version);
-    const response = await this.httpClient.getJson<any>(
+    const response = await this.httpGet(
       `https://api.cdnjs.com/libraries/${encodedName}/${encodedVersion}`
     );
 
     const files: CdnFile[] = [];
 
-    if (response.statusCode === 404) {
+    if (response.status === 404) {
       return files;
-    } else if (response.statusCode >= 400) {
+    } else if (response.status >= 400) {
       throw new Error(
-        `Failed to get files for version ${version} of ${name} from cdnjs - HTTP status ${response.statusCode}`
+        `Failed to get files for version ${version} of ${name} from cdnjs - HTTP status ${response.status}`
       );
     }
 
-    for (const file of response.result.files) {
-      const integrity = response.result.sri[file];
-      files.push({
-        url: `https://cdnjs.cloudflare.com/ajax/libs/${encodedName}/${encodedVersion}/${file}`,
-        fileName: file,
-        integrity,
-      });
+    const result: any = await response.json();
+    const library = result as Library;
+
+    if (library?.files) {
+      for (const file of library.files) {
+        const integrity = library.sri[file];
+        files.push({
+          url: `https://cdnjs.cloudflare.com/ajax/libs/${encodedName}/${encodedVersion}/${file}`,
+          fileName: file,
+          integrity,
+        });
+      }
     }
 
     return files;
   }
+}
+
+interface Library {
+  name: string;
+  version: string;
+  files: string[];
+  sri: Record<string, string>;
 }
