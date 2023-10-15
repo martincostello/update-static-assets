@@ -5,11 +5,13 @@ import { CdnClient } from './CdnClient';
 import { CdnFile } from '../CdnFile';
 
 export class JSDelivrClient extends CdnClient {
-  // See https://github.com/jsdelivr/data.jsdelivr.com/tree/1034f306a9f61be6636750219d152dff6d7e31e6#list-package-versions
+  static readonly BaseUri = 'https://data.jsdelivr.com/v1';
+
+  // See https://www.jsdelivr.com/docs/data.jsdelivr.com#get-/v1/packages/npm/-package-
   async getLatestVersion(name: string): Promise<string | null> {
     const encodedName = encodeURIComponent(name);
     const response = await this.httpGet(
-      `https://data.jsdelivr.com/v1/package/npm/${encodedName}`
+      `${JSDelivrClient.BaseUri}/packages/npm/${encodedName}`
     );
 
     if (response.status === 404) {
@@ -23,15 +25,15 @@ export class JSDelivrClient extends CdnClient {
     const result: any = await response.json();
     const npmPackage = result as Package;
 
-    return npmPackage?.tags?.latest ?? null;
+    return npmPackage?.tags.latest ?? null;
   }
 
   async getFiles(name: string, version: string): Promise<CdnFile[]> {
-    // See https://github.com/jsdelivr/data.jsdelivr.com/tree/1034f306a9f61be6636750219d152dff6d7e31e6#list-package-files
+    // See https://www.jsdelivr.com/docs/data.jsdelivr.com#get-/v1/packages/npm/-package-@-version-
     const encodedName = encodeURIComponent(name);
     const encodedVersion = encodeURIComponent(version);
     const response = await this.httpGet(
-      `https://data.jsdelivr.com/v1/package/npm/${encodedName}@${encodedVersion}/flat`
+      `${JSDelivrClient.BaseUri}/packages/npm/${encodedName}@${encodedVersion}?structure=flat`
     );
 
     const files: CdnFile[] = [];
@@ -63,18 +65,14 @@ export class JSDelivrClient extends CdnClient {
 
 interface Package {
   tags: Record<string, string>;
-  versions: string[];
 }
 
 interface PackageFiles {
-  default: string;
   files: PackageFile[];
 }
 
 interface PackageFile {
-  type: string;
   name: string;
   hash: string;
-  time: string;
   size: number;
 }
