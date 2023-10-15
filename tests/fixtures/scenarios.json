@@ -2,8 +2,10 @@
   "scenarios": [
     {
       "basePath": "https://data.jsdelivr.com",
-      "path": "/v1/package/npm/bootstrap",
+      "path": "/v1/packages/npm/bootstrap",
       "response": {
+        "type": "npm",
+        "name": "bootstrap",
         "tags": {
           "latest": "5.3.1",
           "latest-3": "3.4.1",
@@ -12,1391 +14,1609 @@
           "next-5": "5.3.0-alpha3"
         },
         "versions": [
-          "5.3.1",
-          "5.3.0",
-          "5.3.0-alpha3",
-          "5.3.0-alpha2",
-          "5.3.0-alpha1",
-          "5.2.3",
-          "5.2.2",
-          "5.2.1",
-          "5.2.0",
-          "5.2.0-beta1",
-          "5.1.3",
-          "5.1.2",
-          "5.1.1",
-          "5.1.0",
-          "5.0.2",
-          "5.0.1",
-          "5.0.0",
-          "5.0.0-beta3",
-          "5.0.0-beta2",
-          "5.0.0-beta1",
-          "5.0.0-alpha3",
-          "5.0.0-alpha2",
-          "5.0.0-alpha1",
-          "4.6.2",
-          "4.6.1",
-          "4.6.0",
-          "4.5.3",
-          "4.5.2",
-          "4.5.1",
-          "4.5.0",
-          "4.4.1",
-          "4.4.0",
-          "4.3.1",
-          "4.3.0",
-          "4.2.1",
-          "4.1.3",
-          "4.1.2",
-          "4.1.1",
-          "4.1.0",
-          "4.0.0",
-          "4.0.0-beta.3",
-          "4.0.0-beta.2",
-          "4.0.0-beta",
-          "4.0.0-alpha.6",
-          "4.0.0-alpha.5",
-          "4.0.0-alpha.4",
-          "4.0.0-alpha.3",
-          "4.0.0-alpha.2",
-          "3.4.1",
-          "3.4.0",
-          "3.3.7",
-          "3.3.6",
-          "3.3.5",
-          "3.3.4",
-          "3.3.2",
-          "3.3.1",
-          "3.3.0",
-          "3.2.0",
-          "3.1.1",
-          "0.0.2",
-          "0.0.1"
-        ]
+          {
+            "version": "5.3.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.3.1"
+            }
+          },
+          {
+            "version": "5.3.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.3.0"
+            }
+          },
+          {
+            "version": "5.3.0-alpha3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0-alpha3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0-alpha3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.3.0-alpha3"
+            }
+          },
+          {
+            "version": "5.3.0-alpha2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0-alpha2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0-alpha2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.3.0-alpha2"
+            }
+          },
+          {
+            "version": "5.3.0-alpha1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0-alpha1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.0-alpha1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.3.0-alpha1"
+            }
+          },
+          {
+            "version": "5.2.3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.2.3"
+            }
+          },
+          {
+            "version": "5.2.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.2.2"
+            }
+          },
+          {
+            "version": "5.2.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.2.1"
+            }
+          },
+          {
+            "version": "5.2.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.2.0"
+            }
+          },
+          {
+            "version": "5.2.0-beta1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.0-beta1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.2.0-beta1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.2.0-beta1"
+            }
+          },
+          {
+            "version": "5.1.3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.1.3"
+            }
+          },
+          {
+            "version": "5.1.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.1.2"
+            }
+          },
+          {
+            "version": "5.1.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.1.1"
+            }
+          },
+          {
+            "version": "5.1.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.1.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.1.0"
+            }
+          },
+          {
+            "version": "5.0.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.2"
+            }
+          },
+          {
+            "version": "5.0.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.1"
+            }
+          },
+          {
+            "version": "5.0.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.0"
+            }
+          },
+          {
+            "version": "5.0.0-beta3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-beta3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-beta3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.0-beta3"
+            }
+          },
+          {
+            "version": "5.0.0-beta2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-beta2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-beta2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.0-beta2"
+            }
+          },
+          {
+            "version": "5.0.0-beta1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-beta1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-beta1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.0-beta1"
+            }
+          },
+          {
+            "version": "5.0.0-alpha3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-alpha3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-alpha3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.0-alpha3"
+            }
+          },
+          {
+            "version": "5.0.0-alpha2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-alpha2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-alpha2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.0-alpha2"
+            }
+          },
+          {
+            "version": "5.0.0-alpha1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-alpha1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.0.0-alpha1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.0.0-alpha1"
+            }
+          },
+          {
+            "version": "4.6.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.6.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.6.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.6.2"
+            }
+          },
+          {
+            "version": "4.6.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.6.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.6.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.6.1"
+            }
+          },
+          {
+            "version": "4.6.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.6.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.6.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.6.0"
+            }
+          },
+          {
+            "version": "4.5.3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.5.3"
+            }
+          },
+          {
+            "version": "4.5.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.5.2"
+            }
+          },
+          {
+            "version": "4.5.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.5.1"
+            }
+          },
+          {
+            "version": "4.5.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.5.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.5.0"
+            }
+          },
+          {
+            "version": "4.4.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.4.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.4.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.4.1"
+            }
+          },
+          {
+            "version": "4.4.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.4.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.4.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.4.0"
+            }
+          },
+          {
+            "version": "4.3.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.3.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.3.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.3.1"
+            }
+          },
+          {
+            "version": "4.3.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.3.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.3.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.3.0"
+            }
+          },
+          {
+            "version": "4.2.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.2.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.2.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.2.1"
+            }
+          },
+          {
+            "version": "4.1.3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.1.3"
+            }
+          },
+          {
+            "version": "4.1.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.1.2"
+            }
+          },
+          {
+            "version": "4.1.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.1.1"
+            }
+          },
+          {
+            "version": "4.1.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.1.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.1.0"
+            }
+          },
+          {
+            "version": "4.0.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0"
+            }
+          },
+          {
+            "version": "4.0.0-beta.3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-beta.3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-beta.3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-beta.3"
+            }
+          },
+          {
+            "version": "4.0.0-beta.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-beta.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-beta.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-beta.2"
+            }
+          },
+          {
+            "version": "4.0.0-beta",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-beta",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-beta/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-beta"
+            }
+          },
+          {
+            "version": "4.0.0-alpha.6",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.6",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.6/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-alpha.6"
+            }
+          },
+          {
+            "version": "4.0.0-alpha.5",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.5",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.5/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-alpha.5"
+            }
+          },
+          {
+            "version": "4.0.0-alpha.4",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.4",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.4/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-alpha.4"
+            }
+          },
+          {
+            "version": "4.0.0-alpha.3",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.3",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.3/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-alpha.3"
+            }
+          },
+          {
+            "version": "4.0.0-alpha.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@4.0.0-alpha.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@4.0.0-alpha.2"
+            }
+          },
+          {
+            "version": "3.4.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.4.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.4.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.4.1"
+            }
+          },
+          {
+            "version": "3.4.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.4.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.4.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.4.0"
+            }
+          },
+          {
+            "version": "3.3.7",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.7",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.7/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.3.7"
+            }
+          },
+          {
+            "version": "3.3.6",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.6",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.6/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.3.6"
+            }
+          },
+          {
+            "version": "3.3.5",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.5",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.5/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.3.5"
+            }
+          },
+          {
+            "version": "3.3.4",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.4",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.4/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.3.4"
+            }
+          },
+          {
+            "version": "3.3.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.3.2"
+            }
+          },
+          {
+            "version": "3.3.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.3.1"
+            }
+          },
+          {
+            "version": "3.3.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.3.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.3.0"
+            }
+          },
+          {
+            "version": "3.2.0",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.2.0",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.2.0/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.2.0"
+            }
+          },
+          {
+            "version": "3.1.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.1.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@3.1.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@3.1.1"
+            }
+          },
+          {
+            "version": "0.0.2",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@0.0.2",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@0.0.2/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@0.0.2"
+            }
+          },
+          {
+            "version": "0.0.1",
+            "links": {
+              "self": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@0.0.1",
+              "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@0.0.1/entrypoints",
+              "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@0.0.1"
+            }
+          }
+        ],
+        "links": {
+          "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap"
+        }
       }
     },
     {
       "basePath": "https://data.jsdelivr.com",
-      "path": "/v1/package/npm/bootstrap@5.3.1/flat",
+      "path": "/v1/packages/npm/bootstrap@5.3.1?structure=flat",
       "response": {
+        "type": "npm",
+        "name": "bootstrap",
+        "version": "5.3.1",
         "default": "/dist/js/bootstrap.min.js",
         "files": [
           {
             "name": "/dist/css/bootstrap.css",
             "hash": "yHz+D0JTvmOLWMItPAlonLYtQCtFA98+UUYWDIaJ3hs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 280715
           },
           {
             "name": "/dist/css/bootstrap.css.map",
             "hash": "ysDL7PYsS1/xrCtkIWv8Lmu9w5ckcevWlGqW9ND+pqE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 678304
           },
           {
             "name": "/dist/css/bootstrap.min.css",
             "hash": "2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 232855
           },
           {
             "name": "/dist/css/bootstrap.min.css.map",
             "hash": "AwPSbVxr+DKi7Fn117kFWP1HJYYTXBiiYOhJvoPq4zQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 588931
           },
           {
             "name": "/dist/css/bootstrap.rtl.css",
             "hash": "FW8jigatSNDKAzE6vgESYEWzdtmbZbLPDHLeKs9at+0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 280294
           },
           {
             "name": "/dist/css/bootstrap.rtl.css.map",
             "hash": "j5obTw6XOggpHcpPAQu3hbKEMMmIhrSQ3kOyQsWswM4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 678149
           },
           {
             "name": "/dist/css/bootstrap.rtl.min.css",
             "hash": "GtaHa9PiXvdZs58ywJwSF6Lo80Vwv0NW1cPj8PfB6ww=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 232962
           },
           {
             "name": "/dist/css/bootstrap.rtl.min.css.map",
             "hash": "mCmclzXaYsS0JnBuCxD2t5hiqJNpZYCqBZsxm/r1vvM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 588464
           },
           {
             "name": "/dist/css/bootstrap-grid.css",
             "hash": "l3Syv1dsMchmGBr9mFfh85jLEqyi102nYbm53ch1jlc=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 70353
           },
           {
             "name": "/dist/css/bootstrap-grid.css.map",
             "hash": "/o9lOmCbixTYx8TzooQFSvqCWzJTZ/lpXXSdO0jbiKg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 202836
           },
           {
             "name": "/dist/css/bootstrap-grid.min.css",
             "hash": "GjNNQRTJEejoUtOoproo/zolQtzABVXpfkGfXLw9YQw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 51819
           },
           {
             "name": "/dist/css/bootstrap-grid.min.css.map",
             "hash": "hOFg6BgXpsaNds7gLa6NU7PqgsT412lfbRajyIwk278=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 116002
           },
           {
             "name": "/dist/css/bootstrap-grid.rtl.css",
             "hash": "yT36xd4VV4VJX7EK/3UkGy/YOcK12KMga5Nb+YtsPCM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 70427
           },
           {
             "name": "/dist/css/bootstrap-grid.rtl.css.map",
             "hash": "tKcr2+VaA0Kpza99llfG2SxtS9byGhNYdtDkoEX/pDI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 202840
           },
           {
             "name": "/dist/css/bootstrap-grid.rtl.min.css",
             "hash": "JnVjnm4Wg+ZjalsvgQl5SIuvDhmRWuWpWg9X4uGGjOY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 51894
           },
           {
             "name": "/dist/css/bootstrap-grid.rtl.min.css.map",
             "hash": "0xs8baCCJslz+sFAcGONb/MqgBkrc4VYkIBlEmscJyo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 116079
           },
           {
             "name": "/dist/css/bootstrap-reboot.css",
             "hash": "o7tZYh6mM0a3BxgDe/DlT8T/uWiED3H3TUno/Djbu2E=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 11933
           },
           {
             "name": "/dist/css/bootstrap-reboot.css.map",
             "hash": "Lb2aC7+MX3jOuz/5hZ7nxOoeYKihgDPZNS0togCGbyw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 128591
           },
           {
             "name": "/dist/css/bootstrap-reboot.min.css",
             "hash": "dqTHd7V9vjKD2BoSlkR9JK7Ug8YrSHWekFI8UPP+Zg4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 10010
           },
           {
             "name": "/dist/css/bootstrap-reboot.min.css.map",
             "hash": "zugydLQvYTBdf/PaWwZympBH7HCfPIHEd4olUmoF6fQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 50992
           },
           {
             "name": "/dist/css/bootstrap-reboot.rtl.css",
             "hash": "AYj5uZ/RFCACVeEeFvt4dj8j0l5CRENcxazH8R4OKpU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 11926
           },
           {
             "name": "/dist/css/bootstrap-reboot.rtl.css.map",
             "hash": "5QrfcAf3JT/OWss8nQq9B9KQi7L9jy1Ac+t0cBT4SaI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 128606
           },
           {
             "name": "/dist/css/bootstrap-reboot.rtl.min.css",
             "hash": "9RBRy4OXjc4XoVYXTvUOhtJD2oSIogFdoiyA0lRJ7no=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 10082
           },
           {
             "name": "/dist/css/bootstrap-reboot.rtl.min.css.map",
             "hash": "n3Msn3vxRz7BrG6euR3KJp7cuVKjYT9UE56101WEreM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 63429
           },
           {
             "name": "/dist/css/bootstrap-utilities.css",
             "hash": "BAcflWuTCnjNwgXn0hg8VIVmzHzR8ypPn0nhBrPH1rs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 107765
           },
           {
             "name": "/dist/css/bootstrap-utilities.css.map",
             "hash": "n4V//l5cJ918JZg5emz5K9D2tabSjR9jWhlUY080PPs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 266887
           },
           {
             "name": "/dist/css/bootstrap-utilities.min.css",
             "hash": "JiQnzITIf3PJpeqwPt9LnhskizZbaysNcwvt/KMVS90=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 85291
           },
           {
             "name": "/dist/css/bootstrap-utilities.min.css.map",
             "hash": "g/1suhvunqIHfMUsD6uX37Y4ioxJuAXNQIpBTOFoe2c=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 180180
           },
           {
             "name": "/dist/css/bootstrap-utilities.rtl.css",
             "hash": "DYoFw3+8fi5lv3TwPvmLWfkoPOd5K4xa1GAKD/MOl9w=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 107633
           },
           {
             "name": "/dist/css/bootstrap-utilities.rtl.css.map",
             "hash": "U4ZHvl2DowmvnSnWPHVDqhSy1DBgdBiDd7uMzC8aBJo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 266828
           },
           {
             "name": "/dist/css/bootstrap-utilities.rtl.min.css",
             "hash": "gcefIRLSxtraRsu4TRTiOHq8BEHSnJ4MF+bhGiIUTjc=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 85220
           },
           {
             "name": "/dist/css/bootstrap-utilities.rtl.min.css.map",
             "hash": "e3jpsbr+/vXRzD3nHbjLuB5Pklyy3LL7wEh36EimDXE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 180016
           },
           {
             "name": "/dist/js/bootstrap.bundle.js",
             "hash": "CslKM5BPi+WJaRGqTc5/2upTpgwZGNF25xAgG51Q4K4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 207720
           },
           {
             "name": "/dist/js/bootstrap.bundle.js.map",
             "hash": "wYAPsSHrbx4ArUYnCvRWK2M8tqrV8iUTPXtIuwmUylc=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 444233
           },
           {
             "name": "/dist/js/bootstrap.bundle.min.js",
             "hash": "0upsHgyryiDRjpJLJaHNAYfDi6fDP2CrBuGwQCubzbU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 80668
           },
           {
             "name": "/dist/js/bootstrap.bundle.min.js.map",
             "hash": "OuQDbg43U3ukotvbkHbJxoOh0p1yovBnaya00wgGwyI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 331827
           },
           {
             "name": "/dist/js/bootstrap.esm.js",
             "hash": "vyv99W5iJ4QaIlHNVlNSwT9oN2LnTkavnXNgftyT7L4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 135736
           },
           {
             "name": "/dist/js/bootstrap.esm.js.map",
             "hash": "RMszJIE9Su0VkDfO4IkvZ2JzfZ3ahEkB9GWzvZCw9+A=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 305099
           },
           {
             "name": "/dist/js/bootstrap.esm.min.js",
             "hash": "Dp+O74n9XyWLahhYuH0jNQPf/j6Tw0tk/y9b1YfN3kU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 74154
           },
           {
             "name": "/dist/js/bootstrap.esm.min.js.map",
             "hash": "uV+8gHMx56gBRwJnBRZ6UQSa3KpJJaFYz4cEraVcfhI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 222450
           },
           {
             "name": "/dist/js/bootstrap.js",
             "hash": "XltGSbP71CtH5CWI9UQh49FNQjpSCflt8V8cjjB0C3I=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 145302
           },
           {
             "name": "/dist/js/bootstrap.js.map",
             "hash": "Qc2J4hO0aa2t+JmKIBVgHZhIsnGHXUy3YE3k5t1jT3Y=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 306267
           },
           {
             "name": "/dist/js/bootstrap.min.js",
             "hash": "gOQJIa9+K/XdfAuBkg2ONAdw5EnQbokw/s2b8BqsRFg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 60582
           },
           {
             "name": "/dist/js/bootstrap.min.js.map",
             "hash": "bREcWnm6AvK8Kfmcu+aNDExN6R/l9wHdZWRAnp3brjE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 220293
           },
           {
             "name": "/js/dist/alert.js",
             "hash": "sMb4RY8PTMNmLCOhPaZgIx70Co3xPtH3Zg5mzbdAQNw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2835
           },
           {
             "name": "/js/dist/alert.js.map",
             "hash": "+To9M20zhC6DzPBLLx/f7zWWmtY48NY+yPul3MKzVSk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4244
           },
           {
             "name": "/js/dist/base-component.js",
             "hash": "4kW9mSL+qpdGl/1Oo+KOuIaGwY/a/Hv62zs+C/uSNQc=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2825
           },
           {
             "name": "/js/dist/base-component.js.map",
             "hash": "u9S2QvJvmtLvd36rlsMXL6kdCwPC9FtiNaK4pH0TrzM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4560
           },
           {
             "name": "/js/dist/button.js",
             "hash": "dXN81B6ZgJTVPwSPuXohAninNac30eMAYAx4glkuQH4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2463
           },
           {
             "name": "/js/dist/button.js.map",
             "hash": "YUEqyxUZsIdELFGFvvZxMV4X5Kw4eMUOtMLAfjvBngM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3446
           },
           {
             "name": "/js/dist/carousel.js",
             "hash": "UUaxtnS6bFcNqNSNTCVvzkTtM3VIdjgqSaLqWeYE+XE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 13420
           },
           {
             "name": "/js/dist/carousel.js.map",
             "hash": "7iThgSRuTOFyCI+4BewzJvN1aHXIvpq5/xCBFa47AkY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 27152
           },
           {
             "name": "/js/dist/collapse.js",
             "hash": "S1DYB+S5EEA5fQZpq6eq6VX51AwnzmzIGxsciu2J4LQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 8838
           },
           {
             "name": "/js/dist/collapse.js.map",
             "hash": "i6lh51ao5GAlxaN8IA3iT3rfvSx3vtYYjMMTrolO79Y=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 17760
           },
           {
             "name": "/js/dist/dom/data.js",
             "hash": "fA+QpOIrCF5qYj5abzViQyfPS68ZCRZDB36ullQ12DY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2115
           },
           {
             "name": "/js/dist/dom/data.js.map",
             "hash": "xUzGYvRupUmQZyeMD6G8146xnGZykBGj5ubwY7qo61A=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3008
           },
           {
             "name": "/js/dist/dom/event-handler.js",
             "hash": "th/OrGSaEURhwfcZfycbhJZ9aeBeKjZFWlEIC4XxPDg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 9438
           },
           {
             "name": "/js/dist/dom/event-handler.js.map",
             "hash": "mM2Unlpj27fEFussH3pInnVm9AE6wTpHw7Pro6zffxE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 19164
           },
           {
             "name": "/js/dist/dom/manipulator.js",
             "hash": "k1JnhSUvXVW8hpY1I3AMGquZaUKjSl1qHBfDKORm7mc=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2415
           },
           {
             "name": "/js/dist/dom/manipulator.js.map",
             "hash": "U63RQY53RfH2q1vQUtZN5JwP393Cyp6FCyURTvSsYAY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4264
           },
           {
             "name": "/js/dist/dom/selector-engine.js",
             "hash": "jrGuYj0Bj2Kjuun6Sv0u0FaO0RFel6DgjZJOqJTZA/g=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4165
           },
           {
             "name": "/js/dist/dom/selector-engine.js.map",
             "hash": "fuPpZgQ2+uRdEJMvKXafmrOjsrb7Vpr+wKz9FYlDJck=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 7489
           },
           {
             "name": "/js/dist/dropdown.js",
             "hash": "8ccceiqPy0Rp8OfYXiwgJ38UjIp3TDxURF5E+yWg4xs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 15354
           },
           {
             "name": "/js/dist/dropdown.js.map",
             "hash": "KTuepkTA+DnbYogsIu7MowXH5SxGFI6hK0ksGs5RsGA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 28970
           },
           {
             "name": "/js/dist/modal.js",
             "hash": "RhBaNIA1fDX1uAGhUbS/4c6kvronB3DPjajT6dlghHE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 11198
           },
           {
             "name": "/js/dist/modal.js.map",
             "hash": "0mOcV8tDJVzLI+Bf0dj3w62K6GR8X7Cx8ymSz12ss7s=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 22227
           },
           {
             "name": "/js/dist/offcanvas.js",
             "hash": "Vew4eof3vmCwFgm/NiqAZxjfBaiTenoduD5S7YhN0z8=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 8264
           },
           {
             "name": "/js/dist/offcanvas.js.map",
             "hash": "Aio1t+KzVtcMC4ZNtVgxX5Fzs0EaaEDmCcruu+be4YA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 15922
           },
           {
             "name": "/js/dist/popover.js",
             "hash": "B0/ix2aNz8k9LYb9GUys7uIhfG4d9t+x6MpbGnXir0w=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2669
           },
           {
             "name": "/js/dist/popover.js.map",
             "hash": "+iOZRhWDPJw4Rub5eeBHon7GFHf9U8EQ9kSkSNw5Uew=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4046
           },
           {
             "name": "/js/dist/scrollspy.js",
             "hash": "KZyqMYDHKJKour0bE9xc4VCOVwRWCilfDizwdsyYbzA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 9818
           },
           {
             "name": "/js/dist/scrollspy.js.map",
             "hash": "QNLKLJhRAeHKDbKS6W4j58a+sdNxf156n2a/Od75ILY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 18870
           },
           {
             "name": "/js/dist/tab.js",
             "hash": "3k9Q7AnwUW/0Lr4Djxu4DEybgh7XRIFfVpt8K8VkW3M=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 10415
           },
           {
             "name": "/js/dist/tab.js.map",
             "hash": "CtAWB3NBCCyMAqgjqs5MFVDRZG2HMCWe2/RWR7tqFwM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 20444
           },
           {
             "name": "/js/dist/toast.js",
             "hash": "NWxYrppojs09lIOLjefXD/gdOyIYePgr1R16g0d0gn4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6199
           },
           {
             "name": "/js/dist/toast.js.map",
             "hash": "KksABcNBkuCFI2II9a7AW9blsWw68Izs9+37JJmYz18=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 11830
           },
           {
             "name": "/js/dist/tooltip.js",
             "hash": "iGgsdUV8E+/ifzIheaOrWSpcpWtqAEckSdNKxESLLVk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 18395
           },
           {
             "name": "/js/dist/tooltip.js.map",
             "hash": "gF9JfDW5eA5HabTGLhW6IFtkM8YvAsfPR5BDPvMZawk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 36897
           },
           {
             "name": "/js/dist/util/backdrop.js",
             "hash": "zGLvzP96EnlWsRTW83CgLEGeqQzzRGULWN6qy5iCFMs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4118
           },
           {
             "name": "/js/dist/util/backdrop.js.map",
             "hash": "Jbk5x1yQ2aB9ZH3Pr3EPVFnPorxdDi5SGcZ8CbOBdZw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 7096
           },
           {
             "name": "/js/dist/util/component-functions.js",
             "hash": "oqtzsqxa85c2TRbg//Yk1R7pjWTiN0up1puYm94pYrg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2050
           },
           {
             "name": "/js/dist/util/component-functions.js.map",
             "hash": "Kj3LFKFsO4gR+Nk7b/xQWCOJd6ljhOPXDOVyfwSR1BQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2377
           },
           {
             "name": "/js/dist/util/config.js",
             "hash": "Ng3OqgTUWI3QeXDeu2rQxUGR50f9iLb5O/U4EFTdnYA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2566
           },
           {
             "name": "/js/dist/util/config.js.map",
             "hash": "B97pdj7lxZq1tUOZb5N1XGtTNV8ut3im+UQnaPIOkQQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3952
           },
           {
             "name": "/js/dist/util/focustrap.js",
             "hash": "tCw/Rf0fh3aRozoFlkkI8DNLv37RBMN8+5AO52qooKI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3465
           },
           {
             "name": "/js/dist/util/focustrap.js.map",
             "hash": "ur5h1R1k+C9Bpz4EaLGGJd9ObSiHuLsDVOtiwCVtHNs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 5803
           },
           {
             "name": "/js/dist/util/index.js",
             "hash": "KwhzVkdKPdMfSUz9WyASH9gEgpoaoo1d9tKRxE6hey4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 9317
           },
           {
             "name": "/js/dist/util/index.js.map",
             "hash": "3qnir1klou2vl8GUkKeHmnXfJrS8LMf36JnbO57bf84=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 16903
           },
           {
             "name": "/js/dist/util/sanitizer.js",
             "hash": "gmmL7znyZTMo6gJ507ms9PeLfe0IszZkA6wJB2Jbryg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3886
           },
           {
             "name": "/js/dist/util/sanitizer.js.map",
             "hash": "NaXgGSX82zEUlcIOz/g4D2rpo1wISnYWC++KeByDJQg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6926
           },
           {
             "name": "/js/dist/util/scrollbar.js",
             "hash": "baoqt6JwYWXB7qBaVK2ZmHPsBZ74ZHuzRU5MT32B1QI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4698
           },
           {
             "name": "/js/dist/util/scrollbar.js.map",
             "hash": "6Q+1bU9bfvLjF1rPXBvoc0Z+hmCYwITbr6/LoudvYEQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 7948
           },
           {
             "name": "/js/dist/util/swipe.js",
             "hash": "iMU9j2f8i8oggG+dJ/d0kVjaTMb/F7Z1pgiCm1xDfJA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4360
           },
           {
             "name": "/js/dist/util/swipe.js.map",
             "hash": "JDX6z20yDv0dhIrBq5rn18X3N9wfxPG1l6B3ONyGL/o=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 8230
           },
           {
             "name": "/js/dist/util/template-factory.js",
             "hash": "pTUiG+so8WCf3L5AXA5gQW4rYT/s136orXTbk5r5mC0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4684
           },
           {
             "name": "/js/dist/util/template-factory.js.map",
             "hash": "bX52wYsnNG9RDOZsZz814kKPYnWSvXn+MX76ADQu0XQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 8520
           },
           {
             "name": "/js/index.esm.js",
             "hash": "ec7n1O81kyHh8oM+Sc0ZEnGMNCQoxBtH8jpIG+D71gI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 907
           },
           {
             "name": "/js/index.umd.js",
             "hash": "cmvz/Ual+y6drij/u+xjQPqWCXcCvRMD9cNP/jylFcE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 874
           },
           {
             "name": "/js/src/alert.js",
             "hash": "3hl43UXqHxZNv3WLlpMR91/UZ9mlKeK+fNaIMRJ1N+k=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1903
           },
           {
             "name": "/js/src/base-component.js",
             "hash": "EmyKPeTs3Mlb4kXHIDzIS0yPqPTIuaDjANwbMxoZEBo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1932
           },
           {
             "name": "/js/src/button.js",
             "hash": "uJsFjp/VjozRRfGpP/LxwJg632nfqYTyCqkkI5mIsaY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1625
           },
           {
             "name": "/js/src/carousel.js",
             "hash": "dZgBoHKtyUlPM2Jl+0PXfJcKYBgM2KHvr5XZBI5rjMU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 11817
           },
           {
             "name": "/js/src/collapse.js",
             "hash": "w9S6TNsADkvXGgagFNavhBx7P0/ltkhGlAOVu6JyfRQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 7594
           },
           {
             "name": "/js/src/dom/data.js",
             "hash": "HS1zlyuNlv1/mw1dZK/JX0JWX7WmD9n1LILUcrk8HYQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1395
           },
           {
             "name": "/js/src/dom/event-handler.js",
             "hash": "Kfyt9NcIwAhK2PeZjwfaFHpXn+pcwiy+bF0IGQ4Svx8=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 8351
           },
           {
             "name": "/js/src/dom/manipulator.js",
             "hash": "vGIPDmRDkUSrNVXsA57PLr4KyfuYZbP6C3RJuhiJiZI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1658
           },
           {
             "name": "/js/src/dom/selector-engine.js",
             "hash": "WurGLDJASUXpvmMUVbgsi8F+JLcgZ4vJ71JP404BCg0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3381
           },
           {
             "name": "/js/src/dropdown.js",
             "hash": "2YMH5V2JuIJQEpJ6eBNsvv56HURmOf7g3KFVAl2VAoI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 13205
           },
           {
             "name": "/js/src/modal.js",
             "hash": "xA1OJUibrVCORJYhosjq9lf3jCrB/SMcNgnLcblsIJE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 9581
           },
           {
             "name": "/js/src/offcanvas.js",
             "hash": "HwX8Lvo2JuRJCezpiZ2kFhnPBlb4UFyBTX8UPX/dALM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6806
           },
           {
             "name": "/js/src/popover.js",
             "hash": "k4GRM7+ZswdjHe+J0/NJFaf3ZB6OeT8D+rqWUqOTdbI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1870
           },
           {
             "name": "/js/src/scrollspy.js",
             "hash": "cbH3UCnK2Atd7KdiGRnK3CrEZcmvfUlJ+iHxFIgkZu8=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 8472
           },
           {
             "name": "/js/src/tab.js",
             "hash": "O1fJwoBx9j1KTxICMmX5me5sUL5usvEZSfKSZMBWzUo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 9057
           },
           {
             "name": "/js/src/toast.js",
             "hash": "4Mmjm5/9at3ZSv352zVXKucq45Q9aUEFoR7B5kYsCpA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 5039
           },
           {
             "name": "/js/src/tooltip.js",
             "hash": "H/j84oisfneA69MkwtDcgkt6QYmAboma1qtTYodfoeI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 16029
           },
           {
             "name": "/js/src/util/backdrop.js",
             "hash": "eobl/2Mw4bQWh0Wmolqe1TZBEv7mQlhjXlvdBqFTVHY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3125
           },
           {
             "name": "/js/src/util/component-functions.js",
             "hash": "EHJj+um0aulyHLpTAQh2/n+wneU55X5t2zjXTrdIsAA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1114
           },
           {
             "name": "/js/src/util/config.js",
             "hash": "h77IVYNjC6Ro39gH8My00DETMjAUbOfGHOxyHHVDqQo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1784
           },
           {
             "name": "/js/src/util/focustrap.js",
             "hash": "515UQDNjLVjQkcvaEYx9YqlGTFmF0WD1VAZ10GbLDZ8=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2518
           },
           {
             "name": "/js/src/util/index.js",
             "hash": "OqjweUAIjjMQBBztttjFvLhuUN/Fr6Idb40ADzxfZbQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 7640
           },
           {
             "name": "/js/src/util/sanitizer.js",
             "hash": "Hre9x7J2HNDdt8YOXlyiTw3MkY+V6DJlPjGvUMBZcuA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2933
           },
           {
             "name": "/js/src/util/scrollbar.js",
             "hash": "JyCHVKKcROe96heSns+3IdlH6qimm0BLsWJ6RCi0ots=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3754
           },
           {
             "name": "/js/src/util/swipe.js",
             "hash": "lTNRfonVobhyH+ORHaJVQ7KOd4a+WJGH+mNfe/EE1Vg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3409
           },
           {
             "name": "/js/src/util/template-factory.js",
             "hash": "z6i+6l2F8LYzamNDHfvDX3prnkAQzBMMqr+FrsMcqIE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3612
           },
           {
             "name": "/LICENSE",
             "hash": "PQsMiCFuR1K5r9PSTjb6ryeHO1pFphRYuzyD55TCaDI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1093
           },
           {
             "name": "/package.json",
             "hash": "Fn+KYfmD4RzM2VhObTF69r/Jb03qJvqw3uDxGsS2034=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 9632
           },
           {
             "name": "/README.md",
             "hash": "BBJIH8s7pQNUEL37uWVlrbNz+aV01KlD4jvQTppfXFI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 13786
           },
           {
             "name": "/scss/_accordion.scss",
             "hash": "8WUJg0pa5AdoPK0JIkTq5vpQ2ed1dWhpJUm8CxhwHYQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 5066
           },
           {
             "name": "/scss/_alert.scss",
             "hash": "3Cl/x0tBd+YWCTzPJnjhzzzxWBUTdj8yq5WV80VLD94=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2073
           },
           {
             "name": "/scss/_badge.scss",
             "hash": "+fClyOlOMCKM7ZUQAygqZbvXoFgJxOmwcNciL1Zq07c=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1118
           },
           {
             "name": "/scss/_breadcrumb.scss",
             "hash": "RSC8VVhn6mgSv2Qd9cFI4lEVVf38fYKn9wQmv9a9VZ4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1751
           },
           {
             "name": "/scss/_button-group.scss",
             "hash": "ZxHWgxn27sDVVzqhxuqObGJo0jtFrJirVDkGrf/uV/Y=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3201
           },
           {
             "name": "/scss/_buttons.scss",
             "hash": "scMAWa2iNAYCh41vB+W6ft2kB9Z6MMQcAI68j4YIalM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6778
           },
           {
             "name": "/scss/_card.scss",
             "hash": "WWiXbsw8gIZxxr3JkKpsDH/YPIz3SBSKjyFftYUtFHw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6979
           },
           {
             "name": "/scss/_carousel.scss",
             "hash": "pS+MVcuPmI3BO1AA42or4jsTSbPqGh+XQE56OJ7rhBs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 5879
           },
           {
             "name": "/scss/_close.scss",
             "hash": "TSjBbBQros2eKEyHBcPvLCZffiVkWCjxxTwlgqq72GY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2018
           },
           {
             "name": "/scss/_containers.scss",
             "hash": "78i6mg5dW9hm3TGKHnH9Bo1nzft/Cx7+oEdBxO1tVGc=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1201
           },
           {
             "name": "/scss/_dropdown.scss",
             "hash": "DewCij4OoIVM9pUytwIIcYfAMj8NGblzha0McN0kSB4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 8093
           },
           {
             "name": "/scss/_forms.scss",
             "hash": "JRuJTT5voTi7uiha0l+fhV61TQBsUEPO5HYx+l18zKY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 256
           },
           {
             "name": "/scss/_functions.scss",
             "hash": "xQbPw4xcTAUPiZUtwviXxTSzV8joaVJj6sv3ssi9WZY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 10554
           },
           {
             "name": "/scss/_grid.scss",
             "hash": "E2YlOC9y6TWuRw0F74zI8/TrEJSdKjdqBKO8hqFMaV0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 683
           },
           {
             "name": "/scss/_helpers.scss",
             "hash": "H96+hj9rtgMRHNnaxu7NynFmgzeIxQuKnC3iHhU+0Ik=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 353
           },
           {
             "name": "/scss/_images.scss",
             "hash": "lKPZa/cC+owcR0tmr9gddy1LAZiK1IQ5Z1CYqZnVdwA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1158
           },
           {
             "name": "/scss/_list-group.scss",
             "hash": "Aj1JYchSlZvVka2XrpvaI19ycrlJWFFznWlgcYEdEK0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6852
           },
           {
             "name": "/scss/_maps.scss",
             "hash": "mxqqgFhZaf7Y49807q3Rx7X0CtkvR94J1Syc8a4QRWI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6005
           },
           {
             "name": "/scss/_mixins.scss",
             "hash": "OLz1wDZvC1uBzgCUHy3JTLQqYq+HWQH8vdcJiBZ7hOQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 875
           },
           {
             "name": "/scss/_modal.scss",
             "hash": "eUdp5AuPddVK3YIKzhVXqmx8/iuqfZKpJotakO8q96Y=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 7762
           },
           {
             "name": "/scss/_nav.scss",
             "hash": "EYhtc4EWnYJThNdnGGxFKBQ3S6q7GnFDwJKGSMbaLxk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 5211
           },
           {
             "name": "/scss/_navbar.scss",
             "hash": "gEv1MWMs3WxXnphKcHyLp0LSig40UGlyBU/9rspfzoE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 9155
           },
           {
             "name": "/scss/_offcanvas.scss",
             "hash": "Aw6jBGegaGWJVVVVbJn0TOTi9SC1meGy5pr6TrZks9w=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4725
           },
           {
             "name": "/scss/_pagination.scss",
             "hash": "BDwTgTM9707cHlupTMviyEIxkklL6JKhFGpoXxmI81g=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3947
           },
           {
             "name": "/scss/_placeholders.scss",
             "hash": "upa3cEwxdLcp+O3vamjunsQ2QWeeOwE0FQnFtviENI0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 859
           },
           {
             "name": "/scss/_popover.scss",
             "hash": "nOZ+GPauTKmqT5qPXaXQNd6tz4/hZaxRzRZijb4H+qM=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6907
           },
           {
             "name": "/scss/_progress.scss",
             "hash": "vQOFIUZtk8CRvG6fXWXI83CK1Cr7Azv3QMLJtYJsuOE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2016
           },
           {
             "name": "/scss/_reboot.scss",
             "hash": "mLZ0hQ9uQODwnOr6MjO08QZvUI2cHpgcExzEfgD/m4s=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 12395
           },
           {
             "name": "/scss/_root.scss",
             "hash": "Bzyp1ACKV48pWLRXgSYnquyV/2+v4QZGrS9M3MDXxbk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6775
           },
           {
             "name": "/scss/_spinners.scss",
             "hash": "osUZg9PJPddNt6c3g241GnVllxiZELjfEw92kh8ny5E=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2429
           },
           {
             "name": "/scss/_tables.scss",
             "hash": "dUM8nFGhKx09n+hjmxo8bEqiAYvIJS93Qo3rNRWD+NU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4945
           },
           {
             "name": "/scss/_toasts.scss",
             "hash": "sKYERISpkZtSzUWRKVTvvtXG48EoMAy+rQeogoP3saI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2490
           },
           {
             "name": "/scss/_tooltip.scss",
             "hash": "XvcKWw0kuLCwAotXeRGkzk/5csqoLAdmJMQu6sWHWtY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4281
           },
           {
             "name": "/scss/_transitions.scss",
             "hash": "5WYb4Udq9gyeRTdQeA+GhBxonc8inegCIwB8PK2hSMk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 425
           },
           {
             "name": "/scss/_type.scss",
             "hash": "4stEur8Fg3samFkSjlU3EtbdXBxaucu33MNr/NJjSG0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1420
           },
           {
             "name": "/scss/_utilities.scss",
             "hash": "GRgaTTo1yaf1KRTmHNXFB3h2YErKnftVHZS0ufG9pls=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 19187
           },
           {
             "name": "/scss/_variables.scss",
             "hash": "ahwj0r3+f9EELPiUglvvPYv+E4ljFcA/a2emQ3whJBY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 75931
           },
           {
             "name": "/scss/_variables-dark.scss",
             "hash": "Q1jhQpxYQRaFQYwyHamQL7/fYiEmef1y7ZiNNHNEIJ0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4936
           },
           {
             "name": "/scss/bootstrap.scss",
             "hash": "HQzgAuTMaY1xJYn7+erwKgaQKEUm1xyk14r+QXIEqw0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 938
           },
           {
             "name": "/scss/bootstrap-grid.scss",
             "hash": "biY6CG4V38ED7IR7PL02nLLZVywRhLBlO0/3vSt8CY4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1183
           },
           {
             "name": "/scss/bootstrap-reboot.scss",
             "hash": "wrA2i86TcmmfIsLQ5zbhjlhJ8CjeaJ6I34GNhxUHWr4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 189
           },
           {
             "name": "/scss/bootstrap-utilities.scss",
             "hash": "JC73V+mfcKh7xBm6/1ITL4JMirwR2k7cenqyxoKpebA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 306
           },
           {
             "name": "/scss/forms/_floating-labels.scss",
             "hash": "hciBVFqDZk23WvznFo4UtSShGALf8uFsxFiGVD4QxSo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2688
           },
           {
             "name": "/scss/forms/_form-check.scss",
             "hash": "v4UwGKPwwDEs1tY7dfzExMO5kIsjN8brCjxt2WFoAZo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4833
           },
           {
             "name": "/scss/forms/_form-control.scss",
             "hash": "RHvoUat+ATpTEOGCEp4UsDjuOrR6v/Fpe9i1+p/8X+4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 6590
           },
           {
             "name": "/scss/forms/_form-range.scss",
             "hash": "Q7hjmhgGmNsxncbqnOaHFVEFnrkOiWL8s5zqZlikP8s=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2796
           },
           {
             "name": "/scss/forms/_form-select.scss",
             "hash": "5FsWjrGcvg+Eqkka5UDweE5PKq2FV7scRRBzD+kDH50=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2488
           },
           {
             "name": "/scss/forms/_form-text.scss",
             "hash": "grSlvamURdoncKgbvVOCeI+27my4sLfej3sTVe/wLUs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 219
           },
           {
             "name": "/scss/forms/_input-group.scss",
             "hash": "TwuR7DzpwFoOGWHm3UJ9bKjOrX/QxjPXRKOJkSBPQlE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3899
           },
           {
             "name": "/scss/forms/_labels.scss",
             "hash": "gkwf1yD1SHOY/gerBRhhPw5HyJdNoyD5wNhmx/KEBlU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1142
           },
           {
             "name": "/scss/forms/_validation.scss",
             "hash": "VhAdCAL4nORgaJoeKDuAczcRXMClilvsDOuMBj0XoGI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 478
           },
           {
             "name": "/scss/helpers/_clearfix.scss",
             "hash": "f9rnpdiJnEdEGfcsb4RS/uSQ2AlTZ4t7NK240OTnkKk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 37
           },
           {
             "name": "/scss/helpers/_color-bg.scss",
             "hash": "wokfJy/atVdM257f3k5CdH5bL3FP2SgPpwnVp03dtS0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 403
           },
           {
             "name": "/scss/helpers/_colored-links.scss",
             "hash": "f89Q7CMMA/AkL2iXGB+5ylytdJVZjaD1RbqIkYzQq0o=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1755
           },
           {
             "name": "/scss/helpers/_focus-ring.scss",
             "hash": "AvgERS982r2QVWNxoNz3ZmJNkpi3s9GswXjPZHNOfGk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 385
           },
           {
             "name": "/scss/helpers/_icon-link.scss",
             "hash": "TmKGFSaK7c2D96fx3djUaLt/4D1tVO7+1OL3BaJuTiI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 605
           },
           {
             "name": "/scss/helpers/_position.scss",
             "hash": "MnpbRRIzcFqhWsFQnqj0/5YJHc6auQc5tvyQLKw++yY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 621
           },
           {
             "name": "/scss/helpers/_ratio.scss",
             "hash": "T1RpNjKZenlL1oB6PM/mqwHtPHbcDSFbEGwSdXwPp+A=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 399
           },
           {
             "name": "/scss/helpers/_stacks.scss",
             "hash": "LqLdiqjbxWIkyOanP1yauyenILg054keckWIejPobUA=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 245
           },
           {
             "name": "/scss/helpers/_stretched-link.scss",
             "hash": "vjSz6SCVaLcbC4MEYZnvO1WoEnfDX5k1Uq0jwGG2zyI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 223
           },
           {
             "name": "/scss/helpers/_text-truncation.scss",
             "hash": "RskEeZ2bOGH7q42kJ5/5chXn1tVIBymwqTw23Q47Vzg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 73
           },
           {
             "name": "/scss/helpers/_visually-hidden.scss",
             "hash": "sib1VerR40KbmgTXBBZeIN3R8sg8DJWN4DaHZOZ/2Pg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 136
           },
           {
             "name": "/scss/helpers/_vr.scss",
             "hash": "ws813teUzTHRlqnLe3j1PPcP9HbDHdVNK9QbYmUbFHU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 160
           },
           {
             "name": "/scss/mixins/_alert.scss",
             "hash": "uKLKCJw8XxfPXgIJoL+US783ANrP9dYDBISfyfLV/Vg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 525
           },
           {
             "name": "/scss/mixins/_backdrop.scss",
             "hash": "77SLrz+104PWUYDOLG/InVR8UJIomx75Emh1m1gs8/c=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 328
           },
           {
             "name": "/scss/mixins/_banner.scss",
             "hash": "dVK8cNFyL2KNjqDan3pkAav222Eer9hjNQIT8VFmr3M=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 223
           },
           {
             "name": "/scss/mixins/_border-radius.scss",
             "hash": "XUHARliU19oMYbWdYoYl9U9Cjgih5cWIw+ry3wWporg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 2031
           },
           {
             "name": "/scss/mixins/_box-shadow.scss",
             "hash": "lvaPre4KsM3hpZrviVsL+4y31sIPXwKM+fJzo9gpNyY=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 398
           },
           {
             "name": "/scss/mixins/_breakpoints.scss",
             "hash": "pyELD81f9WhEsV8D9s5tDeOUCDwxhonoZ6Z05vGRRPo=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4580
           },
           {
             "name": "/scss/mixins/_buttons.scss",
             "hash": "AdW1FULQcfszUz4Dl+wYGICVYE5zPNdRtKKid/WIUzs=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3220
           },
           {
             "name": "/scss/mixins/_caret.scss",
             "hash": "M3Dio/W9LbK5d80PbPqYBLfaFsuE+OQuzD2uLzykk94=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1587
           },
           {
             "name": "/scss/mixins/_clearfix.scss",
             "hash": "G8IJ6Hf6AjicAyIXhNvJI7f4RHRDw4ao88I1w31NPtw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 147
           },
           {
             "name": "/scss/mixins/_color-mode.scss",
             "hash": "moCKPj9BIh9jJ67Eilh3VAvrtYgkewaPQOAriXaMPIU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 447
           },
           {
             "name": "/scss/mixins/_color-scheme.scss",
             "hash": "PUQkIqq/GAkEs5pOBHwJmzks8Z5D8WY0g6wo6RUC1aU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 167
           },
           {
             "name": "/scss/mixins/_container.scss",
             "hash": "RM48ulNATfViASqcQ3pEeR9oKOacCG/wSM8eQ+1X+Pg=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 410
           },
           {
             "name": "/scss/mixins/_deprecate.scss",
             "hash": "aQeApfVoImu3VfXmAa3RIK9lR0yPLgd2TW8QvbWG6xE=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 613
           },
           {
             "name": "/scss/mixins/_forms.scss",
             "hash": "ajS9icDydf3v0JCw+HBK4zIVGIJ2hdOJHEuQTf1C/aU=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4164
           },
           {
             "name": "/scss/mixins/_gradients.scss",
             "hash": "gHO/n935S5yHsaWl7oagVj7LDGd/C+Wxd8syi9XbpbI=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1956
           },
           {
             "name": "/scss/mixins/_grid.scss",
             "hash": "dsNx9+TTBZjYDVcOIT6H4iQUDi/RNN77uiQUe84xqs4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 4726
           },
           {
             "name": "/scss/mixins/_image.scss",
             "hash": "khNvFnacIswOP5nSbayUEDUkCaMdTkonQGKiV0UoDkk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 395
           },
           {
             "name": "/scss/mixins/_list-group.scss",
             "hash": "GT8xPVtDXQXWl0Ay7TOouMjfmjWBC9a7O1i9Ytbcik0=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 581
           },
           {
             "name": "/scss/mixins/_lists.scss",
             "hash": "hHF/vH/EHOK6Bst1Qu+/XOymICLzLN1Izqg5wVjjFiQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 168
           },
           {
             "name": "/scss/mixins/_pagination.scss",
             "hash": "IsBtAalMexyn7lgbhrdQimkESEQcnDGxvC3T8LNRo4M=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 387
           },
           {
             "name": "/scss/mixins/_reset-text.scss",
             "hash": "VJy5tTUgw0pwe/xU8wv4UIwKm8uX9j++t6EjqvtuRQQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 495
           },
           {
             "name": "/scss/mixins/_resize.scss",
             "hash": "p/Cn0vmQTkm3CWm2LYIAdC+FQlKZ77NOLnUdNaQTKs4=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 202
           },
           {
             "name": "/scss/mixins/_table-variants.scss",
             "hash": "QVAlE/XT4p82zJ0JBvIcMM2N1bugrUPEKmE/+MrfrdQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1101
           },
           {
             "name": "/scss/mixins/_text-truncate.scss",
             "hash": "6F6n5gJaigYf5lsncGvhsf12/DFkxMkdZyf5GgBVrhw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 168
           },
           {
             "name": "/scss/mixins/_transition.scss",
             "hash": "jUUxBldKvwI0TPCdrBzA8QIsfafCZ9Q+Sh2o19sYqkQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 661
           },
           {
             "name": "/scss/mixins/_utilities.scss",
             "hash": "Uel5DJcTMjIOzRc2ZOr5dn3x1FhaX64lCIXLxKOhn48=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 3384
           },
           {
             "name": "/scss/mixins/_visually-hidden.scss",
             "hash": "GN8c5BkBPvIpuakcba0TqY7VPYOkNHA6cfttr4k9hDk=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1110
           },
           {
             "name": "/scss/utilities/_api.scss",
             "hash": "J1u2wMqzSJbTzd0+7iuJfJaklC1YIWRtuZssLZJSpJw=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 1737
           },
           {
             "name": "/scss/vendor/_rfs.scss",
             "hash": "JsQPrGMGFQNZ+LCv25Rv/rWHI/fX1koYbas4W9dW2DQ=",
-            "time": "1985-10-26T08:15:00.000Z",
             "size": 10012
           }
-        ]
+        ],
+        "links": {
+          "stats": "https://data.jsdelivr.com/v1/stats/packages/npm/bootstrap@5.3.1",
+          "entrypoints": "https://data.jsdelivr.com/v1/packages/npm/bootstrap@5.3.1/entrypoints"
+        }
       }
     },
     {
