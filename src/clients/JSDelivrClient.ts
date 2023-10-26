@@ -3,12 +3,14 @@
 
 import { CdnClient } from './CdnClient';
 import { CdnFile } from '../CdnFile';
+import { CdnPackage } from '../CdnPackage';
+import { Repository } from '../Repository';
 
 export class JSDelivrClient extends CdnClient {
   static readonly BaseUri = 'https://data.jsdelivr.com/v1';
 
   // See https://www.jsdelivr.com/docs/data.jsdelivr.com#get-/v1/packages/npm/-package-
-  async getLatestVersion(name: string): Promise<string | null> {
+  async getLatestVersion(name: string): Promise<CdnPackage | null> {
     const encodedName = encodeURIComponent(name);
     const response = await this.httpGet(
       `${JSDelivrClient.BaseUri}/packages/npm/${encodedName}`
@@ -24,8 +26,19 @@ export class JSDelivrClient extends CdnClient {
 
     const result: any = await response.json();
     const npmPackage = result as Package;
+    const version = npmPackage?.tags.latest ?? null;
 
-    return npmPackage?.tags.latest ?? null;
+    if (!version) {
+      return null;
+    }
+
+    const releaseNotesUrl = await this.getReleaseNotes(encodedName, version);
+
+    return {
+      name,
+      releaseNotesUrl,
+      version,
+    };
   }
 
   async getFiles(name: string, version: string): Promise<CdnFile[]> {
@@ -61,6 +74,26 @@ export class JSDelivrClient extends CdnClient {
 
     return files;
   }
+
+  private async getReleaseNotes(
+    name: string,
+    version: string
+  ): Promise<string> {
+    const response = await this.httpGet(`https://registry.npmjs.org/${name}`);
+
+    if (response.status !== 200) {
+      return '';
+    }
+
+    const result: any = await response.json();
+    const library = result as RegistryPackage;
+
+    if (!library || !library.repository) {
+      return '';
+    }
+
+    return await this.getReleaseNotesUrl(library.repository, version);
+  }
 }
 
 interface Package {
@@ -75,4 +108,9 @@ interface PackageFile {
   name: string;
   hash: string;
   size: number;
+}
+
+interface RegistryPackage {
+  name: string;
+  repository: Repository | null;
 }

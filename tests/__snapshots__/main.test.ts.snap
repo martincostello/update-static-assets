@@ -21,9 +21,9 @@ exports[`update-static-assets for assets that are ignored pulls-closed is correc
 
 exports[`update-static-assets for assets that are ignored pulls-opened is correct 1`] = `"[]"`;
 
-exports[`update-static-assets for cdnjs assets-updated is correct 1`] = `"true"`;
+exports[`update-static-assets for cdnjs for font-awesome assets-updated is correct 1`] = `"true"`;
 
-exports[`update-static-assets for cdnjs generates the correct commit message 1`] = `
+exports[`update-static-assets for cdnjs for font-awesome generates the correct commit message 1`] = `
 [
   "Update font-awesome",
   "Updates font-awesome to version 6.4.2.",
@@ -38,15 +38,15 @@ exports[`update-static-assets for cdnjs generates the correct commit message 1`]
 ]
 `;
 
-exports[`update-static-assets for cdnjs generates the correct diff 1`] = `
+exports[`update-static-assets for cdnjs for font-awesome generates the correct diff 1`] = `
 "diff --git a/index.html b/index.html
-index c435ad4..d7429e2 100644
+index cbcfffd..7b17bc4 100644
 --- a/index.html
 +++ b/index.html
-@@ -1,6 +1,6 @@
- 
+@@ -2,6 +2,6 @@
            <html lang="en-gb">
              <head>
+               <!-- font-awesome -->
 -              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 +              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
              </head>
@@ -54,15 +54,63 @@ index c435ad4..d7429e2 100644
 \\ No newline at end of file"
 `;
 
-exports[`update-static-assets for cdnjs pulls-closed is correct 1`] = `"[]"`;
+exports[`update-static-assets for cdnjs for font-awesome pulls-closed is correct 1`] = `"[]"`;
 
-exports[`update-static-assets for cdnjs pulls-opened is correct 1`] = `"[43]"`;
+exports[`update-static-assets for cdnjs for font-awesome pulls-opened is correct 1`] = `"[43]"`;
 
-exports[`update-static-assets for cdnjs updates font-awesome 1`] = `
+exports[`update-static-assets for cdnjs for font-awesome updates font-awesome 1`] = `
 "
           <html lang="en-gb">
             <head>
+              <!-- font-awesome -->
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            </head>
+          </html>"
+`;
+
+exports[`update-static-assets for cdnjs for swagger-ui assets-updated is correct 1`] = `"true"`;
+
+exports[`update-static-assets for cdnjs for swagger-ui generates the correct commit message 1`] = `
+[
+  "Update swagger-ui",
+  "Updates swagger-ui to version 5.9.1.",
+  "---",
+  "updated-dependencies:",
+  "- dependency-name: swagger-ui",
+  "  dependency-type: direct:production",
+  "  update-type: version-update:semver-patch",
+  "...",
+  "Signed-off-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+  "Initial commit",
+]
+`;
+
+exports[`update-static-assets for cdnjs for swagger-ui generates the correct diff 1`] = `
+"diff --git a/index.html b/index.html
+index c72f971..e3316fd 100644
+--- a/index.html
++++ b/index.html
+@@ -2,6 +2,6 @@
+           <html lang="en-gb">
+             <head>
+               <!-- swagger-ui -->
+-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.0/swagger-ui.min.css" integrity="sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
++              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.1/swagger-ui.min.css" integrity="sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+             </head>
+           </html>
+\\ No newline at end of file"
+`;
+
+exports[`update-static-assets for cdnjs for swagger-ui pulls-closed is correct 1`] = `"[]"`;
+
+exports[`update-static-assets for cdnjs for swagger-ui pulls-opened is correct 1`] = `"[44]"`;
+
+exports[`update-static-assets for cdnjs for swagger-ui updates font-awesome 1`] = `
+"
+          <html lang="en-gb">
+            <head>
+              <!-- swagger-ui -->
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.1/swagger-ui.min.css" integrity="sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             </head>
           </html>"
 `;

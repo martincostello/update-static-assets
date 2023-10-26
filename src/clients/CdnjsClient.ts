@@ -3,13 +3,15 @@
 
 import { CdnClient } from './CdnClient';
 import { CdnFile } from '../CdnFile';
+import { CdnPackage } from '../CdnPackage';
+import { Repository } from '../Repository';
 
 export class CdnjsClient extends CdnClient {
-  async getLatestVersion(name: string): Promise<string | null> {
+  async getLatestVersion(name: string): Promise<CdnPackage | null> {
     // See https://cdnjs.com/api#library
     const encodedName = encodeURIComponent(name);
     const response = await this.httpGet(
-      `https://api.cdnjs.com/libraries/${encodedName}?fields=name,version`
+      `https://api.cdnjs.com/libraries/${encodedName}?fields=name,version,repository`
     );
 
     if (response.status === 404) {
@@ -22,7 +24,19 @@ export class CdnjsClient extends CdnClient {
 
     const result: any = await response.json();
     const library = result as Library;
-    return library?.version ?? null;
+    const version = library?.version ?? null;
+
+    if (!version) {
+      return null;
+    }
+
+    const releaseNotesUrl = await this.getReleaseNotes(library);
+
+    return {
+      name,
+      releaseNotesUrl,
+      version,
+    };
   }
 
   async getFiles(name: string, version: string): Promise<CdnFile[]> {
@@ -44,7 +58,7 @@ export class CdnjsClient extends CdnClient {
     }
 
     const result: any = await response.json();
-    const library = result as Library;
+    const library = result as LibraryVersion;
 
     if (library?.files) {
       for (const file of library.files) {
@@ -59,11 +73,25 @@ export class CdnjsClient extends CdnClient {
 
     return files;
   }
+
+  private async getReleaseNotes(library: Library): Promise<string> {
+    if (!library || !library.repository) {
+      return '';
+    }
+    return await this.getReleaseNotesUrl(library.repository, library.version);
+  }
 }
 
-interface Library {
+interface LibraryBase {
   name: string;
   version: string;
+}
+
+interface Library extends LibraryBase {
+  repository: Repository | null;
+}
+
+interface LibraryVersion extends LibraryBase {
   files: string[];
   sri: Record<string, string>;
 }

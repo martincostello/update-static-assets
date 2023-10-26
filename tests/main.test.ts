@@ -11,56 +11,70 @@ const timeout = 45000;
 
 describe('update-static-assets', () => {
   describe('for cdnjs', () => {
-    let fixture: ActionFixture;
+    describe.each([
+      [
+        'font-awesome',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css',
+        'sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==',
+      ],
+      [
+        'swagger-ui',
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.0/swagger-ui.min.css',
+        'sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==',
+      ],
+    ])('for %s', (name: string, href: string, integrity: string) => {
+      let fixture: ActionFixture;
 
-    beforeAll(async () => {
-      await setup('scenarios');
-      fixture = new ActionFixture();
+      beforeAll(async () => {
+        await setup('scenarios');
+        fixture = new ActionFixture();
 
-      await fixture.initialize([
-        {
-          path: 'index.html',
-          data: `
+        await fixture.initialize([
+          {
+            path: 'index.html',
+            data: `
           <html lang="en-gb">
             <head>
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+              <!-- ${name} -->
+              <link rel="stylesheet" href="${href}" integrity="${integrity}" crossorigin="anonymous" referrerpolicy="no-referrer" />
             </head>
           </html>`,
-        },
-      ]);
+          },
+        ]);
 
-      await fixture.run();
-    }, timeout);
+        await fixture.run();
+      }, timeout);
 
-    afterAll(async () => {
-      await fixture?.destroy();
-    });
+      afterAll(async () => {
+        await fixture?.destroy();
+      });
 
-    test('does not log any errors', () => {
-      expect(core.error).toHaveBeenCalledTimes(0);
-    });
+      test('does not log any errors', () => {
+        expect(core.error).toHaveBeenCalledTimes(0);
+      });
 
-    test('does not fail', () => {
-      expect(core.setFailed).toHaveBeenCalledTimes(0);
-    });
+      test('does not fail', () => {
+        expect(core.setFailed).toHaveBeenCalledTimes(0);
+      });
 
-    test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
-      '%s is correct',
-      (name: string) => {
-        expect(fixture.getOutput(name)).toMatchSnapshot();
-      }
-    );
+      test.each([['assets-updated'], ['pulls-closed'], ['pulls-opened']])(
+        '%s is correct',
+        (name: string) => {
+          expect(fixture.getOutput(name)).toMatchSnapshot();
+        }
+      );
 
-    test('updates font-awesome', async () => {
-      expect(await fixture.getContent('index.html')).toMatchSnapshot();
-    });
+      test('updates font-awesome', async () => {
+        expect(await fixture.getContent('index.html')).toMatchSnapshot();
+      });
 
-    test('generates the correct commit message', async () => {
-      expect(await fixture.commitHistory(2)).toMatchSnapshot();
-    });
+      test('generates the correct commit message', async () => {
+        expect(await fixture.commitHistory(2)).toMatchSnapshot();
+      });
 
-    test('generates the correct diff', async () => {
-      expect(await fixture.diff()).toMatchSnapshot();
+      test('generates the correct diff', async () => {
+        expect(await fixture.diff()).toMatchSnapshot();
+      });
     });
   });
 
