@@ -114,7 +114,7 @@ export class StaticAssetUpdater {
       case CdnProvider.cdnjs:
         return new CdnjsClient(this.options.accessToken);
       case CdnProvider.jsdelivr:
-        return new JSDelivrClient();
+        return new JSDelivrClient(this.options.accessToken);
       default:
         return null;
     }

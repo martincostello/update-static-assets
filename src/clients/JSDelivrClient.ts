@@ -4,6 +4,7 @@
 import { CdnClient } from './CdnClient';
 import { CdnFile } from '../CdnFile';
 import { CdnPackage } from '../CdnPackage';
+import { Repository } from '../Repository';
 
 export class JSDelivrClient extends CdnClient {
   static readonly BaseUri = 'https://data.jsdelivr.com/v1';
@@ -31,10 +32,11 @@ export class JSDelivrClient extends CdnClient {
       return null;
     }
 
-    // TODO Get the release notes URL from the npm package metadata
+    const releaseNotesUrl = await this.getReleaseNotes(encodedName, version);
+
     return {
       name,
-      releaseNotesUrl: '',
+      releaseNotesUrl,
       version,
     };
   }
@@ -72,6 +74,26 @@ export class JSDelivrClient extends CdnClient {
 
     return files;
   }
+
+  private async getReleaseNotes(
+    name: string,
+    version: string
+  ): Promise<string> {
+    const response = await this.httpGet(`https://registry.npmjs.org/${name}`);
+
+    if (response.status !== 200) {
+      return '';
+    }
+
+    const result: any = await response.json();
+    const library = result as RegistryPackage;
+
+    if (!library || !library.repository) {
+      return '';
+    }
+
+    return await this.getReleaseNotesUrl(library.repository, version);
+  }
 }
 
 interface Package {
@@ -86,4 +108,9 @@ interface PackageFile {
   name: string;
   hash: string;
   size: number;
+}
+
+interface RegistryPackage {
+  name: string;
+  repository: Repository | null;
 }
