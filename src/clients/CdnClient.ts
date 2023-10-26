@@ -3,9 +3,10 @@
 
 import { fetch, Response } from 'undici';
 import { CdnFile } from '../CdnFile';
+import { CdnPackage } from '../CdnPackage';
 
 export abstract class CdnClient {
-  abstract getLatestVersion(name: string): Promise<string | null>;
+  abstract getLatestVersion(name: string): Promise<CdnPackage | null>;
 
   abstract getFiles(name: string, version: string): Promise<CdnFile[]>;
 

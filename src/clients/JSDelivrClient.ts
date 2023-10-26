@@ -3,12 +3,13 @@
 
 import { CdnClient } from './CdnClient';
 import { CdnFile } from '../CdnFile';
+import { CdnPackage } from '../CdnPackage';
 
 export class JSDelivrClient extends CdnClient {
   static readonly BaseUri = 'https://data.jsdelivr.com/v1';
 
   // See https://www.jsdelivr.com/docs/data.jsdelivr.com#get-/v1/packages/npm/-package-
-  async getLatestVersion(name: string): Promise<string | null> {
+  async getLatestVersion(name: string): Promise<CdnPackage | null> {
     const encodedName = encodeURIComponent(name);
     const response = await this.httpGet(
       `${JSDelivrClient.BaseUri}/packages/npm/${encodedName}`
@@ -24,8 +25,18 @@ export class JSDelivrClient extends CdnClient {
 
     const result: any = await response.json();
     const npmPackage = result as Package;
+    const version = npmPackage?.tags.latest ?? null;
 
-    return npmPackage?.tags.latest ?? null;
+    if (!version) {
+      return null;
+    }
+
+    // TODO Get the release notes URL from the npm package metadata
+    return {
+      name,
+      releaseNotesUrl: '',
+      version,
+    };
   }
 
   async getFiles(name: string, version: string): Promise<CdnFile[]> {
