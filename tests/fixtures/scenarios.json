@@ -1632,6 +1632,18 @@
       }
     },
     {
+      "basePath": "https://api.cdnjs.com",
+      "path": "/libraries/swagger-ui?fields=name,version,repository",
+      "response": {
+        "name": "swagger-ui",
+        "version": "5.9.1",
+        "repository": {
+          "type": "git",
+          "url": "https://github.com/swagger-api/swagger-ui.git"
+        }
+      }
+    },
+    {
       "basePath": "https://api.github.com",
       "path": "/repos/FortAwesome/Font-Awesome/releases/tags/6.4.2",
       "response": {
@@ -1751,6 +1763,70 @@
           "confused": 0,
           "heart": 0,
           "rocket": 5,
+          "eyes": 0
+        }
+      }
+    },
+    {
+      "basePath": "https://api.github.com",
+      "path": "/repos/swagger-api/swagger-ui/releases/tags/5.9.1",
+      "status": 404,
+      "response": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com"
+      }
+    },
+    {
+      "basePath": "https://api.github.com",
+      "path": "/repos/swagger-api/swagger-ui/releases/tags/v5.9.1",
+      "response": {
+        "url": "https://api.github.com/repos/swagger-api/swagger-ui/releases/126558045",
+        "assets_url": "https://api.github.com/repos/swagger-api/swagger-ui/releases/126558045/assets",
+        "upload_url": "https://uploads.github.com/repos/swagger-api/swagger-ui/releases/126558045/assets{?name,label}",
+        "html_url": "https://github.com/swagger-api/swagger-ui/releases/tag/v5.9.1",
+        "id": 126558045,
+        "author": {
+          "login": "swagger-bot",
+          "id": 53864671,
+          "node_id": "MDQ6VXNlcjUzODY0Njcx",
+          "avatar_url": "https://avatars.githubusercontent.com/u/53864671?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/swagger-bot",
+          "html_url": "https://github.com/swagger-bot",
+          "followers_url": "https://api.github.com/users/swagger-bot/followers",
+          "following_url": "https://api.github.com/users/swagger-bot/following{/other_user}",
+          "gists_url": "https://api.github.com/users/swagger-bot/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/swagger-bot/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/swagger-bot/subscriptions",
+          "organizations_url": "https://api.github.com/users/swagger-bot/orgs",
+          "repos_url": "https://api.github.com/users/swagger-bot/repos",
+          "events_url": "https://api.github.com/users/swagger-bot/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/swagger-bot/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "node_id": "RE_kwDOAB9fHc4Hix9d",
+        "tag_name": "v5.9.1",
+        "target_commitish": "master",
+        "name": "Swagger UI v5.9.1 Released!",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2023-10-25T08:21:42Z",
+        "published_at": "2023-10-25T08:24:24Z",
+        "assets": [],
+        "tarball_url": "https://api.github.com/repos/swagger-api/swagger-ui/tarball/v5.9.1",
+        "zipball_url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/v5.9.1",
+        "body": "## [5.9.1](https://github.com/swagger-api/swagger-ui/compare/v5.9.0...v5.9.1) (2023-10-25)\r\n\r\n\r\n### Bug Fixes\r\n\r\n* **build:** add support for remix.run bundler ([#9327](https://github.com/swagger-api/swagger-ui/issues/9327)) ([c7d6214](https://github.com/swagger-api/swagger-ui/commit/c7d6214b4134a20b9d72446f0d5dc9b179373949))",
+        "reactions": {
+          "url": "https://api.github.com/repos/swagger-api/swagger-ui/releases/126558045/reactions",
+          "total_count": 5,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 3,
+          "rocket": 2,
           "eyes": 0
         }
       }
@@ -1884,6 +1960,68 @@
           "js/solid.min.js": "sha512-s6yNeC6faUgveCQocceGXVia7ciAebyTH7hRNazwZa2FHhnxX22qaGeb9d3a8PUKdnoHo3T3bYI/0ZOjmgWkNg==",
           "js/v4-shims.js": "sha512-RNv6jlbGXQqj0vGGjx6DcZ9kf/mH7BAwssf9HRxWU15LTXJClKIgpHH/PAT6vNIWGFJQWy34oP6bCpBFlrR7dA==",
           "js/v4-shims.min.js": "sha512-6n3X18GAJomziz6HVPbmyBOEZeoB8+unwEBTRXFs3IZTRYYCkbXNAWNV68uHujamEvDBqaGe2FTW19o81h1/RA=="
+        }
+      }
+    },
+    {
+      "basePath": "https://api.cdnjs.com",
+      "path": "/libraries/swagger-ui/5.9.1",
+      "response": {
+        "name": "swagger-ui",
+        "version": "5.9.1",
+        "rawFiles": [
+          "swagger-ui-bundle.js",
+          "swagger-ui-bundle.js.map",
+          "swagger-ui-bundle.min.js",
+          "swagger-ui-es-bundle-core.js",
+          "swagger-ui-es-bundle-core.js.map",
+          "swagger-ui-es-bundle-core.min.js",
+          "swagger-ui-es-bundle.js",
+          "swagger-ui-es-bundle.js.map",
+          "swagger-ui-es-bundle.min.js",
+          "swagger-ui-standalone-preset.js",
+          "swagger-ui-standalone-preset.js.map",
+          "swagger-ui-standalone-preset.min.js",
+          "swagger-ui.css",
+          "swagger-ui.css.map",
+          "swagger-ui.js",
+          "swagger-ui.js.map",
+          "swagger-ui.min.css",
+          "swagger-ui.min.js"
+        ],
+        "files": [
+          "swagger-ui-bundle.js",
+          "swagger-ui-bundle.js.map",
+          "swagger-ui-bundle.min.js",
+          "swagger-ui-es-bundle-core.js",
+          "swagger-ui-es-bundle-core.js.map",
+          "swagger-ui-es-bundle-core.min.js",
+          "swagger-ui-es-bundle.js",
+          "swagger-ui-es-bundle.js.map",
+          "swagger-ui-es-bundle.min.js",
+          "swagger-ui-standalone-preset.js",
+          "swagger-ui-standalone-preset.js.map",
+          "swagger-ui-standalone-preset.min.js",
+          "swagger-ui.css",
+          "swagger-ui.css.map",
+          "swagger-ui.js",
+          "swagger-ui.js.map",
+          "swagger-ui.min.css",
+          "swagger-ui.min.js"
+        ],
+        "sri": {
+          "swagger-ui-bundle.js": "sha512-cgiTDrtb2usUNGzBKRl1tGw9E0+YXBJlmS3ftVacykxfljMbo+AqdwhUZLvTscv7cptesqzjqGQflih63ATAzA==",
+          "swagger-ui-bundle.min.js": "sha512-ZltHb61aGRLllftCEx5iAhQBNmqa12g2MB9lpmoRl17c4kV5cBvVJ3LiK6nYx98hzHmrV7bE80FPP+IIi08Odw==",
+          "swagger-ui-es-bundle-core.js": "sha512-8R5Qsw2gbbmGDZaJGyJSZDXlLjAy6ynwf/LUrQ36HjyFdIyhUDV99WbURDj30j8X2f9OUWdzt3V2qHI4x37tWw==",
+          "swagger-ui-es-bundle-core.min.js": "sha512-3AGgVRJb2RFhVIRYZ3wUTpMy2wm2zpbKa3vpIJGYxPtYv2OiLpa+oEy4nGDYec+gqeA4sQ/SorW5vrzM/kNQ6w==",
+          "swagger-ui-es-bundle.js": "sha512-oHUsqeOZvA/sZt6bByU6TJqit6sFWOtAM5SlRPp/gAJuuOsQ1pWd+bvs0PBMih0ypnhLpAysOupzzA52PVnirw==",
+          "swagger-ui-es-bundle.min.js": "sha512-FMgd6ShRXQvOQoATNLjnt58XzFFb6lY4iP3eLglVKSQ9LwdNUWlTZA1+O9hlFeLHmyXDVfye4SNr0Qg9AEVtqg==",
+          "swagger-ui-standalone-preset.js": "sha512-mW5PsbxbBbDGGKxF/Wq1wu9WcFBkceXId0D00smBM6H6I33sgOYhKGwOjYdUwXj5FMFkPU5n4wO8G/Rx5FfMGg==",
+          "swagger-ui-standalone-preset.min.js": "sha512-qwGi7EG31HcylzamsmacHLZJrfUGRuuHEaCMcOojuNpMu+paR554VjaCZ9LdUVTrmF8xC03YVqTzuKx0SDdruA==",
+          "swagger-ui.css": "sha512-9ZJfeEZ6DAr3pstOThylJAyPbhr+BXMiyPsiCWmozVeJrcInppRXLZ9sUOL64n7H7DHsdDlSCRI3qk5/clvnXA==",
+          "swagger-ui.js": "sha512-evBN+bZEhwzVTYk4Xj/NXhx03Mg8VqeAa9ja/tbBJDyqVCchvAc/WKmjxZ4uopmQRKu/b18cLVNLK2Rg7wkkjw==",
+          "swagger-ui.min.css": "sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==",
+          "swagger-ui.min.js": "sha512-B5LeK3btJGPDhdqOJG4zgTA24B50GF7ZHUc2Kq8gDl/RUtXab34cthXNhCCky4R8GYb96qCxJ6wEQcoZNNkVxw=="
         }
       }
     },
@@ -2023,6 +2161,47 @@
     {
       "basePath": "https://github.local",
       "path": "/api/v3/repos/martincostello/update-static-assets/issues/43/labels",
+      "method": "POST",
+      "headers": {
+        "authorization": "token my-token"
+      },
+      "body": {
+        "labels": [
+          "foo",
+          "bar"
+        ]
+      },
+      "status": 201,
+      "response": []
+    },
+    {
+      "basePath": "https://github.local",
+      "path": "/api/v3/repos/martincostello/update-static-assets/pulls",
+      "method": "POST",
+      "headers": {
+        "authorization": "token my-token"
+      },
+      "body": {
+        "title": "Update swagger-ui to 5.9.1",
+        "head": "update-static-assets/swagger-ui/5.9.1",
+        "base": "main",
+        "body": "Updates swagger-ui to version [`5.9.1`](https://github.com/swagger-api/swagger-ui/releases/tag/v5.9.1).\n\nThis pull request was auto-generated by [GitHub Actions](https://github.local/martincostello/update-static-assets/actions/runs/123).",
+        "maintainer_can_modify": true,
+        "draft": false
+      },
+      "status": 201,
+      "response": {
+        "number": 44,
+        "title": "Update swagger-ui to 5.9.1",
+        "html_url": "https://github.local/martincostello/update-static-assets/pull/44",
+        "user": {
+          "login": "github-actions[bot]"
+        }
+      }
+    },
+    {
+      "basePath": "https://github.local",
+      "path": "/api/v3/repos/martincostello/update-static-assets/issues/44/labels",
       "method": "POST",
       "headers": {
         "authorization": "token my-token"

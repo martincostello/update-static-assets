@@ -68,6 +68,53 @@ exports[`update-static-assets for cdnjs for font-awesome updates font-awesome 1`
           </html>"
 `;
 
+exports[`update-static-assets for cdnjs for swagger-ui assets-updated is correct 1`] = `"true"`;
+
+exports[`update-static-assets for cdnjs for swagger-ui generates the correct commit message 1`] = `
+[
+  "Update swagger-ui",
+  "Updates swagger-ui to version 5.9.1.",
+  "---",
+  "updated-dependencies:",
+  "- dependency-name: swagger-ui",
+  "  dependency-type: direct:production",
+  "  update-type: version-update:semver-patch",
+  "...",
+  "Signed-off-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>",
+  "Initial commit",
+]
+`;
+
+exports[`update-static-assets for cdnjs for swagger-ui generates the correct diff 1`] = `
+"diff --git a/index.html b/index.html
+index c72f971..e3316fd 100644
+--- a/index.html
++++ b/index.html
+@@ -2,6 +2,6 @@
+           <html lang="en-gb">
+             <head>
+               <!-- swagger-ui -->
+-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.0/swagger-ui.min.css" integrity="sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
++              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.1/swagger-ui.min.css" integrity="sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+             </head>
+           </html>
+\\ No newline at end of file"
+`;
+
+exports[`update-static-assets for cdnjs for swagger-ui pulls-closed is correct 1`] = `"[]"`;
+
+exports[`update-static-assets for cdnjs for swagger-ui pulls-opened is correct 1`] = `"[44]"`;
+
+exports[`update-static-assets for cdnjs for swagger-ui updates font-awesome 1`] = `
+"
+          <html lang="en-gb">
+            <head>
+              <!-- swagger-ui -->
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.1/swagger-ui.min.css" integrity="sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            </head>
+          </html>"
+`;
+
 exports[`update-static-assets for jsDelivr assets-updated is correct 1`] = `"true"`;
 
 exports[`update-static-assets for jsDelivr generates the correct commit message 1`] = `

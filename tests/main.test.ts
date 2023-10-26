@@ -17,6 +17,11 @@ describe('update-static-assets', () => {
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css',
         'sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==',
       ],
+      [
+        'swagger-ui',
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.0/swagger-ui.min.css',
+        'sha512-wjyFPe3jl9Y/d+vaEDd04b2+wzgLdgKPVoy9m1FYNpJSMHM328G50WPU57xayVkZwxWi45vA+4QN+9erPZIeig==',
+      ],
     ])('for %s', (name: string, href: string, integrity: string) => {
       let fixture: ActionFixture;
 
