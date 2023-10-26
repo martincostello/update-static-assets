@@ -90,7 +90,9 @@ export abstract class CdnClient {
       return release.html_url;
     } catch (error: any) {
       if (error['status'] !== 404) {
-        debug('Failed to check for updates to static assets.');
+        debug(
+          `Failed to get GitHub release for repository ${owner}/${repo} for tag ${tag}.`
+        );
         debug(error);
         if (error instanceof Error) {
           if (error.stack) {
