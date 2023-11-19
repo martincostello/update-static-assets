@@ -48,8 +48,8 @@ export class StaticAssetUpdater {
       parseInt(latestVersion[0], 10) > parseInt(currentVersion[0], 10)
         ? 'major'
         : parseInt(latestVersion[1], 10) > parseInt(currentVersion[1], 10)
-        ? 'minor'
-        : 'patch';
+          ? 'minor'
+          : 'patch';
 
     const messageLines = [
       `Update ${assetName}`,
@@ -110,11 +110,12 @@ export class StaticAssetUpdater {
   }
 
   private getClient(provider: CdnProvider): CdnClient | null {
+    const isGitHubEnterprise = this.options.apiUrl !== 'https://api.github.com';
     switch (provider) {
       case CdnProvider.cdnjs:
-        return new CdnjsClient(this.options.accessToken);
+        return new CdnjsClient(this.options.accessToken, isGitHubEnterprise);
       case CdnProvider.jsdelivr:
-        return new JSDelivrClient(this.options.accessToken);
+        return new JSDelivrClient(this.options.accessToken, isGitHubEnterprise);
       default:
         return null;
     }

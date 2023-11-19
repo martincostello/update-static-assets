@@ -2,14 +2,17 @@
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
 import { debug } from '@actions/core';
-import { getOctokit } from '@actions/github';
+import { GitHub } from '@actions/github/lib/utils';
 import { fetch, Response } from 'undici';
 import { CdnFile } from '../CdnFile';
 import { CdnPackage } from '../CdnPackage';
 import { Repository } from '../Repository';
 
 export abstract class CdnClient {
-  constructor(private accessToken: string) {}
+  constructor(
+    private accessToken: string,
+    private isGitHubEnterprise: boolean
+  ) {}
 
   abstract getLatestVersion(name: string): Promise<CdnPackage | null>;
 
@@ -76,7 +79,8 @@ export abstract class CdnClient {
     repo: string,
     tag: string
   ): Promise<string | null> {
-    const octokit = getOctokit(this.accessToken, {
+    const octokit = new GitHub({
+      auth: this.isGitHubEnterprise ? undefined : this.accessToken,
       baseUrl: 'https://api.github.com',
     });
 
