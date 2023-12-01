@@ -61,7 +61,7 @@
     "@actions/github": "^6.0.0",
     "@actions/io": "^1.1.3",
     "glob": "^10.3.10",
-    "jsdom": "^23.0.0",
+    "jsdom": "^23.0.1",
     "undici": "^5.28.2"
   },
   "devDependencies": {
