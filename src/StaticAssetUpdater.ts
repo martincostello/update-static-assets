@@ -10,10 +10,7 @@ import { Writable } from 'stream';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
-// eslint-disable-next-line import/no-unresolved
-import { PaginateInterface } from '@octokit/plugin-paginate-rest/dist-types/types';
-// eslint-disable-next-line import/no-unresolved
-import { Api } from '@octokit/plugin-rest-endpoint-methods/dist-types/types';
+import { Octokit } from '@octokit/core';
 
 import { AssetUpdate } from './AssetUpdate';
 import { CdnProvider } from './CdnProvider';
@@ -654,7 +651,7 @@ export class StaticAssetUpdater {
   }
 
   private async getSupersededPullsForAsset(
-    octokit: PaginatedApi,
+    octokit: InstanceType<typeof GitHub>,
     created: {
       number: number;
       owner: string;
@@ -870,10 +867,6 @@ export class StaticAssetUpdater {
   }
 }
 
-type PaginatedApi = Api & {
-  paginate: PaginateInterface;
-};
-
 interface Asset {
   cdn: CdnProvider;
   name: string;
@@ -910,3 +903,10 @@ class NullWritable extends Writable {
     callback();
   }
 }
+
+declare const GitHub: typeof Octokit &
+  import('@octokit/core/dist-types/types').Constructor<
+    import('@octokit/plugin-rest-endpoint-methods/dist-types/types').Api & {
+      paginate: import('@octokit/plugin-paginate-rest').PaginateInterface;
+    }
+  >;
