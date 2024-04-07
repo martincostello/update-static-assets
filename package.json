@@ -1,6 +1,6 @@
 {
   "name": "update-static-assets",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "description": "A GitHub Action that updates HTML static assets.",
   "main": "lib/main.js",
