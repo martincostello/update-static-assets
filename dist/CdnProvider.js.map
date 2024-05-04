@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../lib/CdnProvider.js"],
-  "sourcesContent": ["\"use strict\";\n// Copyright (c) Martin Costello, 2022. All rights reserved.\n// Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.CdnProvider = void 0;\nvar CdnProvider;\n(function (CdnProvider) {\n    CdnProvider[\"cdnjs\"] = \"cdnjs\";\n    CdnProvider[\"jsdelivr\"] = \"jsdelivr\";\n})(CdnProvider || (exports.CdnProvider = CdnProvider = {}));\n"],
-  "mappings": "aAGA,OAAO,eAAe,QAAS,aAAc,CAAE,MAAO,EAAK,CAAC,EAC5D,QAAQ,YAAc,OACtB,IAAIA,GACH,SAAUA,EAAa,CACpBA,EAAY,MAAW,QACvBA,EAAY,SAAc,UAC9B,GAAGA,IAAgB,QAAQ,YAAcA,EAAc,CAAC,EAAE",
-  "names": ["CdnProvider"]
-}
