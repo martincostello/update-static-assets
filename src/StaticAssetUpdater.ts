@@ -273,7 +273,7 @@ export class StaticAssetUpdater {
       `Found ${Object.keys(latestVersions).length} latest versions for assets.`
     );
     for (const asset in latestVersions) {
-      core.debug(`  - ${asset}@${latestVersions[asset]}`);
+      core.debug(`  - ${asset}@${latestVersions[asset].version}`);
     }
 
     // Are there any assets using a version that isn't the latest one?
