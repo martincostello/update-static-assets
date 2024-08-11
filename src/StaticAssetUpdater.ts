@@ -476,7 +476,7 @@ export class StaticAssetUpdater {
     const latestFiles = await client.getFiles(asset.name, latest.version);
 
     core.debug(
-      `Found ${latestFiles.length} files for ${asset.name}@${latest} from ${asset.cdn}.`
+      `Found ${latestFiles.length} files for ${asset.name}@${latest.version} from ${asset.cdn}.`
     );
 
     if (latestFiles.length < 1) {
