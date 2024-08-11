@@ -761,6 +761,11 @@ export class StaticAssetUpdater {
         const latestAsset = cdnFiles.find(
           (a) => a.fileName === assetToUpdate.fileName
         );
+        if (!latestAsset) {
+          core.debug(
+            `Could not find asset for file ${assetToUpdate.fileName} in ${assetUpdate.name}@${assetUpdate.version}.`
+          );
+        }
         if (latestAsset && content.includes(assetToUpdate.url)) {
           content = content.replace(assetToUpdate.url, latestAsset.url);
           if (assetToUpdate.integrity) {
