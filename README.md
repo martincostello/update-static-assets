@@ -17,8 +17,8 @@ The following CDNs are supported:
 
 ```yml
 steps:
-- uses: actions/checkout@v3
-- uses: martincostello/update-static-assets@v1
+- uses: actions/checkout@v4
+- uses: martincostello/update-static-assets@v2
   with:
     repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -51,8 +51,8 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: martincostello/update-static-assets@v1
+    - uses: actions/checkout@v4
+    - uses: martincostello/update-static-assets@v2
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
