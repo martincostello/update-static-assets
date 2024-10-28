@@ -67,7 +67,7 @@
     "jsdom": "^25.0.1",
     "lru-cache": "^11.0.1",
     "undici": "^6.20.1",
-    "uuid": "^10.0.0"
+    "uuid": "^11.0.1"
   },
   "devDependencies": {
     "@octokit/types": "^13.6.1",
