@@ -92,6 +92,7 @@ export abstract class CdnClient {
       });
 
       return release.html_url;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error['status'] !== 404) {
         debug(

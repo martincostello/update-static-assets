@@ -589,6 +589,7 @@ export class StaticAssetUpdater {
             issue_number: created.number,
             labels: labelsToApply,
           });
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
           core.error(
             `Failed to apply label(s) to pull request #${created.number}`
@@ -660,10 +661,10 @@ export class StaticAssetUpdater {
     },
     asset: string
   ): Promise<
-    {
+    Array<{
       number: number;
       ref: string;
-    }[]
+    }>
   > {
     const pulls = await octokit.paginate(octokit.rest.pulls.list, {
       owner: created.owner,
@@ -688,10 +689,7 @@ export class StaticAssetUpdater {
     return superseded;
   }
 
-  private async execGit(
-    args: string[],
-    ignoreErrors: Boolean = false
-  ): Promise<string> {
+  private async execGit(args: string[], ignoreErrors = false): Promise<string> {
     let commandOutput = '';
     let commandError = '';
 
@@ -713,7 +711,7 @@ export class StaticAssetUpdater {
 
     try {
       await exec.exec('git', args, options);
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(`The command 'git ${args.join(' ')}' failed: ${error}`);
     }
 
@@ -894,14 +892,14 @@ interface PullRequest {
 
 class NullWritable extends Writable {
   _write(
-    _chunk: any,
+    _chunk: unknown,
     _encoding: string,
     callback: (error?: Error | null) => void
   ): void {
     callback();
   }
   _writev(
-    _chunks: { chunk: any; encoding: string }[],
+    _chunks: Array<{ chunk: unknown; encoding: string }>,
     callback: (error?: Error | null) => void
   ): void {
     callback();
