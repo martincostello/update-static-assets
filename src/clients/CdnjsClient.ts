@@ -22,7 +22,7 @@ export class CdnjsClient extends CdnClient {
       );
     }
 
-    const result: any = await response.json();
+    const result: unknown = await response.json();
     const library = result as Library;
     const version = library?.version ?? null;
 
@@ -57,7 +57,7 @@ export class CdnjsClient extends CdnClient {
       );
     }
 
-    const result: any = await response.json();
+    const result: unknown = await response.json();
     const library = result as LibraryVersion;
 
     if (library?.files) {

@@ -24,7 +24,7 @@ export class JSDelivrClient extends CdnClient {
       );
     }
 
-    const result: any = await response.json();
+    const result: unknown = await response.json();
     const npmPackage = result as Package;
     const version = npmPackage?.tags.latest ?? null;
 
@@ -59,7 +59,7 @@ export class JSDelivrClient extends CdnClient {
       );
     }
 
-    const result: any = await response.json();
+    const result: unknown = await response.json();
     const packageFiles = result as PackageFiles;
 
     if (packageFiles?.files) {
@@ -85,7 +85,7 @@ export class JSDelivrClient extends CdnClient {
       return '';
     }
 
-    const result: any = await response.json();
+    const result: unknown = await response.json();
     const library = result as RegistryPackage;
 
     if (!library || !library.repository) {

@@ -80,6 +80,7 @@ export async function run(): Promise<void> {
       'pulls-opened',
       JSON.stringify(result.updates.map((p) => p.pullRequestNumber))
     );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     core.error('Failed to check for updates to static assets.');
     core.error(error);
