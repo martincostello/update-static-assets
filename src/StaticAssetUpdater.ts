@@ -55,6 +55,7 @@ export class StaticAssetUpdater {
       '---',
       'updated-dependencies:',
       `- dependency-name: ${assetName}`,
+      `  dependency-version: ${latestAssetVersion}`,
       '  dependency-type: direct:production',
       `  update-type: version-update:semver-${updateKind}`,
       '...',
