@@ -6,7 +6,7 @@
 
 This action updates static assets for HTML-related files stored in a GitHub repository.
 
-An example pull request created by the action can be found [here](https://github.com/martincostello/costellobot/pull/167).
+An example pull request created by the action can be found [in this pull request](https://github.com/martincostello/costellobot/pull/167).
 
 The following CDNs are supported:
 
@@ -17,7 +17,7 @@ The following CDNs are supported:
 
 ```yml
 steps:
-- uses: actions/checkout@v4
+- uses: actions/checkout@v5
 - uses: martincostello/update-static-assets@v2
   with:
     repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -39,9 +39,7 @@ on:
   # Manual trigger to update static assets on demand
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pull-requests: read
+permissions: {}
 
 jobs:
   update-static-assets:
@@ -51,7 +49,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: martincostello/update-static-assets@v2
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -104,13 +102,13 @@ An example configuration file is shown below.
 
 ```json
 {
-    "ignore": [
-        {
-            "cdn": "cdnjs",
-            "name": "bootstrap",
-            "version": "6\\..*"
-        }
-    ]
+  "ignore": [
+    {
+      "cdn": "cdnjs",
+      "name": "bootstrap",
+      "version": "6\\..*"
+    }
+  ]
 }
 ```
 
@@ -120,7 +118,7 @@ Any feedback or issues can be added to the issues for this project in [GitHub](h
 
 ## Repository
 
-The repository is hosted in [GitHub](https://github.com/martincostello/update-static-assets): https://github.com/martincostello/update-static-assets.git
+The repository is hosted in [GitHub](https://github.com/martincostello/update-static-assets): <https://github.com/martincostello/update-static-assets.git>
 
 ## License
 
