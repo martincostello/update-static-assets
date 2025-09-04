@@ -1,6 +1,6 @@
 {
   "name": "update-static-assets",
-  "version": "2.3.2",
+  "version": "3.0.0",
   "private": true,
   "description": "A GitHub Action that updates HTML static assets.",
   "main": "lib/main.js",
@@ -10,7 +10,7 @@
     "format": "prettier --write eslint.config.mjs src/**/*.ts tests/**/*.ts",
     "format-check": "prettier --check eslint.config.mjs src/**/*.ts tests/**/*.ts",
     "lint": "eslint src/**/*.ts --fix",
-    "package": "esbuild lib/main.js --bundle --external:./xhr-sync-worker.js --minify --outdir=dist --packages=bundle --platform=node --sourcemap --target=node20.0.0",
+    "package": "esbuild lib/main.js --bundle --external:./xhr-sync-worker.js --minify --outdir=dist --packages=bundle --platform=node --sourcemap --target=node24.0.0",
     "test": "jest",
     "publish": "npm run build && npm run format && npm run lint && npm run package",
     "all": "npm run publish && npm test"
@@ -34,7 +34,7 @@
     "url": "https://martincostello.com/"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.0.0"
   },
   "jest": {
     "clearMocks": true,
