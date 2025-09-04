@@ -15,7 +15,7 @@ inputs:
   close-superseded:
     description: 'If true, any existing pull requests superseded by any pull requests opened by the action are closed.'
     required: false
-    default: true
+    default: 'true'
   commit-message:
     description: 'The optional Git commit message to use.'
     required: false
@@ -47,7 +47,7 @@ inputs:
   dry-run:
     description: 'If true, the action will not push changes to GitHub.'
     required: false
-    default: false
+    default: 'false'
 outputs:
   assets-updated:
     description: 'Whether any static assets were updated by the action.'
@@ -56,5 +56,5 @@ outputs:
   pulls-opened:
     description: 'A JSON array of the numbers of any pull requests that were opened to update static assets.'
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/main.js'
