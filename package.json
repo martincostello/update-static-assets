@@ -64,7 +64,7 @@
     "@octokit/plugin-paginate-rest": "^13.1.0",
     "@octokit/plugin-rest-endpoint-methods": "^11.0.1",
     "glob": "^11.0.3",
-    "jsdom": "^26.1.0",
+    "jsdom": "^27.0.0",
     "lru-cache": "^11.1.0",
     "undici": "^7.10.0",
     "uuid": "^13.0.0"
