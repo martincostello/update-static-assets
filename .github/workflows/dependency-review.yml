@@ -23,4 +23,4 @@ jobs:
       - name: Review dependencies
         uses: actions/dependency-review-action@595b5aeba73380359d98a5e087f648dbb0edce1b # v4.7.3
         with:
-          allow-licenses: 'Apache-2.0,BlueOak-1.0.0,BSD-2-Clause,BSD-3-Clause,CC0-1.0,CC-BY-SA-4.0 AND ISC,ISC,MIT,MIT-0'
+          config-file: .github/dependency-review.yml

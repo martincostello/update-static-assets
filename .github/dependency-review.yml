@@ -1,0 +1,10 @@
+allow-licenses:
+  - 'Apache-2.0'
+  - 'BlueOak-1.0.0'
+  - 'BSD-2-Clause'
+  - 'BSD-3-Clause'
+  - 'CC0-1.0'
+  - 'CC-BY-SA-4.0 AND ISC'
+  - 'ISC'
+  - 'MIT'
+  - 'MIT-0'
