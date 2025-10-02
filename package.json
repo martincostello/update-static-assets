@@ -57,17 +57,17 @@
   },
   "homepage": "https://github.com/martincostello/update-static-assets#readme",
   "dependencies": {
-    "@actions/core": "^1.11.1",
-    "@actions/exec": "^1.1.1",
-    "@actions/github": "^6.0.1",
-    "@actions/io": "^1.1.3",
-    "@octokit/plugin-paginate-rest": "^13.1.0",
-    "@octokit/plugin-rest-endpoint-methods": "^11.0.1",
-    "glob": "^11.0.3",
-    "jsdom": "^27.0.0",
-    "lru-cache": "^11.1.0",
-    "undici": "^7.10.0",
-    "uuid": "^13.0.0"
+    "@actions/core": "1.11.1",
+    "@actions/exec": "1.1.1",
+    "@actions/github": "6.0.1",
+    "@actions/io": "1.1.3",
+    "@octokit/plugin-paginate-rest": "13.1.0",
+    "@octokit/plugin-rest-endpoint-methods": "11.0.1",
+    "glob": "11.0.2",
+    "jsdom": "27.0.0",
+    "lru-cache": "11.1.0",
+    "undici": "7.10.0",
+    "uuid": "13.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
