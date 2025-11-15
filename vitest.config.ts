@@ -6,7 +6,7 @@ export default defineConfig({
     coverage: {
       enabled: true,
       include: ['src/**/*.ts'],
-      reporter: ['text', 'html'],
+      reporter: ['html', 'text'],
     },
     reporters: ['default', 'github-actions'],
   },
