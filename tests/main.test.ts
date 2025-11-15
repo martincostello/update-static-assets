@@ -5,7 +5,7 @@ import * as core from '@actions/core';
 import { ActionFixture } from './ActionFixture';
 import { setup } from './fixtures';
 
-import { afterAll, beforeAll, describe, expect, test } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
 const timeout = 45000;
 
