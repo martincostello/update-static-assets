@@ -1,11 +1,22 @@
 // Copyright (c) Martin Costello, 2022. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
+import {
+  afterAll,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from 'vitest';
 
 // Mock @actions/core ESM module
+// ESM modules require module-level mocking with vi.mock() instead of vi.spyOn()
+// because exports are not configurable at runtime in ESM.
 vi.mock('@actions/core', async () => {
-  const actual = await vi.importActual<typeof import('@actions/core')>('@actions/core');
+  const actual =
+    await vi.importActual<typeof import('@actions/core')>('@actions/core');
   return {
     ...actual,
     setFailed: vi.fn(),
@@ -29,6 +40,10 @@ import { setup } from './fixtures';
 const timeout = 45000;
 
 describe('update-static-assets', () => {
+  beforeEach(() => {
+    // Clear all mocks before each test to prevent test pollution
+    vi.clearAllMocks();
+  });
   describe('for cdnjs', () => {
     describe.each([
       [

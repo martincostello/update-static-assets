@@ -124,7 +124,10 @@ export class ActionFixture {
   }
 
   private setupMocks(): void {
-    // Mocking is now done at the module level in test files
+    // ESM modules require module-level mocking with vi.mock() instead of
+    // instance-level mocking with vi.spyOn() because exports are not configurable
+    // at runtime in ESM. The mock setup is now done at the module level in test files,
+    // and this method configures the behavior of those already-mocked functions.
     this.setupLogging();
   }
 
@@ -133,7 +136,7 @@ export class ActionFixture {
       console.debug(`[${level}] ${arg}`);
     };
 
-    // Configure the already-mocked functions
+    // Configure the already-mocked functions using vi.mocked()
     vi.mocked(core.debug).mockImplementation((arg) => {
       logger('debug', arg);
     });
