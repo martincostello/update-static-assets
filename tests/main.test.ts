@@ -30,6 +30,20 @@ vi.mock('@actions/core', async () => {
   };
 });
 
+vi.mock('@actions/github', async () => {
+  const actual =
+    await vi.importActual<typeof import('@actions/github')>('@actions/github');
+
+  const ContextConstructor = actual.context.constructor;
+
+  return {
+    ...actual,
+    get context() {
+      return new ContextConstructor();
+    },
+  };
+});
+
 import * as core from '@actions/core';
 import { ActionFixture } from './ActionFixture';
 import { setup } from './fixtures';
