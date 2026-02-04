@@ -5,7 +5,7 @@ import * as core from '@actions/core';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { Context } from '@actions/github/lib/context';
+import { context } from '@actions/github';
 import { StaticAssetUpdater } from './StaticAssetUpdater';
 import { UpdateOptions } from './UpdateOptions';
 
@@ -13,8 +13,6 @@ export async function run(): Promise<void> {
   try {
     let repoPath = core.getInput('repo-path', { required: false }) ?? '.';
     repoPath = path.normalize(repoPath);
-
-    const context = new Context();
 
     const options: UpdateOptions = {
       accessToken: core.getInput('repo-token', { required: true }),
