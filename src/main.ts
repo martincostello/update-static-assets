@@ -14,8 +14,10 @@ export async function run(): Promise<void> {
     let repoPath = core.getInput('repo-path', { required: false }) ?? '.';
     repoPath = path.normalize(repoPath);
 
-    // Create a new Context instance to read from current environment variables
-    // (the singleton github.context is initialized at module load time)
+    // Create a new Context instance to read from current environment variables.
+    // The singleton github.context is initialized at module load time, but tests
+    // need a fresh instance that reads from test environment variables.
+    // We can't import Context directly because it's not in the package exports.
     const Context = (github.context as any).constructor;
     const context = new Context();
 
