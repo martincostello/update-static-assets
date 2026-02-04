@@ -18,6 +18,7 @@ export async function run(): Promise<void> {
     // The singleton github.context is initialized at module load time, but tests
     // need a fresh instance that reads from test environment variables.
     // We can't import Context directly because it's not in the package exports.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Context = (github.context as any).constructor;
     const context = new Context();
 
