@@ -5,7 +5,7 @@ import * as core from '@actions/core';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { context } from '@actions/github';
+import * as github from '@actions/github';
 import { StaticAssetUpdater } from './StaticAssetUpdater';
 import { UpdateOptions } from './UpdateOptions';
 
@@ -13,6 +13,11 @@ export async function run(): Promise<void> {
   try {
     let repoPath = core.getInput('repo-path', { required: false }) ?? '.';
     repoPath = path.normalize(repoPath);
+
+    // Create a new Context instance to read from current environment variables
+    // (the singleton github.context is initialized at module load time)
+    const Context = (github.context as any).constructor;
+    const context = new Context();
 
     const options: UpdateOptions = {
       accessToken: core.getInput('repo-token', { required: true }),

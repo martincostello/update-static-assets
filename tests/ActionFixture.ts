@@ -1,32 +1,12 @@
 // Copyright (c) Martin Costello, 2022. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
-import { vi } from 'vitest';
-
-vi.mock('@actions/core', async () => {
-  const actual =
-    await vi.importActual<typeof import('@actions/core')>('@actions/core');
-  return {
-    ...actual,
-    setFailed: vi.fn(),
-    debug: vi.fn(),
-    info: vi.fn(),
-    notice: vi.fn(),
-    warning: vi.fn(),
-    error: vi.fn(),
-    summary: {
-      ...actual.summary,
-      addRaw: vi.fn().mockReturnThis(),
-      write: vi.fn().mockReturnThis(),
-    },
-  };
-});
-
 import * as core from '@actions/core';
 import * as fs from 'fs';
 import * as io from '@actions/io';
 import * as os from 'os';
 import * as path from 'path';
+import { vi } from 'vitest';
 import {
   createEmptyFile,
   createGitRepo,
