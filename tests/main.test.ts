@@ -11,9 +11,6 @@ import {
   vi,
 } from 'vitest';
 
-// Mock @actions/core ESM module
-// ESM modules require module-level mocking with vi.mock() instead of vi.spyOn()
-// because exports are not configurable at runtime in ESM.
 vi.mock('@actions/core', async () => {
   const actual =
     await vi.importActual<typeof import('@actions/core')>('@actions/core');
@@ -41,7 +38,6 @@ const timeout = 45000;
 
 describe('update-static-assets', () => {
   beforeEach(() => {
-    // Clear all mocks before each test to prevent test pollution
     vi.clearAllMocks();
   });
   describe('for cdnjs', () => {

@@ -1,12 +1,32 @@
 // Copyright (c) Martin Costello, 2022. All rights reserved.
 // Licensed under the Apache 2.0 license. See the LICENSE file in the project root for full license information.
 
+import { vi } from 'vitest';
+
+vi.mock('@actions/core', async () => {
+  const actual =
+    await vi.importActual<typeof import('@actions/core')>('@actions/core');
+  return {
+    ...actual,
+    setFailed: vi.fn(),
+    debug: vi.fn(),
+    info: vi.fn(),
+    notice: vi.fn(),
+    warning: vi.fn(),
+    error: vi.fn(),
+    summary: {
+      ...actual.summary,
+      addRaw: vi.fn().mockReturnThis(),
+      write: vi.fn().mockReturnThis(),
+    },
+  };
+});
+
 import * as core from '@actions/core';
 import * as fs from 'fs';
 import * as io from '@actions/io';
 import * as os from 'os';
 import * as path from 'path';
-import { vi } from 'vitest';
 import {
   createEmptyFile,
   createGitRepo,
@@ -124,10 +144,6 @@ export class ActionFixture {
   }
 
   private setupMocks(): void {
-    // ESM modules require module-level mocking with vi.mock() instead of
-    // instance-level mocking with vi.spyOn() because exports are not configurable
-    // at runtime in ESM. The mock setup is now done at the module level in test files,
-    // and this method configures the behavior of those already-mocked functions.
     this.setupLogging();
   }
 
@@ -136,7 +152,6 @@ export class ActionFixture {
       console.debug(`[${level}] ${arg}`);
     };
 
-    // Configure the already-mocked functions using vi.mocked()
     vi.mocked(core.debug).mockImplementation((arg) => {
       logger('debug', arg);
     });
