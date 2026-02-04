@@ -907,7 +907,6 @@ class NullWritable extends Writable {
   }
 }
 
-type PaginatedApi =
-  import('@octokit/plugin-rest-endpoint-methods/dist-types/types').Api & {
-    paginate: import('@octokit/plugin-paginate-rest').PaginateInterface;
-  };
+type PaginatedApi = import('@octokit/plugin-rest-endpoint-methods').Api & {
+  paginate: import('@octokit/plugin-paginate-rest').PaginateInterface;
+};

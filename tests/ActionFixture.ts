@@ -124,7 +124,6 @@ export class ActionFixture {
   }
 
   private setupMocks(): void {
-    vi.spyOn(core, 'setFailed').mockImplementation(() => {});
     this.setupLogging();
   }
 
@@ -133,26 +132,26 @@ export class ActionFixture {
       console.debug(`[${level}] ${arg}`);
     };
 
-    vi.spyOn(core, 'debug').mockImplementation((arg) => {
+    vi.mocked(core.debug).mockImplementation((arg) => {
       logger('debug', arg);
     });
-    vi.spyOn(core, 'info').mockImplementation((arg) => {
+    vi.mocked(core.info).mockImplementation((arg) => {
       logger('info', arg);
     });
-    vi.spyOn(core, 'notice').mockImplementation((arg) => {
+    vi.mocked(core.notice).mockImplementation((arg) => {
       logger('notice', arg);
     });
-    vi.spyOn(core, 'warning').mockImplementation((arg) => {
+    vi.mocked(core.warning).mockImplementation((arg) => {
       logger('warning', arg);
     });
-    vi.spyOn(core, 'error').mockImplementation((arg) => {
+    vi.mocked(core.error).mockImplementation((arg) => {
       logger('error', arg);
     });
 
-    vi.spyOn(core.summary, 'addRaw').mockImplementation((text: string) => {
+    vi.mocked(core.summary.addRaw).mockImplementation((text: string) => {
       this.stepSummary += text;
       return core.summary;
     });
-    vi.spyOn(core.summary, 'write').mockReturnThis();
+    vi.mocked(core.summary.write).mockReturnThis();
   }
 }
