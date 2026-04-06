@@ -20,9 +20,7 @@ export abstract class CdnClient {
 
   protected async httpGet(url: string): Promise<Response> {
     return await fetch(url, {
-      headers: new Headers([
-        ['User-Agent', 'martincostello/update-static-assets'],
-      ]),
+      headers: [['User-Agent', 'martincostello/update-static-assets']],
     });
   }
 
@@ -82,6 +80,7 @@ export abstract class CdnClient {
     const octokit = new GitHub({
       auth: this.isGitHubEnterprise ? undefined : this.accessToken,
       baseUrl: 'https://api.github.com',
+      request: { fetch },
     });
 
     try {
