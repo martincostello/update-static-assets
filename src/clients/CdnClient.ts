@@ -20,9 +20,7 @@ export abstract class CdnClient {
 
   protected async httpGet(url: string): Promise<Response> {
     return await fetch(url, {
-      headers: new Headers([
-        ['User-Agent', 'martincostello/update-static-assets'],
-      ]),
+      headers: [['User-Agent', 'martincostello/update-static-assets']],
     });
   }
 
