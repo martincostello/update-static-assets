@@ -11,6 +11,8 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
 
+import { fetch } from 'undici';
+
 import { AssetUpdate } from './AssetUpdate';
 import { CdnProvider } from './CdnProvider';
 import { CdnFile } from './CdnFile';
@@ -545,6 +547,7 @@ export class StaticAssetUpdater {
 
     const octokit = github.getOctokit(this.options.accessToken, {
       baseUrl: this.options.apiUrl,
+      request: { fetch },
     });
 
     const [owner, repo] = this.options.repo.split('/');
