@@ -50,7 +50,7 @@
     "@octokit/plugin-rest-endpoint-methods": "17.0.0",
     "glob": "13.0.6",
     "jsdom": "29.0.2",
-    "lru-cache": "11.3.3",
+    "lru-cache": "11.3.5",
     "undici": "8.0.3",
     "uuid": "13.0.0"
   },
