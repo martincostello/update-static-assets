@@ -16,10 +16,11 @@ permissions: {}
 jobs:
   bump-version:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     if: github.event.repository.fork == false
 
     concurrency:
-      group: ${{ github.workflow }}
+      group: '${{ github.workflow }}-bump'
       cancel-in-progress: false
 
     environment:
@@ -172,10 +173,11 @@ jobs:
 
   close-milestone:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     if: github.event_name == 'release'
 
     concurrency:
-      group: ${{ github.workflow }}
+      group: '${{ github.workflow }}-milestone'
       cancel-in-progress: false
 
     permissions:
