@@ -9,7 +9,6 @@ export interface UpdateOptions {
   branchPrefix: string;
   closeSuperseded: boolean;
   commitMessage: string;
-  dryRun: boolean;
   fileExtensions: string[];
   ignore: IgnoreAsset[];
   labels: string;

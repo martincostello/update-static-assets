@@ -44,10 +44,6 @@ inputs:
     description: 'The optional user name to use for Git commits.'
     required: false
     default: 'github-actions[bot]'
-  dry-run:
-    description: 'If true, the action will not push changes to GitHub.'
-    required: false
-    default: 'false'
 outputs:
   assets-updated:
     description: 'Whether any static assets were updated by the action.'

@@ -77,7 +77,6 @@ jobs:
 | `repo-path` | The optional path of the repository to check for updates. | `.` |
 | `user-email` | The optional email address to use for Git commits. | `github-actions[bot]@users.noreply.github.com` |
 | `user-name` | The optional user name to use for Git commits. | `github-actions[bot]` |
-| `dry-run` | If true, the action will not push changes to GitHub. | `false` |
 
 ## Outputs
 
