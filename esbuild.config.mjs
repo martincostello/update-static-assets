@@ -29,6 +29,29 @@ const inlineJsdomStylesheet = {
   },
 };
 
+// css-tree (a transitive dependency of jsdom) ships ESM modules that load their
+// JSON data via `createRequire(import.meta.url)`. esbuild rewrites `import.meta`
+// to `{}` in the CJS bundle, so `import.meta.url` is undefined and
+// `createRequire(undefined)` throws at runtime. Strip the createRequire shim so
+// the static `require('...')` literals below it are resolved and inlined by
+// esbuild itself. See https://github.com/evanw/esbuild/issues/1311.
+const fixCssTreeRequire = {
+  name: 'fix-css-tree-require',
+  setup(build) {
+    const filter = /css-tree[\\/]lib[\\/](data|data-patch|version)\.js$/;
+    build.onLoad({ filter }, async (args) => {
+      const source = await fs.promises.readFile(args.path, 'utf8');
+      const contents = source
+        .replace(/import \{ createRequire \} from 'module';\r?\n/, '')
+        .replace(
+          /const require = createRequire\(import\.meta\.url\);\r?\n/,
+          ''
+        );
+      return { contents, loader: 'js' };
+    });
+  },
+};
+
 await esbuild.build({
   entryPoints: ['lib/main.js'],
   bundle: true,
@@ -39,5 +62,5 @@ await esbuild.build({
   platform: 'node',
   sourcemap: true,
   target: 'node24.0.0',
-  plugins: [inlineJsdomStylesheet],
+  plugins: [inlineJsdomStylesheet, fixCssTreeRequire],
 });
