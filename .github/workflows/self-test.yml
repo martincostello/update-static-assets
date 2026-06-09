@@ -13,7 +13,6 @@ jobs:
   update-static-assets:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    if: github.event.repository.fork == false
 
     concurrency:
       group: ${{ github.workflow }}
