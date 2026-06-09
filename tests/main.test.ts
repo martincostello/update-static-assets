@@ -108,16 +108,12 @@ describe('update-static-assets', () => {
         }
       );
 
-      test('updates font-awesome', async () => {
-        expect(await fixture.getContent('index.html')).toMatchSnapshot();
+      test('commits the expected content', () => {
+        expect(fixture.committedContent()).toMatchSnapshot();
       });
 
-      test('generates the correct commit message', async () => {
-        expect(await fixture.commitHistory(2)).toMatchSnapshot();
-      });
-
-      test('generates the correct diff', async () => {
-        expect(await fixture.diff()).toMatchSnapshot();
+      test('generates the correct commit message', () => {
+        expect(fixture.commitMessage()).toMatchSnapshot();
       });
     });
   });
@@ -166,16 +162,12 @@ describe('update-static-assets', () => {
       }
     );
 
-    test('updates bootstrap', async () => {
-      expect(await fixture.getContent('index.html')).toMatchSnapshot();
+    test('commits the expected content', () => {
+      expect(fixture.committedContent()).toMatchSnapshot();
     });
 
-    test('generates the correct commit message', async () => {
-      expect(await fixture.commitHistory(2)).toMatchSnapshot();
-    });
-
-    test('generates the correct diff', async () => {
-      expect(await fixture.diff()).toMatchSnapshot();
+    test('generates the correct commit message', () => {
+      expect(fixture.commitMessage()).toMatchSnapshot();
     });
   });
 
@@ -228,21 +220,14 @@ describe('update-static-assets', () => {
       ['bootstrap', '5.3.1'],
       ['font-awesome', '6.4.2'],
     ])('updating %s', (asset: string, version: string) => {
-      beforeAll(async () => {
-        await setup('scenarios');
-        await fixture.checkout(`update-static-assets/${asset}/${version}`);
+      const branch = `update-static-assets/${asset}/${version}`;
+
+      test('generates the correct commit message', () => {
+        expect(fixture.commitMessage(branch)).toMatchSnapshot();
       });
 
-      test('generates the correct commit message', async () => {
-        expect(await fixture.commitHistory(2)).toMatchSnapshot();
-      });
-
-      test('generates the correct diff', async () => {
-        expect(await fixture.diff()).toMatchSnapshot();
-      });
-
-      test('updates the HTML', async () => {
-        expect(await fixture.getContent('index.html')).toMatchSnapshot();
+      test('commits the expected content', () => {
+        expect(fixture.committedContent(branch)).toMatchSnapshot();
       });
     });
   });
@@ -300,12 +285,8 @@ describe('update-static-assets', () => {
       }
     );
 
-    test('does not update excluded assets', async () => {
-      expect(await fixture.getContent('index.html')).toMatchSnapshot();
-    });
-
-    test('generates the correct commit message', async () => {
-      expect(await fixture.commitHistory(2)).toMatchSnapshot();
+    test('does not create any commits', () => {
+      expect(fixture.commits).toHaveLength(0);
     });
   });
 });

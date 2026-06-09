@@ -11,8 +11,13 @@ import {
   createEmptyFile,
   createGitRepo,
   createTemporaryDirectory,
-  execGit,
 } from './helpers';
+import {
+  CapturedCommit,
+  getCapturedCommit,
+  getCapturedCommits,
+  setupCommit,
+} from './fixtures';
 import { run } from '../src/main';
 
 export class ActionFixture {
@@ -41,6 +46,7 @@ export class ActionFixture {
 
     this.setupEnvironment();
     this.setupMocks();
+    setupCommit();
   }
 
   async run(): Promise<void> {
@@ -68,38 +74,31 @@ export class ActionFixture {
     return this.outputs[name];
   }
 
-  async checkout(branch: string): Promise<void> {
-    await execGit(['checkout', branch], this.tempDir, true);
+  get commits(): CapturedCommit[] {
+    return getCapturedCommits();
   }
 
-  async commitHistory(count: number = 1): Promise<string[]> {
-    const history = await execGit(
-      ['log', (count * -1).toString(10), '--pretty=%B'],
-      this.tempDir
-    );
-    return history.split('\n').filter((p) => p.length > 0);
-  }
-
-  async diff(
-    count: number = 1,
-    nameOnly: boolean = false
-  ): Promise<string | string[]> {
-    const args = ['diff', `HEAD~${count}`, 'HEAD'];
-    if (nameOnly) {
-      args.push('--name-only');
+  commit(branch?: string): CapturedCommit {
+    const commit = getCapturedCommit(branch);
+    if (!commit) {
+      throw new Error(
+        branch
+          ? `No commit was created for branch '${branch}'.`
+          : 'No commit was created.'
+      );
     }
-    const result = await execGit(args, this.tempDir);
-
-    if (nameOnly) {
-      return result.split('\n').filter((p) => p.length > 0);
-    } else {
-      return result;
-    }
+    return commit;
   }
 
-  async getContent(fileName: string): Promise<string> {
-    fileName = path.join(this.tempDir, fileName);
-    return await fs.promises.readFile(fileName, { encoding: 'utf8' });
+  commitMessage(branch?: string): string[] {
+    return this.commit(branch).message.split('\n');
+  }
+
+  committedContent(branch?: string, fileName: string = 'index.html'): string {
+    const commit = this.commit(branch);
+    const addition =
+      commit.additions.find((a) => a.path === fileName) ?? commit.additions[0];
+    return addition.content;
   }
 
   private setupEnvironment(): void {

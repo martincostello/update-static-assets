@@ -20,7 +20,6 @@ export async function run(): Promise<void> {
       branchPrefix: core.getInput('branch-name-prefix', { required: false }),
       closeSuperseded: true,
       commitMessage: core.getInput('commit-message', { required: false }),
-      dryRun: core.getInput('dry-run', { required: false }) === 'true',
       fileExtensions: [],
       ignore: [],
       labels: core.getInput('labels', { required: false }) ?? '',
