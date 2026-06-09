@@ -34,3 +34,5 @@ jobs:
 
     - name: Update static assets
       uses: ./
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
