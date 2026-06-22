@@ -51,7 +51,7 @@ jobs:
           $json = (Get-Content $fileName | Out-String | ConvertFrom-Json)
 
           if (-Not [string]::IsNullOrEmpty(${env:NEXT_VERSION})) {
-            $version = [System.Version]::new(${env:NEXT_VERSION})
+            $version = [System.Version]::new(${env:NEXT_VERSION}.TrimStart('v'))
           } else {
             $version = [System.Version]::new($json.version)
             $version = [System.Version]::new($version.Major, $version.Minor, $version.Build + 1)
