@@ -957,6 +957,4 @@ class NullWritable extends Writable {
 
 type Octokit = ReturnType<typeof github.getOctokit>;
 
-type PaginatedApi = import('@octokit/plugin-rest-endpoint-methods').Api & {
-  paginate: import('@octokit/plugin-paginate-rest').PaginateInterface;
-};
+type PaginatedApi = Pick<Octokit, 'rest' | 'paginate'>;
