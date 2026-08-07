@@ -36,6 +36,7 @@ let capturedCommits: CapturedCommit[] = [];
 let commitInterceptorsRegistered = false;
 
 const commitOid = 'a'.repeat(40);
+const maxCommitsPerTest = 5;
 
 function registerCommitInterceptors(): void {
   if (commitInterceptorsRegistered) {
@@ -63,6 +64,11 @@ function registerCommitInterceptors(): void {
       { headers: jsonHeaders }
     )
     .persist();
+}
+
+function registerGraphqlInterceptor(): void {
+  const origin = 'https://github.local';
+  const jsonHeaders = { 'content-type': 'application/json' };
 
   // The createCommitOnBranch GraphQL mutation captures the commit and returns its OID
   agent
@@ -87,13 +93,19 @@ function registerCommitInterceptors(): void {
         },
         responseOptions: { headers: jsonHeaders },
       };
-    })
-    .persist();
+    });
 }
 
 export function setupCommit(): void {
   capturedCommits = [];
   registerCommitInterceptors();
+  // Register fresh non-persisted GraphQL interceptors for each expected commit.
+  // A function reply with .persist() in undici only invokes the handler once and
+  // caches the response for subsequent calls, which breaks commit capture across
+  // multiple test runs. Registering individual interceptors avoids this.
+  for (let i = 0; i < maxCommitsPerTest; i++) {
+    registerGraphqlInterceptor();
+  }
 }
 
 export function getCapturedCommits(): CapturedCommit[] {
