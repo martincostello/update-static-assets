@@ -99,10 +99,6 @@ function registerGraphqlInterceptor(): void {
 export function setupCommit(): void {
   capturedCommits = [];
   registerCommitInterceptors();
-  // Register fresh non-persisted GraphQL interceptors for each expected commit.
-  // A function reply with .persist() in undici only invokes the handler once and
-  // caches the response for subsequent calls, which breaks commit capture across
-  // multiple test runs. Registering individual interceptors avoids this.
   for (let i = 0; i < maxCommitsPerTest; i++) {
     registerGraphqlInterceptor();
   }
